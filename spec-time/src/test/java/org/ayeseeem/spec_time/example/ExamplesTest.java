@@ -15,6 +15,9 @@ public class ExamplesTest {
 				time(234).milliseconds().from(new Date(1000)));
 		assertEquals(new Date(1001),
 				time(1).millisecond().from(new Date(1000)));
+
+		assertEquals(new Date(new Date().getTime() + 10),
+				time(10).millisecond().fromNow());
 	}
 
 }

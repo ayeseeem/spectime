@@ -20,6 +20,10 @@ public class DtInterval {
 		return cal.getTime();
 	}
 
+	public Date fromNow() {
+		return from(new Date());
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
