@@ -1,0 +1,18 @@
+package org.ayeseeem.spec_time.example;
+
+import static org.ayeseeem.spec_time.TimeFactory.time;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
+
+import org.junit.Test;
+
+public class ExamplesTest {
+
+	@Test
+	public void testExamples() {
+		assertEquals(new Date(1), time(1).millisecond().from(new Date(0)));
+		assertEquals(new Date(1234), time(234).millisecond().from(new Date(1000)));
+	}
+
+}
