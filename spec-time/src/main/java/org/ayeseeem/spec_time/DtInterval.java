@@ -20,4 +20,34 @@ public class DtInterval {
 		return cal.getTime();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + n;
+		result = prime * result + timeUnitId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		DtInterval other = (DtInterval) obj;
+		if (n != other.n) {
+			return false;
+		}
+		if (timeUnitId != other.timeUnitId) {
+			return false;
+		}
+		return true;
+	}
+
 }

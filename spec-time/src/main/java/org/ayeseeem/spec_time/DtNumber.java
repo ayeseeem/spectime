@@ -10,8 +10,12 @@ public class DtNumber {
 		this.n = n;
 	}
 
-	public DtInterval millisecond() {
+	public DtInterval milliseconds() {
 		return new DtInterval(n, Calendar.MILLISECOND);
+	}
+
+	public DtInterval millisecond() {
+		return milliseconds();
 	}
 
 }
