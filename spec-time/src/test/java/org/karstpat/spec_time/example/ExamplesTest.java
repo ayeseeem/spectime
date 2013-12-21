@@ -1,7 +1,7 @@
-package org.ayeseeem.spec_time.example;
+package org.karstpat.spec_time.example;
 
-import static org.ayeseeem.spec_time.TimeFactory.time;
 import static org.junit.Assert.assertEquals;
+import static org.karstpat.spec_time.TimeFactory.time;
 
 import java.util.Date;
 

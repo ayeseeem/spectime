@@ -1,4 +1,4 @@
-package org.ayeseeem.spec_time;
+package org.karstpat.spec_time;
 
 import static org.junit.Assert.assertEquals;
 
