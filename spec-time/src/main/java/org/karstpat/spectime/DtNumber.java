@@ -1,4 +1,4 @@
-package org.karstpat.spec_time;
+package org.karstpat.spectime;
 
 import java.util.Calendar;
 
