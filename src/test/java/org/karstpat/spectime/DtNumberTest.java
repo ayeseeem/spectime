@@ -43,4 +43,16 @@ public class DtNumberTest {
 		test.minute();
 	}
 
+	@Test
+	public void hourSynonym() {
+		DtNumber test = new DtNumber(1);
+		assertEquals(test.hours(), test.hour());
+	}
+
+	@Test
+	public void hourSynonymDoesNotCareIfUnitIsNotOne() {
+		DtNumber test = new DtNumber(2);
+		test.hour();
+	}
+
 }

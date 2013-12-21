@@ -34,4 +34,12 @@ public class DtNumber {
 		return minutes();
 	}
 
+	public DtInterval hours() {
+		return new DtInterval(n, Calendar.HOUR);
+	}
+
+	public DtInterval hour() {
+		return hours();
+	}
+
 }

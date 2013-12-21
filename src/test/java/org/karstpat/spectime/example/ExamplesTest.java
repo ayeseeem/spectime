@@ -41,4 +41,13 @@ public class ExamplesTest {
 				time(1).minute().from(new Date(1000 * t1Minute)));
 	}
 
+	@Test
+	public void examplesHours() {
+		int t1Hour = 60 * 60 * 1000;
+		assertEquals(new Date(1234 * t1Hour),
+				time(234).hours().from(new Date(1000 * t1Hour)));
+		assertEquals(new Date(1001 * t1Hour),
+				time(1).hour().from(new Date(1000 * t1Hour)));
+	}
+
 }
