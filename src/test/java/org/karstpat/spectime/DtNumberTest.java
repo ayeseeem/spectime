@@ -18,4 +18,17 @@ public class DtNumberTest {
 		test.millisecond();
 	}
 
+
+	@Test
+	public void secondSynonym() {
+		DtNumber test = new DtNumber(1);
+		assertEquals(test.seconds(), test.second());
+	}
+
+	@Test
+	public void secondSynonymDoesNotCareIfUnitIsNotOne() {
+		DtNumber test = new DtNumber(2);
+		test.second();
+	}
+
 }

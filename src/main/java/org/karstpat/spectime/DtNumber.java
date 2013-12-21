@@ -18,4 +18,12 @@ public class DtNumber {
 		return milliseconds();
 	}
 
+	public DtInterval seconds() {
+		return new DtInterval(n, Calendar.SECOND);
+	}
+
+	public DtInterval second() {
+		return seconds();
+	}
+
 }
