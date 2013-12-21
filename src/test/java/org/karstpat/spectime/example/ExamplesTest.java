@@ -23,27 +23,30 @@ public class ExamplesTest {
 				time(10).milliseconds().fromNow());
 	}
 
+	private final int t1Second = 1000;
+
 	@Test
 	public void examplesSeconds() {
-		int t1Second = 1000;
 		assertEquals(new Date(1234 * t1Second),
 				time(234).seconds().from(new Date(1000 * t1Second)));
 		assertEquals(new Date(1001 * t1Second),
 				time(1).second().from(new Date(1000 * t1Second)));
 	}
 
+	private final int t1Minute = 60 * t1Second;
+
 	@Test
 	public void examplesMinutes() {
-		int t1Minute = 60 * 1000;
 		assertEquals(new Date(1234 * t1Minute),
 				time(234).minutes().from(new Date(1000 * t1Minute)));
 		assertEquals(new Date(1001 * t1Minute),
 				time(1).minute().from(new Date(1000 * t1Minute)));
 	}
 
+	private int t1Hour = 60 * t1Minute;
+
 	@Test
 	public void examplesHours() {
-		int t1Hour = 60 * 60 * 1000;
 		assertEquals(new Date(1234 * t1Hour),
 				time(234).hours().from(new Date(1000 * t1Hour)));
 		assertEquals(new Date(1001 * t1Hour),
