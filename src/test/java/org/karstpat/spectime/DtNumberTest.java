@@ -55,4 +55,16 @@ public class DtNumberTest {
 		test.hour();
 	}
 
+	@Test
+	public void daySynonym() {
+		DtNumber test = new DtNumber(1);
+		assertEquals(test.days(), test.day());
+	}
+
+	@Test
+	public void daySynonymDoesNotCareIfUnitIsNotOne() {
+		DtNumber test = new DtNumber(2);
+		test.day();
+	}
+
 }

@@ -42,4 +42,12 @@ public class DtNumber {
 		return hours();
 	}
 
+	public DtInterval days() {
+		return new DtInterval(n, Calendar.DAY_OF_YEAR);
+	}
+
+	public DtInterval day() {
+		return days();
+	}
+
 }
