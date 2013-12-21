@@ -50,4 +50,12 @@ public class DtNumber {
 		return days();
 	}
 
+	public DtInterval months() {
+		return new DtInterval(n, Calendar.MONTH);
+	}
+
+	public DtInterval month() {
+		return months();
+	}
+
 }

@@ -67,4 +67,16 @@ public class DtNumberTest {
 		test.day();
 	}
 
+	@Test
+	public void monthSynonym() {
+		DtNumber test = new DtNumber(1);
+		assertEquals(test.months(), test.month());
+	}
+
+	@Test
+	public void monthSynonymDoesNotCareIfUnitIsNotOne() {
+		DtNumber test = new DtNumber(2);
+		test.month();
+	}
+
 }

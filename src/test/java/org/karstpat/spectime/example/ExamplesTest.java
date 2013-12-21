@@ -3,6 +3,10 @@ package org.karstpat.spectime.example;
 import static org.junit.Assert.assertEquals;
 import static org.karstpat.spectime.TimeFactory.time;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Test;
@@ -63,4 +67,36 @@ public class ExamplesTest {
 				date(1).day().from(new Date(1000 * t1Day)));
 	}
 
+	@Test
+	public void examplesMonths() {
+		assertEquals(date("2013-05-09"),
+				date(2).months().from(date("2013-03-09")));
+		assertEquals(date("2014-01-01"),
+				date(1).month().from(date("2013-12-01")));
+
+		// normal Java Date wrapping of month where number of days in month is
+		// too big
+		assertEquals(date("2013-02-28"),
+				date(1).month().from(date("2013-01-30")));
+	}
+
+	@Test
+	public void selfTest() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date("2013-03-09"));
+		assertEquals(2013, cal.get(Calendar.YEAR));
+		assertEquals(Calendar.MARCH, cal.get(Calendar.MONTH));
+		assertEquals(9, cal.get(Calendar.DAY_OF_MONTH));
+	}
+
+	// TODO: Move into DateTimeFactory?
+	private Date date(String s) {
+		final DateFormat df = new SimpleDateFormat("yyyyy-MM-dd");
+		try {
+			Date d = df.parse(s);
+			return d;
+		} catch (ParseException e) {
+			throw new Error("problem creating date", e);
+		}
+	}
 }
