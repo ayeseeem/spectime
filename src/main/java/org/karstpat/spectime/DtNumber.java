@@ -26,4 +26,12 @@ public class DtNumber {
 		return seconds();
 	}
 
+	public DtInterval minutes() {
+		return new DtInterval(n, Calendar.MINUTE);
+	}
+
+	public DtInterval minute() {
+		return minutes();
+	}
+
 }

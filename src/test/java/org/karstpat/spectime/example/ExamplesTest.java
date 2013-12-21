@@ -25,10 +25,20 @@ public class ExamplesTest {
 
 	@Test
 	public void examplesSeconds() {
-		assertEquals(new Date(1234 * 1000),
-				time(234).seconds().from(new Date(1000 * 1000)));
-		assertEquals(new Date(1001 * 1000),
-				time(1).second().from(new Date(1000 * 1000)));
+		int t1Second = 1000;
+		assertEquals(new Date(1234 * t1Second),
+				time(234).seconds().from(new Date(1000 * t1Second)));
+		assertEquals(new Date(1001 * t1Second),
+				time(1).second().from(new Date(1000 * t1Second)));
+	}
+
+	@Test
+	public void examplesMinutes() {
+		int t1Minute = 60 * 1000;
+		assertEquals(new Date(1234 * t1Minute),
+				time(234).minutes().from(new Date(1000 * t1Minute)));
+		assertEquals(new Date(1001 * t1Minute),
+				time(1).minute().from(new Date(1000 * t1Minute)));
 	}
 
 }
