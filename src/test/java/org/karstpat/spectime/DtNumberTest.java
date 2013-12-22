@@ -1,6 +1,7 @@
 package org.karstpat.spectime;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -77,6 +78,13 @@ public class DtNumberTest {
 	public void monthSynonymDoesNotCareIfUnitIsNotOne() {
 		DtNumber test = new DtNumber(2);
 		test.month();
+	}
+
+	@Test
+	public void testEquals() {
+		assertEquals(new DtNumber(123), new DtNumber(123));
+		assertFalse(new DtNumber(123).equals(new DtNumber(999)));
+		assertFalse(new DtNumber(123).equals(new String("999")));
 	}
 
 }
