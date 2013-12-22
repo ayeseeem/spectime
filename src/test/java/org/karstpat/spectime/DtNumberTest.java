@@ -81,6 +81,18 @@ public class DtNumberTest {
 	}
 
 	@Test
+	public void yearSynonym() {
+		DtNumber test = new DtNumber(1);
+		assertEquals(test.years(), test.year());
+	}
+
+	@Test
+	public void yearSynonymDoesNotCareIfUnitIsNotOne() {
+		DtNumber test = new DtNumber(2);
+		test.year();
+	}
+
+	@Test
 	public void testEquals() {
 		assertEquals(new DtNumber(123), new DtNumber(123));
 		assertFalse(new DtNumber(123).equals(new DtNumber(999)));

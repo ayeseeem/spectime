@@ -58,6 +58,14 @@ public class DtNumber {
 		return months();
 	}
 
+	public DtInterval years() {
+		return new DtInterval(n, Calendar.YEAR);
+	}
+
+	public DtInterval year() {
+		return years();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

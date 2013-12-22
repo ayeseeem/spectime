@@ -77,4 +77,12 @@ public class ExamplesTest {
 				date(1).month().from(date("2013-01-30")));
 	}
 
+	@Test
+	public void examplesYears() {
+		assertEquals(date("2015-05-09"),
+				date(2).years().from(date("2013-05-09")));
+		assertEquals(date("2014-05-09"),
+				date(1).year().from(date("2013-05-09")));
+	}
+
 }
