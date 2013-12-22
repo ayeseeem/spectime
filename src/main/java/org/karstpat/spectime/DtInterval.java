@@ -14,14 +14,22 @@ public class DtInterval {
 	}
 
 	public Date from(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		cal.add(timeUnitId, n);
-		return cal.getTime();
+		return createRelative(date, n);
 	}
 
 	public Date fromNow() {
 		return from(new Date());
+	}
+
+	public Date before(Date date) {
+		return createRelative(date, -n);	// add negative n to do subtract
+	}
+
+	private Date createRelative(Date date, int amount) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(timeUnitId, amount);
+		return cal.getTime();
 	}
 
 	@Override

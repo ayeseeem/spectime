@@ -22,4 +22,11 @@ public class DtIntervalTest {
 		assertEquals(test.from(new Date()), test.fromNow());
 	}
 
+	@Test
+	public void testBefore() {
+		DtInterval test = new DtInterval(234, Calendar.MILLISECOND);
+		assertEquals(new Date(1000),
+				test.before(new Date(1234)));
+	}
+
 }
