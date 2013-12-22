@@ -1,6 +1,16 @@
 package org.karstpat.spectime;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TimeFactory {
+
+	/**
+	 * Format for specifying dates unambiguously
+	 */
+	public static final String DATE_FORMAT = "yyyy-MM-dd";
 
 	/**
 	 * Main starting point for expressing relative times. For example:
@@ -40,6 +50,21 @@ public class TimeFactory {
 	 */
 	public static DtNumber date(int n) {
 		return new DtNumber(n);
+	}
+
+	/**
+	 * Convenience factory method to easily create a date from a simple string.
+	 * 
+	 * @param s string in the form {@link #DATE_FORMAT}
+	 */
+	public static Date date(String s) {
+		final DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+		try {
+			Date d = df.parse(s);
+			return d;
+		} catch (ParseException e) {
+			throw new Error("problem creating date", e);
+		}
 	}
 
 }
