@@ -17,6 +17,11 @@ public class ExamplesTest {
 		assertEquals(new Date(1001),
 				time(1).millisecond().from(new Date(1000)));
 
+		assertEquals(new Date(1234),
+				time(234).milliseconds().after(new Date(1000)));
+		assertEquals(new Date(1001),
+				time(1).millisecond().after(new Date(1000)));
+
 		assertEquals(new Date(1000),
 				time(234).milliseconds().before(new Date(1234)));
 		assertEquals(new Date(1000),

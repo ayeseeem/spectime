@@ -15,6 +15,10 @@ Date past
 
 Date future
     = time(5).hours().from(someDate);
+
+Date later
+    = time(5).seconds().after(someDate);
+
 ```
 ```java
 Date anotherDate = date("2013-12-24");
@@ -47,7 +51,7 @@ TODOs
 -----
 
 Relative
-- [ ] `after()` as synonym for `from()`
+- [x] `after()` as synonym for `from()`
 - [ ] `ago()` - synonym for `before(now)`
 - [ ] Drop `fromNow()`when helper `now()` is created - use `from(now())`
 

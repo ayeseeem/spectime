@@ -21,6 +21,10 @@ public class DtInterval {
 		return from(new Date());
 	}
 
+	public Date after(Date date) {
+		return from(date);
+	}
+
 	public Date before(Date date) {
 		return createRelative(date, -n);	// add negative n to do subtract
 	}
