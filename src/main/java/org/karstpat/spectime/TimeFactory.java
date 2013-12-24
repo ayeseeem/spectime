@@ -67,4 +67,12 @@ public class TimeFactory {
 		}
 	}
 
+	/**
+	 * Convenience factory method to easily create a date <em>now</em>, instead
+	 * of <code>new Date()</code>.
+	 */
+	public static Date now() {
+		return new Date();
+	}
+
 }

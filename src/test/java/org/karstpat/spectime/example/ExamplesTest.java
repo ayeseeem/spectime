@@ -3,6 +3,7 @@ package org.karstpat.spectime.example;
 import static org.junit.Assert.assertEquals;
 import static org.karstpat.spectime.TimeFactory.date;
 import static org.karstpat.spectime.TimeFactory.time;
+import static org.karstpat.spectime.TimeFactory.now;
 
 import java.util.Date;
 
@@ -32,6 +33,12 @@ public class ExamplesTest {
 	public void examplesFromNow() {
 		assertEquals(new Date(new Date().getTime() + 10),
 				time(10).milliseconds().fromNow());
+	}
+
+	@Test
+	public void examplesNow() {
+		assertEquals(new Date(),
+				now());
 	}
 
 	private final long t1Second = 1000;

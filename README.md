@@ -14,7 +14,7 @@ Date past
     = date(3).days().before(someDate);
 
 Date future
-    = time(5).hours().from(someDate);
+    = time(5).hours().from(now());
 
 Date later
     = time(5).seconds().after(someDate);
@@ -60,7 +60,7 @@ Time units
 - [ ] `and()` to allow chaining: `time(3).hours().and(5).minutes().ago()`
 
 Date constructor methods
-- [ ] `now()` convenience method
+- [x] `now()` convenience method
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
 - [ ] `time("13:59:59.123")`

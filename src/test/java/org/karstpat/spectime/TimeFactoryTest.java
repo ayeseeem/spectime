@@ -3,6 +3,7 @@ package org.karstpat.spectime;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -49,6 +50,11 @@ public class TimeFactoryTest {
 		assertEquals(0, cal.get(Calendar.MINUTE));
 		assertEquals(0, cal.get(Calendar.SECOND));
 		assertEquals(0, cal.get(Calendar.MILLISECOND));
+	}
+
+	@Test
+	public void testNow() {
+		assertEquals(new Date(), TimeFactory.now());
 	}
 
 }
