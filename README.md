@@ -54,7 +54,7 @@ TODOs
 Relative
 - [x] `after()` as synonym for `from()`
 - [ ] `ago()` - synonym for `before(now)`
-- [ ] Drop `fromNow()`when helper `now()` is created - use `from(now())`
+- [x] Drop `fromNow()`when helper `now()` is created - use `from(now())`
 
 Time units
 - [x] `weeks()` (and `week()`)

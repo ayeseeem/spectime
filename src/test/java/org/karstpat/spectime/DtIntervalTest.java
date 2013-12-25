@@ -17,12 +17,6 @@ public class DtIntervalTest {
 	}
 
 	@Test
-	public void testFromNow() {
-		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
-		assertEquals(test.from(new Date()), test.fromNow());
-	}
-
-	@Test
 	public void testAfter() {
 		DtInterval test = new DtInterval(234, Calendar.MILLISECOND);
 		assertEquals(new Date(1234),

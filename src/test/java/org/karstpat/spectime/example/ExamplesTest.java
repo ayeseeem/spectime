@@ -30,12 +30,6 @@ public class ExamplesTest {
 	}
 
 	@Test
-	public void examplesFromNow() {
-		assertEquals(new Date(new Date().getTime() + 10),
-				time(10).milliseconds().fromNow());
-	}
-
-	@Test
 	public void examplesNow() {
 		assertEquals(new Date(),
 				now());

@@ -17,10 +17,6 @@ public class DtInterval {
 		return createRelative(date, n);
 	}
 
-	public Date fromNow() {
-		return from(new Date());
-	}
-
 	public Date after(Date date) {
 		return from(date);
 	}

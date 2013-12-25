@@ -17,7 +17,7 @@ public class TimeFactory {
 	 * 
 	 * <pre>
 	 * <code>
-	 * Date d = time(3).hours().fromNow();
+	 * Date d = time(3).hours().from(someDate);
 	 * </code>
 	 * </pre>
 	 * 
@@ -37,7 +37,7 @@ public class TimeFactory {
 	 * 
 	 * <pre>
 	 * <code>
-	 * Date d = date(3).days().fromNow();
+	 * Date d = date(3).days().from(someDate);
 	 * </code>
 	 * </pre>
 	 * 
