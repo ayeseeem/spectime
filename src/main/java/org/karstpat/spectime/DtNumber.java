@@ -50,6 +50,14 @@ public class DtNumber {
 		return days();
 	}
 
+	public DtInterval weeks() {
+		return new DtInterval(n, Calendar.WEEK_OF_YEAR);
+	}
+
+	public DtInterval week() {
+		return weeks();
+	}
+
 	public DtInterval months() {
 		return new DtInterval(n, Calendar.MONTH);
 	}

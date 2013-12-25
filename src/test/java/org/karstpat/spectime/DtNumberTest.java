@@ -69,6 +69,18 @@ public class DtNumberTest {
 	}
 
 	@Test
+	public void weekSynonym() {
+		DtNumber test = new DtNumber(1);
+		assertEquals(test.weeks(), test.week());
+	}
+
+	@Test
+	public void weekSynonymDoesNotCareIfUnitIsNotOne() {
+		DtNumber test = new DtNumber(2);
+		test.week();
+	}
+
+	@Test
 	public void monthSynonym() {
 		DtNumber test = new DtNumber(1);
 		assertEquals(test.months(), test.month());

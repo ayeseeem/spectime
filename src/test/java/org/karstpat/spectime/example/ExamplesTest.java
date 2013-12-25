@@ -102,6 +102,23 @@ public class ExamplesTest {
 	}
 
 	@Test
+	public void examplesWeeks() {
+		assertEquals(date("2013-03-23"),
+				date(2).weeks().from(date("2013-03-09")));
+		assertEquals(date("2013-03-23"),
+				date(1).week().from(date("2013-03-16")));
+
+		// end of month
+		assertEquals(date("2013-05-04"),
+				date(1).week().from(date("2013-04-27")));
+
+		assertEquals(date("2013-03-09"),
+				date(2).weeks().before(date("2013-03-23")));
+		assertEquals(date("2013-03-09"),
+				date(1).week().before(date("2013-03-16")));
+	}
+
+	@Test
 	public void examplesMonths() {
 		assertEquals(date("2013-05-09"),
 				date(2).months().from(date("2013-03-09")));
