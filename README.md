@@ -30,6 +30,7 @@ Date anotherDate = date("2013-12-24");
     * `minutes()`
     * `hours()`
     * `days()`
+    * `weeks()`
     * `months()`
     * `years()`
 * singular versions of each are available - for example `hour()` for `hours()`
@@ -56,7 +57,7 @@ Relative
 - [ ] Drop `fromNow()`when helper `now()` is created - use `from(now())`
 
 Time units
-- [ ] `weeks()` (and `week()`)
+- [x] `weeks()` (and `week()`)
 - [ ] `and()` to allow chaining: `time(3).hours().and(5).minutes().ago()`
 
 Date constructor methods
