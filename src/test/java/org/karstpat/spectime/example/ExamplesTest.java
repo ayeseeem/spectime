@@ -35,6 +35,12 @@ public class ExamplesTest {
 				now());
 	}
 
+	@Test
+	public void examplesAgo() {
+		assertEquals(new Date(new Date().getTime() - 10),
+				time(10).milliseconds().ago());
+	}
+
 	private final long t1Second = 1000;
 
 	@Test

@@ -36,4 +36,16 @@ public class DtIntervalTest {
 				test.before(new Date(1234)));
 	}
 
+	@Test
+	public void testAgo() {
+		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
+		assertEquals(new Date(new Date().getTime() - 123), test.ago());
+	}
+
+	@Test
+	public void testAgoIsSynonymForBeforeNow() {
+		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
+		assertEquals(test.before(new Date()), test.ago());
+	}
+
 }

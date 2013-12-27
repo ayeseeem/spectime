@@ -10,14 +10,17 @@ Quick Start
 `spectime` makes it easy to create relative dates and times in java. If you can read the following snippets, you already know what it is trying to do:
 
 ```java
-Date past
+Date earlier
     = date(3).days().before(someDate);
+
+Date later
+    = time(5).seconds().after(someDate);
 
 Date future
     = time(5).hours().from(now());
 
-Date later
-    = time(5).seconds().after(someDate);
+Date past
+    = time(5).seconds().ago();
 
 ```
 ```java
@@ -53,7 +56,7 @@ TODOs
 
 Relative
 - [x] `after()` as synonym for `from()`
-- [ ] `ago()` - synonym for `before(now)`
+- [x] `ago()` - synonym for `before(now)`
 - [x] Drop `fromNow()`when helper `now()` is created - use `from(now())`
 
 Time units

@@ -25,6 +25,10 @@ public class DtInterval {
 		return createRelative(date, -n);	// add negative n to do subtract
 	}
 
+	public Date ago() {
+		return before(new Date());
+	}
+
 	private Date createRelative(Date date, int amount) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
