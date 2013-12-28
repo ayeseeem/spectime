@@ -8,9 +8,25 @@ import java.util.Date;
 public class TimeFactory {
 
 	/**
-	 * Format for specifying dates unambiguously
+	 * Format for specifying dates (days) unambiguously. Based on <a
+	 * href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO 8601</a>
+	 * format for dates.
+	 * 
+	 * @see #DATE_WITH_MILLIS_FORMAT
+	 * @see #date(String)
 	 */
 	public static final String DATE_FORMAT = "yyyy-MM-dd";
+
+	/**
+	 * Format for specifying dates unambiguously, including milliseconds. Based
+	 * on <a href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO
+	 * 8601</a> format for date/times. The T between the date and time is
+	 * omitted (as permitted by ISO 8601), for clarity.
+	 * 
+	 * @see #DATE_FORMAT
+	 * @see #date(String)
+	 */
+	public static final String DATE_WITH_MILLIS_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
 	/**
 	 * Main starting point for expressing relative times. For example:
@@ -58,13 +74,34 @@ public class TimeFactory {
 	 * @param s string in the form {@link #DATE_FORMAT}
 	 */
 	public static Date date(String s) {
-		final DateFormat df = new SimpleDateFormat(DATE_FORMAT);
 		try {
-			Date d = df.parse(s);
+			final Date d = dateWithMillisFromString(s);
 			return d;
 		} catch (ParseException e) {
-			throw new Error("problem creating date", e);
+			// ignore - try a different format
 		}
+
+		try {
+			final Date d = dayFromString(s);
+			return d;
+		} catch (ParseException e) {
+			// ignore - try a different format
+		}
+
+		// no more formats to try - error:
+		throw new Error("problem creating date: " + s);
+	}
+
+	private static Date dateWithMillisFromString(String s) throws ParseException {
+		final DateFormat df = new SimpleDateFormat(DATE_WITH_MILLIS_FORMAT);
+		Date d = df.parse(s);
+		return d;
+	}
+
+	private static Date dayFromString(String s) throws ParseException {
+		final DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+		Date d = df.parse(s);
+		return d;
 	}
 
 	/**

@@ -70,7 +70,7 @@ Date constructor methods
 - [ ] `time("13:59:59.123")`
 - [ ] `date("2013-12-24 13:59")`
 - [ ] `date("2013-12-24 13:59:59")`
-- [ ] `date("2013-12-24 13:59:59.123`
+- [x] `date("2013-12-24 13:59:59.123`
 
 Also under consideration:
 - `next(Wednesday)`

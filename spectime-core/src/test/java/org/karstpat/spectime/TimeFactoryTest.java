@@ -27,12 +27,13 @@ public class TimeFactoryTest {
 	}
 
 	@Test
-	public void dateFormatString() {
+	public void dateStrings() {
 		assertEquals("yyyy-MM-dd", TimeFactory.DATE_FORMAT);
+		assertEquals("yyyy-MM-dd HH:mm:ss.SSS", TimeFactory.DATE_WITH_MILLIS_FORMAT);
 	}
 
 	@Test
-	public void testDate_FromString() {
+	public void testDate_FromString_DayOnly() {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(TimeFactory.date("2013-03-09"));
 
@@ -50,6 +51,21 @@ public class TimeFactoryTest {
 		assertEquals(0, cal.get(Calendar.MINUTE));
 		assertEquals(0, cal.get(Calendar.SECOND));
 		assertEquals(0, cal.get(Calendar.MILLISECOND));
+	}
+
+	@Test
+	public void testDate_FromString_WithMillis() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(TimeFactory.date("2013-03-09 23:59:58.123"));
+
+		assertEquals(2013, cal.get(Calendar.YEAR));
+		assertEquals(Calendar.MARCH, cal.get(Calendar.MONTH));
+		assertEquals(9, cal.get(Calendar.DAY_OF_MONTH));
+
+		assertEquals(23, cal.get(Calendar.HOUR_OF_DAY));
+		assertEquals(59, cal.get(Calendar.MINUTE));
+		assertEquals(58, cal.get(Calendar.SECOND));
+		assertEquals(123, cal.get(Calendar.MILLISECOND));
 	}
 
 	@Test
