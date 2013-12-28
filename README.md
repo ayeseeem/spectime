@@ -82,8 +82,6 @@ Also under consideration:
 - `next(March)`, `next(week)`, `next(year)`
 - `startOf(date)` to get midnight start of a date
 - test helpers like
-    - assertDateEquals - like assertEquals(Date, Date) but with a better error
-      message, including milliseconds
     - assertDateEquals with milliseconds tolerance
     - assertDateEquals with tolerance in other units
     - assertDayEquals (ignores time, just checks date)
