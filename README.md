@@ -24,7 +24,10 @@ Date past
 
 ```
 ```java
-Date anotherDate = date("2013-12-24");
+Date d1 = date("2013-12-24");
+Date d2 = date("2013-12-24 23:59");
+Date d3 = date("2013-12-24 23:59:59");
+Date d4 = date("2013-12-24 23:59:59.123");
 ```
 * `date()` and `time()` are synonyms - use whichever is clearer
 * specify relative time/date using:
