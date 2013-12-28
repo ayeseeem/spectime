@@ -154,7 +154,7 @@ public class TimeFactory {
 	 * of <code>new Date()</code>.
 	 */
 	public static Date now() {
-		return new Date();
+		return new DefaultDateSource().getDate();
 	}
 
 }

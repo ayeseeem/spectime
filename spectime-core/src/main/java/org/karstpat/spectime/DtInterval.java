@@ -7,10 +7,16 @@ public class DtInterval {
 
 	private final int n;
 	private final int timeUnitId;
+	private final DateSource dateSource; 
 
 	public DtInterval(int n, int timeUnitId) {
+		this(n, timeUnitId, new DefaultDateSource());
+	}
+
+	public DtInterval(int n, int timeUnitId, DateSource dateSource) {
 		this.n = n;
 		this.timeUnitId = timeUnitId;
+		this.dateSource = dateSource;
 	}
 
 	public Date from(Date date) {
@@ -26,7 +32,7 @@ public class DtInterval {
 	}
 
 	public Date ago() {
-		return before(new Date());
+		return before(dateSource.getDate());
 	}
 
 	private Date createRelative(Date date, int amount) {
