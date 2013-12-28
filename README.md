@@ -44,7 +44,13 @@ import static org.karstpat.spectime.TimeFactory.date;
 ```
 If you use Eclipse, add the `org.karstpat.spectime.TimeFactory` type to the Content Assist Favorites, so Eclipse will suggest the methods when the import is missing.
 
-To see more examples, see [ExamplesTest.java](https://github.com/ayeseeem/spectime/blob/master/src/test/java/org/karstpat/spectime/example/ExamplesTest.java "Examples")
+To see more examples, see [ExamplesTest.java](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/karstpat/spectime/example/ExamplesTest.java "Examples")
+
+### spectime-test
+
+Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
+has a better error message (including milliseconds) than normal JUnit 
+`assertEquals`.
 
 ### Alternatives
 
