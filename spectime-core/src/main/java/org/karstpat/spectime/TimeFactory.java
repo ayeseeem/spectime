@@ -18,12 +18,31 @@ public class TimeFactory {
 	public static final String DATE_FORMAT = "yyyy-MM-dd";
 
 	/**
+	 * Format for specifying dates unambiguously, including minutes. Based on <a
+	 * href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO 8601</a>
+	 * format for date/times. The T between the date and time is omitted (as
+	 * permitted by ISO 8601), for clarity.
+	 * 
+	 * @see #date(String)
+	 */
+	public static final String DATE_WITH_MINUTES_FORMAT = "yyyy-MM-dd HH:mm";
+
+	/**
+	 * Format for specifying dates unambiguously, including seconds. Based on <a
+	 * href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO 8601</a>
+	 * format for date/times. The T between the date and time is omitted (as
+	 * permitted by ISO 8601), for clarity.
+	 * 
+	 * @see #date(String)
+	 */
+	public static final String DATE_WITH_SECONDS_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+	/**
 	 * Format for specifying dates unambiguously, including milliseconds. Based
 	 * on <a href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO
 	 * 8601</a> format for date/times. The T between the date and time is
 	 * omitted (as permitted by ISO 8601), for clarity.
 	 * 
-	 * @see #DATE_FORMAT
 	 * @see #date(String)
 	 */
 	public static final String DATE_WITH_MILLIS_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
@@ -82,6 +101,20 @@ public class TimeFactory {
 		}
 
 		try {
+			final Date d = dateWithSecondsFromString(s);
+			return d;
+		} catch (ParseException e) {
+			// ignore - try a different format
+		}
+
+		try {
+			final Date d = dateWithMinutesFromString(s);
+			return d;
+		} catch (ParseException e) {
+			// ignore - try a different format
+		}
+
+		try {
 			final Date d = dayFromString(s);
 			return d;
 		} catch (ParseException e) {
@@ -90,6 +123,18 @@ public class TimeFactory {
 
 		// no more formats to try - error:
 		throw new Error("problem creating date: " + s);
+	}
+
+	private static Date dateWithMinutesFromString(String s) throws ParseException {
+		final DateFormat df = new SimpleDateFormat(DATE_WITH_MINUTES_FORMAT);
+		Date d = df.parse(s);
+		return d;
+	}
+
+	private static Date dateWithSecondsFromString(String s) throws ParseException {
+		final DateFormat df = new SimpleDateFormat(DATE_WITH_SECONDS_FORMAT);
+		Date d = df.parse(s);
+		return d;
 	}
 
 	private static Date dateWithMillisFromString(String s) throws ParseException {
