@@ -48,7 +48,7 @@ To see more examples, see [ExamplesTest.java](https://github.com/ayeseeem/specti
 
 ### Alternatives
 
-If you want "simple social date-formatting" or want to parse natural language strings, perhaps try [PrettyTime] (http://ocpsoft.org/prettytime/ "PrettyTime - simple social date-formatting") - 'Convert Java Date() objects in just “a few minutes!”'
+If you want "simple social date-formatting" or want to parse natural language strings, perhaps try [PrettyTime] (http://ocpsoft.org/prettytime/ "PrettyTime - simple social date-formatting") - 'Convert Java Date() objects in just "a few minutes!"'
 
 
 TODOs
