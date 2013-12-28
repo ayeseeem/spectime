@@ -60,23 +60,13 @@ If you want "simple social date-formatting" or want to parse natural language st
 TODOs
 -----
 
-Relative
-- [x] `after()` as synonym for `from()`
-- [x] `ago()` - synonym for `before(now)`
-- [x] Drop `fromNow()`when helper `now()` is created - use `from(now())`
-
 Time units
-- [x] `weeks()` (and `week()`)
 - [ ] `and()` to allow chaining: `time(3).hours().and(5).minutes().ago()`
 
 Date constructor methods
-- [x] `now()` convenience method
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
 - [ ] `time("13:59:59.123")`
-- [x] `date("2013-12-24 13:59")`
-- [x] `date("2013-12-24 13:59:59")`
-- [x] `date("2013-12-24 13:59:59.123`
 
 Also under consideration:
 - `next(Wednesday)`
