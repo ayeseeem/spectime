@@ -3,6 +3,8 @@ package org.karstpat.spectime;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.util.Calendar;
+
 import org.junit.Test;
 
 public class DtNumberTest {
@@ -109,6 +111,38 @@ public class DtNumberTest {
 		assertEquals(new DtNumber(123), new DtNumber(123));
 		assertFalse(new DtNumber(123).equals(new DtNumber(999)));
 		assertFalse(new DtNumber(123).equals(new String("999")));
+	}
+
+	@Test
+	public void testEquals_WithPrevious() {
+		DtNumber dtNumber1 = new DtNumber(123);
+		dtNumber1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
+
+		DtNumber dtNumber2 = new DtNumber(123);
+		dtNumber2.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
+
+		assertEquals(dtNumber1, dtNumber2);
+	}
+
+	@Test
+	public void testEquals_WithPrevious_NotEqual() {
+		DtNumber dtNumber1 = new DtNumber(123);
+		dtNumber1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
+
+		DtNumber dtNumber2 = new DtNumber(123);
+		dtNumber2.setPrevious(new DtInterval(999, Calendar.MILLISECOND));
+
+		assertFalse(dtNumber1.equals(dtNumber2));
+	}
+
+	@Test
+	public void testEquals_WithPrevious_NotEqual_NoPrevious() {
+		DtNumber dtNumber1 = new DtNumber(123);
+		dtNumber1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
+
+		DtNumber dtNumberWithNoPrevious = new DtNumber(123);
+
+		assertFalse(dtNumber1.equals(dtNumberWithNoPrevious));
 	}
 
 }

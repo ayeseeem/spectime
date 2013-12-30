@@ -12,16 +12,15 @@ Quick Start
 ```java
 Date earlier
     = date(3).days().before(someDate);
-
 Date later
     = time(5).seconds().after(someDate);
-
 Date future
     = time(5).hours().from(now());
-
 Date past
     = time(5).seconds().ago();
 
+Date someTime
+    = date(5).days().and(2).seconds().and(3).milliseconds().ago();
 ```
 ```java
 Date d1 = date("2013-12-24");
@@ -63,13 +62,16 @@ If you want "simple social date-formatting" or want to parse natural language st
 TODOs
 -----
 
-Time units
-- [ ] `and()` to allow chaining: `time(3).hours().and(5).minutes().ago()`
-
 Date constructor methods
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
 - [ ] `time("13:59:59.123")`
+
+Internals
+- [ ] sort out `equals` and `hashCode` methods for `DtInterval` and `DtNumber`
+      to properly handle the `previous` fields. (How) Do we handle different
+      chains of `previous` that have same effect? Could apply them all to a
+      known, fixed date to get a result?
 
 Also under consideration:
 - `next(Wednesday)`

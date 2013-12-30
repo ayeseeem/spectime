@@ -12,6 +12,17 @@ import org.junit.Test;
 public class ExamplesTest {
 
 	@Test
+	public void examplesAnd() {
+		assertEquals(new Date(1003 * t1Second + 2),
+				time(3).seconds().and(2).milliseconds().from(new Date(1000 * t1Second)));
+		assertEquals(new Date(1000 + 3 * t1Minute + 2 * t1Second + 1),
+				time(3).minutes().and(2).seconds().and(1).millisecond().from(new Date(1000)));
+
+		assertEquals(date("2013-05-11"),
+				date(3).years().and(2).months().and(1).day().from(date("2010-03-10")));
+	}
+
+	@Test
 	public void examplesMilliseconds() {
 		assertEquals(new Date(1234),
 				time(234).milliseconds().from(new Date(1000)));

@@ -5,13 +5,14 @@ import java.util.Calendar;
 public class DtNumber {
 
 	private final int n;
+	private DtInterval previous;
 
 	public DtNumber(int n) {
 		this.n = n;
 	}
 
 	public DtInterval milliseconds() {
-		return new DtInterval(n, Calendar.MILLISECOND);
+		return createWithPrevious(n, Calendar.MILLISECOND);
 	}
 
 	public DtInterval millisecond() {
@@ -19,7 +20,7 @@ public class DtNumber {
 	}
 
 	public DtInterval seconds() {
-		return new DtInterval(n, Calendar.SECOND);
+		return createWithPrevious(n, Calendar.SECOND);
 	}
 
 	public DtInterval second() {
@@ -27,7 +28,7 @@ public class DtNumber {
 	}
 
 	public DtInterval minutes() {
-		return new DtInterval(n, Calendar.MINUTE);
+		return createWithPrevious(n, Calendar.MINUTE);
 	}
 
 	public DtInterval minute() {
@@ -35,7 +36,7 @@ public class DtNumber {
 	}
 
 	public DtInterval hours() {
-		return new DtInterval(n, Calendar.HOUR);
+		return createWithPrevious(n, Calendar.HOUR);
 	}
 
 	public DtInterval hour() {
@@ -43,7 +44,7 @@ public class DtNumber {
 	}
 
 	public DtInterval days() {
-		return new DtInterval(n, Calendar.DAY_OF_YEAR);
+		return createWithPrevious(n, Calendar.DAY_OF_YEAR);
 	}
 
 	public DtInterval day() {
@@ -51,7 +52,7 @@ public class DtNumber {
 	}
 
 	public DtInterval weeks() {
-		return new DtInterval(n, Calendar.WEEK_OF_YEAR);
+		return createWithPrevious(n, Calendar.WEEK_OF_YEAR);
 	}
 
 	public DtInterval week() {
@@ -59,7 +60,7 @@ public class DtNumber {
 	}
 
 	public DtInterval months() {
-		return new DtInterval(n, Calendar.MONTH);
+		return createWithPrevious(n, Calendar.MONTH);
 	}
 
 	public DtInterval month() {
@@ -67,11 +68,27 @@ public class DtNumber {
 	}
 
 	public DtInterval years() {
-		return new DtInterval(n, Calendar.YEAR);
+		return createWithPrevious(n, Calendar.YEAR);
 	}
 
 	public DtInterval year() {
 		return years();
+	}
+
+	public void setPrevious(DtInterval previous) {
+		this.previous = previous;
+	}
+
+	private DtInterval createWithPrevious(DtInterval dtInterval) {
+		if (previous != null) {
+			dtInterval.setPrevious(previous);
+		}
+		return dtInterval;
+	}
+
+	private DtInterval createWithPrevious(int n, int timeUnitId) {
+		final DtInterval dtInterval = new DtInterval(n, timeUnitId);
+		return createWithPrevious(dtInterval);
 	}
 
 	@Override
@@ -79,6 +96,8 @@ public class DtNumber {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + n;
+		result = prime * result
+				+ ((previous == null) ? 0 : previous.hashCode());
 		return result;
 	}
 
@@ -95,6 +114,13 @@ public class DtNumber {
 		}
 		DtNumber other = (DtNumber) obj;
 		if (n != other.n) {
+			return false;
+		}
+		if (previous == null) {
+			if (other.previous != null) {
+				return false;
+			}
+		} else if (!previous.equals(other.previous)) {
 			return false;
 		}
 		return true;
