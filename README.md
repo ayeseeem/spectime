@@ -48,11 +48,13 @@ If you use Eclipse, add the `org.karstpat.spectime.TimeFactory` type to the Cont
 
 To see more examples, see [ExamplesTest.java](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/karstpat/spectime/example/ExamplesTest.java "Examples")
 
+
 ### spectime-test
 
 Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
 has a better error message (including milliseconds) than normal JUnit 
 `assertEquals`.
+
 
 ### Alternatives
 
@@ -74,6 +76,9 @@ Internals
       known, fixed date to get a result?
 
 Also under consideration:
+- `toString(Date)`
+- tips on unit testing like `assertEquals(d1.getTime(), d2.getTime(), 3);` and
+  `assertEquals(toString(d1), toString(d2));` instead of `spectime-test` 
 - `next(Wednesday)`
 - `last(Thursday)`
 - `thisTime(date)` creates a date/time with the current time on the given date, e.g. `thisTime(next(Wednesday))`
