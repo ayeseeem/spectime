@@ -2,8 +2,9 @@ package org.karstpat.spectime.example;
 
 import static org.junit.Assert.assertEquals;
 import static org.karstpat.spectime.TimeFactory.date;
-import static org.karstpat.spectime.TimeFactory.time;
 import static org.karstpat.spectime.TimeFactory.now;
+import static org.karstpat.spectime.TimeFactory.startOf;
+import static org.karstpat.spectime.TimeFactory.time;
 
 import java.util.Date;
 
@@ -20,6 +21,12 @@ public class ExamplesTest {
 
 		assertEquals(date("2013-05-11"),
 				date(3).years().and(2).months().and(1).day().from(date("2010-03-10")));
+	}
+
+	@Test
+	public void examplesStartOf() {
+		assertEquals(date("2013-03-10"),
+				startOf(date("2013-03-10 23:58:59.123")));
 	}
 
 	@Test

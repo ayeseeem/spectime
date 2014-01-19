@@ -39,6 +39,7 @@ Date d4 = date("2013-12-24 23:59:59.123");
     * `months()`
     * `years()`
 * singular versions of each are available - for example `hour()` for `hours()`
+* `startOf(date)` gets the start of the day (midnight) for the given date 
 
 To get access to these methods and allow clean code, use static import:
 ```java
@@ -86,7 +87,6 @@ Also under consideration:
 - `since(date)` and `until(date)` to calculate time since/until date
 - `year(2013)`
 - `next(March)`, `next(week)`, `next(year)`
-- `startOf(date)` to get midnight start of a date
 - test helpers like
     - assertDateEquals with milliseconds tolerance
     - assertDateEquals with tolerance in other units

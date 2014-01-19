@@ -107,4 +107,23 @@ public class TimeFactoryTest {
 		assertEquals(new Date(), TimeFactory.now());
 	}
 
+	@Test
+	public void testStartOf() {
+		Calendar cal = Calendar.getInstance();
+		Date original = TimeFactory.date("2013-03-09 23:59:58.123");
+		Date start = TimeFactory.startOf(original);
+		cal.setTime(start);
+
+		// Date (day) info is unchanged
+		assertEquals(2013, cal.get(Calendar.YEAR));
+		assertEquals(Calendar.MARCH, cal.get(Calendar.MONTH));
+		assertEquals(9, cal.get(Calendar.DAY_OF_MONTH));
+
+		// Time fields are zeroed
+		assertEquals(0, cal.get(Calendar.HOUR_OF_DAY));
+		assertEquals(0, cal.get(Calendar.MINUTE));
+		assertEquals(0, cal.get(Calendar.SECOND));
+		assertEquals(0, cal.get(Calendar.MILLISECOND));
+	}
+
 }
