@@ -50,7 +50,31 @@ If you use Eclipse, add the `org.karstpat.spectime.TimeFactory` type to the Cont
 To see more examples, see [ExamplesTest.java](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/karstpat/spectime/example/ExamplesTest.java "Examples")
 
 
-### spectime-test
+### Tips for Unit Testing
+
+See [`spectime-test`](#spectime-test), below.
+
+Or - when `toString()` is implemented (see TODOs) - do this:
+```java
+assertEquals(d1.getTime(), d2.getTime(), 3);
+```
+
+Or, to test times with a tolerance, do something like this:
+```java
+assertEquals(d1.getTime(), d2.getTime(), 3);
+```
+
+JUnit 4 allows timing of test like this:
+```java
+@Test(timeout = 1000)
+public void someTest() {
+    potentiallyLongMethod();
+}
+```
+This will fail if the timeout is exceeded.
+
+
+### <a id="spectime-test">spectime-test
 
 Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
 has a better error message (including milliseconds) than normal JUnit 
