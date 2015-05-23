@@ -114,11 +114,11 @@ Also under consideration:
 - `year(2013)`
 - `next(March)`, `next(week)`, `next(year)`
 - test helpers like
-    - assertDateEquals with milliseconds tolerance
-    - assertDateEquals with tolerance in other units
-    - assertDayEquals (ignores time, just checks date)
-    - assertTimeEquals (ignores date, just checks time)
-    - assertDateEquals("2013-04-01 10:12", aDate)? Or use 
-      assertDateEquals(date("2013-04-10 10:12"), aDate)?
+    - `assertDateEquals` with milliseconds tolerance
+    - `assertDateEquals` with tolerance in other units
+    - `assertDayEquals` (ignores time, just checks date)
+    - `assertTimeEquals` (ignores date, just checks time)
+    - `assertDateEquals("2013-04-01 10:12", aDate)`? Or use 
+      `assertDateEquals(date("2013-04-10 10:12"), aDate)`?
 
 
