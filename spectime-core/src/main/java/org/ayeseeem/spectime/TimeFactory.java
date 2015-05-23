@@ -26,7 +26,7 @@ public class TimeFactory {
 	 * 
 	 * @see #date(String)
 	 */
-	public static final String DATE_WITH_MINUTES_FORMAT = "yyyy-MM-dd HH:mm";
+	public static final String DATE_WITH_MINUTES_FORMAT = DATE_FORMAT + " HH:mm";
 
 	/**
 	 * Format for specifying dates unambiguously, including seconds. Based on <a
@@ -36,7 +36,7 @@ public class TimeFactory {
 	 * 
 	 * @see #date(String)
 	 */
-	public static final String DATE_WITH_SECONDS_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	public static final String DATE_WITH_SECONDS_FORMAT = DATE_WITH_MINUTES_FORMAT + ":ss";
 
 	/**
 	 * Format for specifying dates unambiguously, including milliseconds. Based
@@ -46,7 +46,7 @@ public class TimeFactory {
 	 * 
 	 * @see #date(String)
 	 */
-	public static final String DATE_WITH_MILLIS_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+	public static final String DATE_WITH_MILLIS_FORMAT = DATE_WITH_SECONDS_FORMAT + ".SSS";
 
 	/**
 	 * Main starting point for expressing relative times. For example:
