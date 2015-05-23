@@ -1,9 +1,9 @@
-package org.karstpat.junit.spectime;
+package org.ayeseeem.junit.spectime;
 
+import static org.ayeseeem.junit.spectime.Assert.assertDateEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.karstpat.junit.spectime.Assert.assertDateEquals;
 
 import java.util.Date;
 

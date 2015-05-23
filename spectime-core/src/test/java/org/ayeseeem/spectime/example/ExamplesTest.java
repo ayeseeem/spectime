@@ -1,10 +1,10 @@
-package org.karstpat.spectime.example;
+package org.ayeseeem.spectime.example;
 
+import static org.ayeseeem.spectime.TimeFactory.date;
+import static org.ayeseeem.spectime.TimeFactory.now;
+import static org.ayeseeem.spectime.TimeFactory.startOf;
+import static org.ayeseeem.spectime.TimeFactory.time;
 import static org.junit.Assert.assertEquals;
-import static org.karstpat.spectime.TimeFactory.date;
-import static org.karstpat.spectime.TimeFactory.now;
-import static org.karstpat.spectime.TimeFactory.startOf;
-import static org.karstpat.spectime.TimeFactory.time;
 
 import java.util.Date;
 

@@ -43,11 +43,11 @@ Date d4 = date("2013-12-24 23:59:59.123");
 
 To get access to these methods and allow clean code, use static import:
 ```java
-import static org.karstpat.spectime.TimeFactory.date;
+import static org.ayeseeem.spectime.TimeFactory.date;
 ```
-If you use Eclipse, add the `org.karstpat.spectime.TimeFactory` type to the Content Assist Favorites, so Eclipse will suggest the methods when the import is missing.
+If you use Eclipse, add the `org.ayeseeem.spectime.TimeFactory` type to the Content Assist Favorites, so Eclipse will suggest the methods when the import is missing.
 
-To see more examples, see [ExamplesTest.java](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/karstpat/spectime/example/ExamplesTest.java "Examples")
+To see more examples, see [ExamplesTest.java](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/ayeseeem/spectime/example/ExamplesTest.java "Examples")
 
 
 ### Tips for Unit Testing

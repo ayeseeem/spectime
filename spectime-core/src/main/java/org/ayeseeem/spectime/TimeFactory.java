@@ -1,4 +1,4 @@
-package org.karstpat.spectime;
+package org.ayeseeem.spectime;
 
 import java.text.DateFormat;
 import java.text.ParseException;

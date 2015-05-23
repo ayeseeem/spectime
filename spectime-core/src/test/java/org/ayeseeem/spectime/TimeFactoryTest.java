@@ -1,4 +1,4 @@
-package org.karstpat.spectime;
+package org.ayeseeem.spectime;
 
 import static org.junit.Assert.assertEquals;
 

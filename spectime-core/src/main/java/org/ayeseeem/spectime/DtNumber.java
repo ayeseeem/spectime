@@ -1,4 +1,4 @@
-package org.karstpat.spectime;
+package org.ayeseeem.spectime;
 
 import java.util.Calendar;
 
