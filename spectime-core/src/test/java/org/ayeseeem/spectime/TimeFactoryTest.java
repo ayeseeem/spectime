@@ -104,7 +104,8 @@ public class TimeFactoryTest {
 
 	@Test
 	public void testNow() {
-		assertEquals(new Date(), TimeFactory.now());
+		final int timeDiffMillis = 100;
+        assertEquals(new Date().getTime(), TimeFactory.now().getTime(), timeDiffMillis);
 	}
 
 	@Test
