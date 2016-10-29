@@ -22,7 +22,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <description>Project to allow writing of expressive dates and times</description>
+  <description>Expressive dates and times</description>
 
   <build>
     <plugins>
