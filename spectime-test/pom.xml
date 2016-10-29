@@ -8,6 +8,7 @@
   <packaging>jar</packaging>
 
   <name>spectime-test</name>
+  <description>JUnit extensions for expressive date and time tests</description>
   <url>https://github.com/ayeseeem/spec-time</url>
 
   <properties>
@@ -22,7 +23,6 @@
       <!-- Note: not just scope "test" - it forms part of the product -->
     </dependency>
   </dependencies>
-  <description>JUnit extensions for expressive date and time tests</description>
 
   <build>
     <plugins>

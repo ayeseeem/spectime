@@ -8,6 +8,7 @@
   <packaging>jar</packaging>
 
   <name>spectime</name>
+  <description>Expressive dates and times</description>
   <url>https://github.com/ayeseeem/spec-time</url>
 
   <properties>
@@ -22,7 +23,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <description>Expressive dates and times</description>
 
   <build>
     <plugins>
