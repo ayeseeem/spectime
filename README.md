@@ -7,7 +7,7 @@ Expressive dates and times in Java. These grew out of my frustration writing uni
 Quick Start
 -----------
 
-`spectime` makes it easy to create relative dates and times in java. If you can read the following snippets, you already know what it is trying to do:
+`spectime` makes it easy to create relative dates and times in Java. If you can read the following snippets, you already know what it is trying to do:
 
 ```java
 Date earlier
@@ -93,7 +93,7 @@ Date constructor methods
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
 - [ ] `time("13:59:59.123")`
-- some kind of "definitely later" date constructor. For example, when you create a bunch of dates using something like now(), it's possible that some of them will have exactly the same time, and you might then be surprised that they don't sort in the order you expect. In the past, I've done this using a small `Thread.sleep()`.
+- some kind of "definitely later" date constructor. For example, when you create a bunch of dates using something like `now()`, it's possible that some of them will have exactly the same time, and you might then be surprised that they don't sort in the order you expect. In the past, I've done this using a small `Thread.sleep()`.
     - possibly use a `tick()` method that can take an optional amount, default to 1 ms.
 
 Internals
