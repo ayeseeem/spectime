@@ -34,19 +34,19 @@ Date d2 = date("2013-12-24 23:59");
 Date d3 = date("2013-12-24 23:59:59");
 Date d4 = date("2013-12-24 23:59:59.123");
 ```
-* `date()` and `time()` are synonyms - use whichever is clearer
-* specify relative time/date using:
-    * `milliseconds()`
-    * `seconds()`
-    * `minutes()`
-    * `hours()`
-    * `days()`
-    * `weeks()`
-    * `months()`
-    * `years()`
-* singular versions of each are available - for example `hour()` for `hours()`
-* `startOf(date)` gets the start of the day (midnight) for the given date 
 
+- `date()` and `time()` are synonyms - use whichever is clearer
+- specify relative time/date using:
+    - `milliseconds()`
+    - `seconds()`
+    - `minutes()`
+    - `hours()`
+    - `days()`
+    - `weeks()`
+    - `months()`
+    - `years()`
+- singular versions of each are available - for example `hour()` for `hours()`
+- `startOf(date)` gets the start of the day (midnight) for the given date
 
 To get access to these methods and allow clean code, use static import:
 
