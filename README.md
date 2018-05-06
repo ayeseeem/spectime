@@ -27,6 +27,7 @@ Date past
 Date someTime
     = date(5).days().and(2).seconds().and(3).milliseconds().ago();
 ```
+
 ```java
 Date d1 = date("2013-12-24");
 Date d2 = date("2013-12-24 23:59");
@@ -46,10 +47,13 @@ Date d4 = date("2013-12-24 23:59:59.123");
 * singular versions of each are available - for example `hour()` for `hours()`
 * `startOf(date)` gets the start of the day (midnight) for the given date 
 
+
 To get access to these methods and allow clean code, use static import:
+
 ```java
 import static org.ayeseeem.spectime.TimeFactory.date;
 ```
+
 If you use Eclipse, add the `org.ayeseeem.spectime.TimeFactory` type to the
 Content Assist Favorites, so Eclipse will suggest the methods when the import
 is missing.
@@ -63,22 +67,26 @@ To see more examples, see
 See [`spectime-test`](#spectime-test), below.
 
 Or - when `toString()` is implemented (see TODOs) - do this:
+
 ```java
 assertEquals(d1.getTime(), d2.getTime(), 3);
 ```
 
 Or, to test times with a tolerance, do something like this:
+
 ```java
 assertEquals(d1.getTime(), d2.getTime(), 3);
 ```
 
 JUnit 4 allows timing of test like this:
+
 ```java
 @Test(timeout = 1000)
 public void someTest() {
     potentiallyLongMethod();
 }
 ```
+
 This will fail if the timeout is exceeded.
 
 
@@ -118,9 +126,10 @@ Internals
       known, fixed date to get a result?
 
 Also under consideration:
+
 - `toString(Date)`
 - tips on unit testing like `assertEquals(d1.getTime(), d2.getTime(), 3);` and
-  `assertEquals(toString(d1), toString(d2));` instead of `spectime-test` 
+  `assertEquals(toString(d1), toString(d2));` instead of `spectime-test`
 - `next(Wednesday)`
 - `last(Thursday)`
 - `thisTime(date)` creates a date/time with the current time on the given date,
