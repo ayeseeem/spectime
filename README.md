@@ -93,7 +93,7 @@ has a better error message (including milliseconds) than normal JUnit
 
 If you want "simple social date-formatting" or want to parse natural language
 strings, perhaps try
-[PrettyTime] (http://ocpsoft.org/prettytime/ "PrettyTime - simple social date-formatting") - 'Convert Java `Date()` objects in just "a few minutes!"'
+[PrettyTime](http://ocpsoft.org/prettytime/ "PrettyTime - simple social date-formatting") - 'Convert Java `Date()` objects in just "a few minutes!"'
 
 
 TODOs
