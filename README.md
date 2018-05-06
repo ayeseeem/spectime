@@ -82,7 +82,7 @@ public void someTest() {
 This will fail if the timeout is exceeded.
 
 
-### <a id="spectime-test">spectime-test
+### <a id="spectime-test">spectime-test</a> ###
 
 Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
 has a better error message (including milliseconds) than normal JUnit
