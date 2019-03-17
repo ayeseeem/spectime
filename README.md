@@ -108,6 +108,7 @@ TODOs
 -----
 
 Date constructor methods
+
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
 - [ ] `time("13:59:59.123")`
@@ -120,6 +121,7 @@ small `Thread.sleep()`.
       to 1 ms.
 
 Internals
+
 - [ ] sort out `equals` and `hashCode` methods for `DtInterval` and `DtNumber`
       to properly handle the `previous` fields. (How) Do we handle different
       chains of `previous` that have same effect? Could apply them all to a
