@@ -12,7 +12,7 @@ import org.junit.Test;
 public class AssertTest {
 
 	@Test
-	public void constatnts() {
+	public void constants() {
 		assertEquals("yyyy-MM-dd HH:mm:ss.SSS", Assert.COMPARABLE_DATE_FORMAT);
 	}
 
