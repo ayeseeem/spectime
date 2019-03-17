@@ -69,7 +69,7 @@ See [`spectime-test`](#spectime-test), below.
 Or - when `toString()` is implemented (see TODOs) - do this:
 
 ```java
-assertEquals(d1.getTime(), d2.getTime(), 3);
+assertEquals(d1.getTime(), d2.getTime());
 ```
 
 Or, to test times with a tolerance, do something like this:
