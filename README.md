@@ -147,3 +147,12 @@ Also under consideration:
     - `assertTimeEquals` (ignores date, just checks time)
     - `assertDateEquals("2013-04-01 10:12", aDate)`? Or use
       `assertDateEquals(date("2013-04-10 10:12"), aDate)`?
+
+Coding Standard
+---------------
+
+Currently uses the "Eclipse [Built-in]" settings in Eclipse/Spring STS, for
+Java > Code Style's Clean Up and Formatter.
+
+- This includes using (4-space) tabs for indentation.
+- But the line length is limited to 80 characters.
