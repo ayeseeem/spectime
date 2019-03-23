@@ -112,8 +112,8 @@ public class DtNumberTest {
 	@Test
 	public void testEquals() {
 		assertThat(new DtNumber(123).equals(new DtNumber(123)), is(true));
-		assertThat(new DtNumber(123).equals(new DtNumber(999)), is(false));
-		assertThat(new DtNumber(123).equals(new String("999")), is(false));
+		assertThat(new DtNumber(123).equals(new DtNumber(456)), is(false));
+		assertThat(new DtNumber(123).equals(new String("456")), is(false));
 	}
 
 	@Test
@@ -125,10 +125,10 @@ public class DtNumberTest {
 	@Test
 	public void testEquals_WorksWithJunit() {
 		assertEquals(new DtNumber(123), new DtNumber(123));
-		assertNotEquals(new DtNumber(123), new DtNumber(999));
+		assertNotEquals(new DtNumber(123), new DtNumber(456));
 
 		assertThat(new DtNumber(123), is(new DtNumber(123)));
-		assertThat(new DtNumber(123), is(not(new DtNumber(999))));
+		assertThat(new DtNumber(123), is(not(new DtNumber(456))));
 	}
 
 	@Test
@@ -150,7 +150,7 @@ public class DtNumberTest {
 		dtNumber1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
 
 		DtNumber dtNumber2 = new DtNumber(123);
-		dtNumber2.setPrevious(new DtInterval(999, Calendar.MILLISECOND));
+		dtNumber2.setPrevious(new DtInterval(222, Calendar.MILLISECOND));
 
 		assertThat(dtNumber1.equals(dtNumber2), is(false));
 		assertThat(dtNumber2.equals(dtNumber1), is(false));

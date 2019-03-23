@@ -84,12 +84,12 @@ public class DtIntervalTest {
 		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(123, Calendar.MILLISECOND)),
 				is(true));
 
-		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(999, Calendar.MILLISECOND)),
+		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(456, Calendar.MILLISECOND)),
 				is(false));
 		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(123, Calendar.HOUR)),
 				is(false));
 
-		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new String("999")),
+		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new String("456")),
 				is(false));
 	}
 
@@ -102,10 +102,10 @@ public class DtIntervalTest {
 	@Test
 	public void testEquals_WorksWithJunit() {
 		assertEquals(new DtInterval(123, Calendar.MILLISECOND), new DtInterval(123, Calendar.MILLISECOND));
-		assertNotEquals(new DtInterval(123, Calendar.MILLISECOND), new DtInterval(999, Calendar.MILLISECOND));
+		assertNotEquals(new DtInterval(123, Calendar.MILLISECOND), new DtInterval(456, Calendar.MILLISECOND));
 
 		assertThat(new DtInterval(123, Calendar.MILLISECOND), is(new DtInterval(123, Calendar.MILLISECOND)));
-		assertThat(new DtInterval(123, Calendar.MILLISECOND), is(not(new DtInterval(999, Calendar.MILLISECOND))));
+		assertThat(new DtInterval(123, Calendar.MILLISECOND), is(not(new DtInterval(456, Calendar.MILLISECOND))));
 	}
 
 	@Test
@@ -127,7 +127,7 @@ public class DtIntervalTest {
 		dtInterval1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
 
 		DtInterval dtInterval2 = new DtInterval(123, Calendar.MILLISECOND);
-		dtInterval2.setPrevious(new DtInterval(999, Calendar.MILLISECOND));
+		dtInterval2.setPrevious(new DtInterval(222, Calendar.MILLISECOND));
 
 		assertThat(dtInterval1.equals(dtInterval2), is(false));
 		assertThat(dtInterval2.equals(dtInterval1), is(false));
