@@ -97,29 +97,25 @@ public class TimeFactory {
      */
 	public static Date date(String s) {
 		try {
-			final Date d = dateWithMillisFromString(s);
-			return d;
+			return dateWithMillisFromString(s);
 		} catch (ParseException e) {
 			// ignore - try a different format
 		}
 
 		try {
-			final Date d = dateWithSecondsFromString(s);
-			return d;
+			return dateWithSecondsFromString(s);
 		} catch (ParseException e) {
 			// ignore - try a different format
 		}
 
 		try {
-			final Date d = dateWithMinutesFromString(s);
-			return d;
+			return dateWithMinutesFromString(s);
 		} catch (ParseException e) {
 			// ignore - try a different format
 		}
 
 		try {
-			final Date d = dayFromString(s);
-			return d;
+			return dayFromString(s);
 		} catch (ParseException e) {
 			// ignore - try a different format
 		}
@@ -129,27 +125,23 @@ public class TimeFactory {
 	}
 
 	private static Date dateWithMinutesFromString(String s) throws ParseException {
-		final DateFormat df = new SimpleDateFormat(DATE_WITH_MINUTES_FORMAT);
-		Date d = df.parse(s);
-		return d;
+		DateFormat df = new SimpleDateFormat(DATE_WITH_MINUTES_FORMAT);
+		return df.parse(s);
 	}
 
 	private static Date dateWithSecondsFromString(String s) throws ParseException {
-		final DateFormat df = new SimpleDateFormat(DATE_WITH_SECONDS_FORMAT);
-		Date d = df.parse(s);
-		return d;
+		DateFormat df = new SimpleDateFormat(DATE_WITH_SECONDS_FORMAT);
+		return df.parse(s);
 	}
 
 	private static Date dateWithMillisFromString(String s) throws ParseException {
-		final DateFormat df = new SimpleDateFormat(DATE_WITH_MILLIS_FORMAT);
-		Date d = df.parse(s);
-		return d;
+		DateFormat df = new SimpleDateFormat(DATE_WITH_MILLIS_FORMAT);
+		return df.parse(s);
 	}
 
 	private static Date dayFromString(String s) throws ParseException {
-		final DateFormat df = new SimpleDateFormat(DATE_FORMAT);
-		Date d = df.parse(s);
-		return d;
+		DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+		return df.parse(s);
 	}
 
     /**
