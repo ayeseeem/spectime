@@ -166,12 +166,15 @@ public class TimeFactory {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 
-		// zero the time fields
+		zeroTime(cal);
+		return cal.getTime();
+	}
+
+	static void zeroTime(Calendar cal) {
 		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
-		return cal.getTime();
 	}
 
 }

@@ -130,4 +130,36 @@ public class TimeFactoryTest {
 		assertThat(cal.get(Calendar.MILLISECOND), is(0));
 	}
 
+	@Test
+	public void testZeroTime_ZeroesTheTimeFields() {
+		Calendar cal = Calendar.getInstance();
+
+		cal.set(Calendar.HOUR_OF_DAY, 23);
+		cal.set(Calendar.MINUTE, 58);
+		cal.set(Calendar.SECOND, 59);
+		cal.set(Calendar.MILLISECOND, 123);
+
+		TimeFactory.zeroTime(cal);
+
+		assertThat(cal.get(Calendar.HOUR_OF_DAY), is(0));
+		assertThat(cal.get(Calendar.MINUTE), is(0));
+		assertThat(cal.get(Calendar.SECOND), is(0));
+		assertThat(cal.get(Calendar.MILLISECOND), is(0));
+	}
+
+	@Test
+	public void testZeroTime_DateDayInfoIsUnchanged() {
+		Calendar cal = Calendar.getInstance();
+
+		cal.set(Calendar.YEAR, 2013);
+		cal.set(Calendar.MONTH, Calendar.MARCH);
+		cal.set(Calendar.DAY_OF_MONTH, 9);
+
+		TimeFactory.zeroTime(cal);
+
+		assertThat(cal.get(Calendar.YEAR), is(2013));
+		assertThat(cal.get(Calendar.MONTH), is(Calendar.MARCH));
+		assertThat(cal.get(Calendar.DAY_OF_MONTH), is(9));
+	}
+
 }
