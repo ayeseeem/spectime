@@ -1,8 +1,10 @@
 package org.ayeseeem.junit.spectime;
 
 import static org.ayeseeem.junit.spectime.Assert.assertDateEquals;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.Date;
@@ -13,7 +15,7 @@ public class AssertTest {
 
 	@Test
 	public void constants() {
-		assertEquals("yyyy-MM-dd HH:mm:ss.SSS", Assert.COMPARABLE_DATE_FORMAT);
+		assertThat(Assert.COMPARABLE_DATE_FORMAT, is("yyyy-MM-dd HH:mm:ss.SSS"));
 	}
 
 	@Test(expected = AssertionError.class)
@@ -34,8 +36,8 @@ public class AssertTest {
 			assertDateEquals(d1, d2);
 			fail("should have thrown");
 		} catch (Throwable exception) {
-			assertEquals("expected:<[2013-12-31 23:59:58.123]> but was:<[1999-11-30 22:58:57.099]>",
-					exception.getMessage());
+			assertThat(exception.getMessage(),
+					is("expected:<[2013-12-31 23:59:58.123]> but was:<[1999-11-30 22:58:57.099]>"));
 		}
 	}
 
@@ -45,8 +47,8 @@ public class AssertTest {
 			assertDateEquals(new Date(123), new Date(246));
 			fail("should have thrown");
 		} catch (Throwable exception) {
-			assertTrue(exception.getMessage().contains("123"));
-			assertTrue(exception.getMessage().contains("246"));
+			assertThat(exception.getMessage(), containsString("123"));
+			assertThat(exception.getMessage(), containsString("246"));
 		}
 	}
 

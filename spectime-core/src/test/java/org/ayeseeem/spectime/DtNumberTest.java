@@ -1,7 +1,10 @@
 package org.ayeseeem.spectime;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.Calendar;
 
@@ -12,7 +15,7 @@ public class DtNumberTest {
 	@Test
 	public void millisecondSynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.milliseconds(), test.millisecond());
+		assertThat(test.millisecond(), is(test.milliseconds()));
 	}
 
 	@Test
@@ -25,7 +28,7 @@ public class DtNumberTest {
 	@Test
 	public void secondSynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.seconds(), test.second());
+		assertThat(test.second(), is(test.seconds()));
 	}
 
 	@Test
@@ -37,7 +40,7 @@ public class DtNumberTest {
 	@Test
 	public void minuteSynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.minutes(), test.minute());
+		assertThat(test.minute(), is(test.minutes()));
 	}
 
 	@Test
@@ -49,7 +52,7 @@ public class DtNumberTest {
 	@Test
 	public void hourSynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.hours(), test.hour());
+		assertThat(test.hour(), is(test.hours()));
 	}
 
 	@Test
@@ -61,7 +64,7 @@ public class DtNumberTest {
 	@Test
 	public void daySynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.days(), test.day());
+		assertThat(test.day(), is(test.days()));
 	}
 
 	@Test
@@ -73,7 +76,7 @@ public class DtNumberTest {
 	@Test
 	public void weekSynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.weeks(), test.week());
+		assertThat(test.week(), is(test.weeks()));
 	}
 
 	@Test
@@ -85,7 +88,7 @@ public class DtNumberTest {
 	@Test
 	public void monthSynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.months(), test.month());
+		assertThat(test.month(), is(test.months()));
 	}
 
 	@Test
@@ -97,7 +100,7 @@ public class DtNumberTest {
 	@Test
 	public void yearSynonym() {
 		DtNumber test = new DtNumber(1);
-		assertEquals(test.years(), test.year());
+		assertThat(test.year(), is(test.years()));
 	}
 
 	@Test
@@ -108,9 +111,24 @@ public class DtNumberTest {
 
 	@Test
 	public void testEquals() {
+		assertThat(new DtNumber(123).equals(new DtNumber(123)), is(true));
+		assertThat(new DtNumber(123).equals(new DtNumber(999)), is(false));
+		assertThat(new DtNumber(123).equals(new String("999")), is(false));
+	}
+
+	@Test
+	public void testEquals_Self() {
+		DtNumber test = new DtNumber(123);
+		assertThat(test.equals(test), is(true));
+	}
+
+	@Test
+	public void testEquals_WorksWithJunit() {
 		assertEquals(new DtNumber(123), new DtNumber(123));
-		assertFalse(new DtNumber(123).equals(new DtNumber(999)));
-		assertFalse(new DtNumber(123).equals(new String("999")));
+		assertNotEquals(new DtNumber(123), new DtNumber(999));
+
+		assertThat(new DtNumber(123), is(new DtNumber(123)));
+		assertThat(new DtNumber(123), is(not(new DtNumber(999))));
 	}
 
 	@Test
@@ -121,7 +139,9 @@ public class DtNumberTest {
 		DtNumber dtNumber2 = new DtNumber(123);
 		dtNumber2.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
 
-		assertEquals(dtNumber1, dtNumber2);
+		assertThat(dtNumber2, is(dtNumber1));
+		assertThat(dtNumber1.equals(dtNumber2), is(true));
+		assertThat(dtNumber2.equals(dtNumber1), is(true));
 	}
 
 	@Test
@@ -132,7 +152,8 @@ public class DtNumberTest {
 		DtNumber dtNumber2 = new DtNumber(123);
 		dtNumber2.setPrevious(new DtInterval(999, Calendar.MILLISECOND));
 
-		assertFalse(dtNumber1.equals(dtNumber2));
+		assertThat(dtNumber1.equals(dtNumber2), is(false));
+		assertThat(dtNumber2.equals(dtNumber1), is(false));
 	}
 
 	@Test
@@ -142,7 +163,7 @@ public class DtNumberTest {
 
 		DtNumber dtNumberWithNoPrevious = new DtNumber(123);
 
-		assertFalse(dtNumber1.equals(dtNumberWithNoPrevious));
+		assertThat(dtNumber1.equals(dtNumberWithNoPrevious), is(false));
 	}
 
 }

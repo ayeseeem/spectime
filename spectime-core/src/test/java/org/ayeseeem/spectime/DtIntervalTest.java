@@ -1,7 +1,10 @@
 package org.ayeseeem.spectime;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -13,40 +16,37 @@ public class DtIntervalTest {
 	@Test
 	public void testFrom() {
 		DtInterval test = new DtInterval(234, Calendar.MILLISECOND);
-		assertEquals(new Date(1234),
-				test.from(new Date(1000)));
+		assertThat(test.from(new Date(1000)), is(new Date(1234)));
 	}
 
 	@Test
 	public void testAfter() {
 		DtInterval test = new DtInterval(234, Calendar.MILLISECOND);
-		assertEquals(new Date(1234),
-				test.after(new Date(1000)));
+		assertThat(test.after(new Date(1000)), is(new Date(1234)));
 	}
 
 	@Test
 	public void testAfterIsSynonymForFrom() {
 		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
-		assertEquals(test.from(new Date(1000)), test.after(new Date(1000)));
+		assertThat(test.after(new Date(1000)), is(test.from(new Date(1000))));
 	}
 
 	@Test
 	public void testBefore() {
 		DtInterval test = new DtInterval(234, Calendar.MILLISECOND);
-		assertEquals(new Date(1000),
-				test.before(new Date(1234)));
+		assertThat(test.before(new Date(1234)), is(new Date(1000)));
 	}
 
 	@Test
 	public void testAgo() {
 		DtInterval test = new DtInterval(123, Calendar.MILLISECOND, constDateSource);
-		assertEquals(new Date(constNow.getTime() - 123), test.ago());
+		assertThat(test.ago(), is(new Date(constNow.getTime() - 123)));
 	}
 
 	@Test
 	public void testAgoIsSynonymForBeforeNow() {
 		DtInterval test = new DtInterval(123, Calendar.MILLISECOND, constDateSource);
-		assertEquals(test.before(constNow), test.ago());
+		assertThat(test.ago(), is(test.before(constNow)));
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class DtIntervalTest {
 		DtInterval test = new DtInterval(7, Calendar.SECOND);
 		test = test.and(123).milliseconds();
 
-		assertEquals(new Date(8123), test.after(new Date(1000)));
+		assertThat(test.after(new Date(1000)), is(new Date(8123)));
 	}
 
 	@Test
@@ -63,7 +63,7 @@ public class DtIntervalTest {
 		test = test.and(2).milliseconds();
 		test = test.and(3).milliseconds();
 
-		assertEquals(new Date(1006), test.after(new Date(1000)));
+		assertThat(test.after(new Date(1000)), is(new Date(1006)));
 	}
 
 	@Test
@@ -72,19 +72,40 @@ public class DtIntervalTest {
 		test = test.and(2).seconds();
 		test = test.and(3).minutes();
 
-		assertEquals(new Date(1000
-				+ 1
-				+ 2 * 1000
-				+ 3 * (60 * 1000)),
-				test.after(new Date(1000)));
+		assertThat(test.after(new Date(1000)),
+				is(new Date(1000
+						+ 1
+						+ 2 * 1000
+						+ 3 * (60 * 1000))));
 	}
 
 	@Test
 	public void testEquals() {
+		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(123, Calendar.MILLISECOND)),
+				is(true));
+
+		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(999, Calendar.MILLISECOND)),
+				is(false));
+		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(123, Calendar.HOUR)),
+				is(false));
+
+		assertThat(new DtInterval(123, Calendar.MILLISECOND).equals(new String("999")),
+				is(false));
+	}
+
+	@Test
+	public void testEquals_Self() {
+		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
+		assertThat(test.equals(test), is(true));
+	}
+
+	@Test
+	public void testEquals_WorksWithJunit() {
 		assertEquals(new DtInterval(123, Calendar.MILLISECOND), new DtInterval(123, Calendar.MILLISECOND));
-		assertFalse(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(999, Calendar.MILLISECOND)));
-		assertFalse(new DtInterval(123, Calendar.MILLISECOND).equals(new DtInterval(123, Calendar.HOUR)));
-		assertFalse(new DtInterval(123, Calendar.MILLISECOND).equals(new String("999")));
+		assertNotEquals(new DtInterval(123, Calendar.MILLISECOND), new DtInterval(999, Calendar.MILLISECOND));
+
+		assertThat(new DtInterval(123, Calendar.MILLISECOND), is(new DtInterval(123, Calendar.MILLISECOND)));
+		assertThat(new DtInterval(123, Calendar.MILLISECOND), is(not(new DtInterval(999, Calendar.MILLISECOND))));
 	}
 
 	@Test
@@ -95,7 +116,9 @@ public class DtIntervalTest {
 		DtInterval dtInterval2 = new DtInterval(123, Calendar.MILLISECOND);
 		dtInterval2.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
 
-		assertEquals(dtInterval1, dtInterval2);
+		assertThat(dtInterval2, is(dtInterval1));
+		assertThat(dtInterval2.equals(dtInterval1), is(true));
+		assertThat(dtInterval1.equals(dtInterval2), is(true));
 	}
 
 	@Test
@@ -106,7 +129,8 @@ public class DtIntervalTest {
 		DtInterval dtInterval2 = new DtInterval(123, Calendar.MILLISECOND);
 		dtInterval2.setPrevious(new DtInterval(999, Calendar.MILLISECOND));
 
-		assertFalse(dtInterval1.equals(dtInterval2));
+		assertThat(dtInterval1.equals(dtInterval2), is(false));
+		assertThat(dtInterval2.equals(dtInterval1), is(false));
 	}
 
 	@Test
@@ -116,7 +140,8 @@ public class DtIntervalTest {
 
 		DtInterval dtIntervalWithNoPrevious = new DtInterval(123, Calendar.MILLISECOND);
 
-		assertFalse(dtInterval1.equals(dtIntervalWithNoPrevious));
+		assertThat(dtInterval1.equals(dtIntervalWithNoPrevious), is(false));
+		assertThat(dtIntervalWithNoPrevious.equals(dtInterval1), is(false));
 	}
 
 	@Test
@@ -130,9 +155,9 @@ public class DtIntervalTest {
 		dtInterval2 = dtInterval2.and(2).milliseconds();
 
 		// HACK: current way to test equivalent chains is to apply them
-		assertEquals(dtInterval1.after(new Date(0)), dtInterval2.after(new Date(0)));
+		assertThat(dtInterval2.after(new Date(0)), is(dtInterval1.after(new Date(0))));
 		// TODO: make this work explicitly, by applying chains internally in equals/hashcode
-		//assertEquals(dtInterval1, dtInterval2);
+		//assertThat(dtInterval2, is(dtInterval1));
 	}
 
 	private final Date constNow = new Date();
