@@ -155,4 +155,10 @@ Currently uses the "Eclipse [Built-in]" settings in Eclipse/Spring STS, for
 Java > Code Style's Clean Up and Formatter.
 
 - This includes using (4-space) tabs for indentation.
-- But the line length is limited to 80 characters.
+- **But** the line length for code is limited to 80 characters
+    - The limit for comments is also 80 characters, but
+      "from comment's starting position" (the default settings).
+      The starting position bit is nice because it means that comment blocks
+      don't need to be reformatted when the commented code's indentation level
+      changes, for example when it is refactored to move it into or out of nested
+      classes.
