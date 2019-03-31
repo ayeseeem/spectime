@@ -8,7 +8,7 @@ import java.util.Date;
 public class DefaultDateSource implements DateSource {
 
 	/**
-	 * gets the current date by returning {@code new Date()}.
+	 * Gets the current date by returning {@code new Date()}.
 	 */
 	@Override
 	public Date getDate() {
