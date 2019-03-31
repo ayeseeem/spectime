@@ -162,3 +162,12 @@ Java > Code Style's Clean Up and Formatter.
       don't need to be reformatted when the commented code's indentation level
       changes, for example when it is refactored to move it into or out of nested
       classes.
+
+Don't (usually) modify method parameters.
+But don't (usually) use `final` on (every) method parameter, to prevent
+it - we think it makes the code unhelpfully verbose.
+Instead, turn on an IDE rule or code linter to warn on reassigned parameters.
+Only use `final` on method parameters in special cases - for example if the
+method is so long that it is hard to see at a glance that the parameters are
+not changed (although, avoid such long methods!). Or where some of the
+parameters _are_ reassigned - use `final` to mark the ones that are not.
