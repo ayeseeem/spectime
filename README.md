@@ -122,10 +122,20 @@ TODOs
 
 ### Internals
 
+- [ ] Check that this all works with other default/system time zones!
 - [ ] Sort out `equals` and `hashCode` methods for `DtInterval` and `DtNumber`
       to properly handle the `previous` fields. (How) Do we handle different
       chains of `previous` that have same effect? Could apply them all to a
       known, fixed date to get a result?
+
+### Long-Term Support and Future
+
+- [ ] Add to the build mechanism to ensure Java 1.3 - 1.6 code consistency
+      (Need to settle on the exact target version, basically this is aimed at
+      Java before `Instant` and so on.)
+- [ ] Work out how to split into a Java 6 and Java 8+ version. Create a new
+      version for Java8+ - how much is still needed, how much can be done with
+      Standard Java 8+ date/time?
 
 ### Also under consideration
 
