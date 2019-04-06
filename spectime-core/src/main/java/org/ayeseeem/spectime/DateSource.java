@@ -7,5 +7,13 @@ import java.util.Date;
  * {@code new Date()} - to help testing.
  */
 public interface DateSource {
-	public Date getDate();
+
+	/**
+	 * Gets a {@code Date}. Named to match Java 8's
+	 * {@code Supplier<Date>.get()}, even though we don't use Java 8.
+	 *
+	 * @return a {@code Date}
+	 */
+	public Date get();
+
 }

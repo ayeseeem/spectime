@@ -33,7 +33,7 @@ public class DtInterval {
 	}
 
 	public Date ago() {
-		return before(dateSource.getDate());
+		return before(dateSource.get());
 	}
 
 	private Date createRelative(Date date, int amount) {

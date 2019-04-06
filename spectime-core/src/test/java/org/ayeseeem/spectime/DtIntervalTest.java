@@ -164,7 +164,7 @@ public class DtIntervalTest {
 
 	private final DateSource constDateSource = new DateSource() {
 		@Override
-		public Date getDate() {
+		public Date get() {
 			return constNow;
 		}
 	};
