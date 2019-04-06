@@ -75,7 +75,7 @@ public class DtNumber {
 		return years();
 	}
 
-	public void setPrevious(DtInterval previous) {
+	void setPrevious(DtInterval previous) {
 		this.previous = previous;
 	}
 
@@ -86,7 +86,7 @@ public class DtNumber {
 		return dtInterval;
 	}
 
-	private DtInterval createWithPrevious(int n, int timeUnitId) {
+	DtInterval createWithPrevious(int n, int timeUnitId) {
 		final DtInterval dtInterval = new DtInterval(n, timeUnitId);
 		return createWithPrevious(dtInterval);
 	}

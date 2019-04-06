@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -164,6 +165,28 @@ public class DtNumberTest {
 		DtNumber dtNumberWithNoPrevious = new DtNumber(123);
 
 		assertThat(dtNumber1.equals(dtNumberWithNoPrevious), is(false));
+	}
+
+	@Test
+	public void testCreateWithPrevious_FromIntInt_WhenPreviousIsNull() {
+		DtNumber subject = new DtNumber(123);
+		subject.setPrevious(null);
+
+		DtInterval result = subject.createWithPrevious(111, Calendar.MILLISECOND);
+
+		assertThat(result.after(new Date(0)).getTime(), is(111L + 0));
+		assertThat(result.after(new Date(123456)).getTime(), is(123456L + 111L + 0));
+	}
+
+	@Test
+	public void testCreateWithPrevious_FromIntInt_WhenPreviousIsNotNull() {
+		DtNumber subject = new DtNumber(123);
+		subject.setPrevious(new DtInterval(222, Calendar.MILLISECOND));
+
+		DtInterval result = subject.createWithPrevious(111, Calendar.MILLISECOND);
+
+		assertThat(result.after(new Date(0)).getTime(), is(111L + 222L));
+		assertThat(result.after(new Date(123456)).getTime(), is(123456L + 111L + 222L));
 	}
 
 }
