@@ -15,6 +15,6 @@ public interface DateSupplier {
 	 *
 	 * @return a {@code Date}
 	 */
-	public Date get();
+	Date get();
 
 }
