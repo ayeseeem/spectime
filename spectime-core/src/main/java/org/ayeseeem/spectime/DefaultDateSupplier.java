@@ -3,9 +3,9 @@ package org.ayeseeem.spectime;
 import java.util.Date;
 
 /**
- * Default implementation of DateSource.
+ * Default implementation of {@code DateSupplier}.
  */
-public class DefaultDateSource implements DateSource {
+public class DefaultDateSupplier implements DateSupplier {
 
 	/**
 	 * Gets the current date by returning {@code new Date()}.
