@@ -36,7 +36,7 @@ Date d4 = date("2013-12-24 23:59:59.123");
 ```
 
 - `date()` and `time()` are synonyms - use whichever is clearer
-- specify relative time/date using:
+- Specify relative time/date using:
     - `milliseconds()`
     - `seconds()`
     - `minutes()`
@@ -45,7 +45,7 @@ Date d4 = date("2013-12-24 23:59:59.123");
     - `weeks()`
     - `months()`
     - `years()`
-- singular versions of each are available - for example `hour()` for `hours()`
+- Singular versions of each are available - for example `hour()` for `hours()`
 - `startOf(date)` gets the start of the day (midnight) for the given date
 
 To get access to these methods and allow clean code, use static import:
@@ -107,30 +107,30 @@ strings, perhaps try
 TODOs
 -----
 
-Date constructor methods
+### Date constructor methods
 
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
 - [ ] `time("13:59:59.123")`
-- some kind of "definitely later" date constructor. For example, when you
-create a bunch of dates using something like `now()`, it's possible that some
-of them will have exactly the same time, and you might then be surprised that
-they don't sort in the order you expect. In the past, I've done this using a
-small `Thread.sleep()`.
+- Some kind of "definitely later" date constructor. For example, when you
+  create a bunch of dates using something like `now()`, it's possible that some
+  of them will have exactly the same time, and you might then be surprised that
+  they don't sort in the order you expect. In the past, I've done this using a
+  small `Thread.sleep()`.
     - possibly use a `tick()` method that can take an optional amount, default
       to 1 ms.
 
-Internals
+### Internals
 
-- [ ] sort out `equals` and `hashCode` methods for `DtInterval` and `DtNumber`
+- [ ] Sort out `equals` and `hashCode` methods for `DtInterval` and `DtNumber`
       to properly handle the `previous` fields. (How) Do we handle different
       chains of `previous` that have same effect? Could apply them all to a
       known, fixed date to get a result?
 
-Also under consideration:
+### Also under consideration
 
 - `toString(Date)`
-- tips on unit testing like `assertEquals(d1.getTime(), d2.getTime(), 3);` and
+- Tips on unit testing like `assertEquals(d1.getTime(), d2.getTime(), 3);` and
   `assertEquals(toString(d1), toString(d2));` instead of `spectime-test`
 - `next(Wednesday)`
 - `last(Thursday)`
@@ -140,7 +140,7 @@ Also under consideration:
 - `since(date)` and `until(date)` to calculate time since/until date
 - `year(2013)`
 - `next(March)`, `next(week)`, `next(year)`
-- test helpers like
+- Test helpers like
     - `assertDateEquals` with milliseconds tolerance
     - `assertDateEquals` with tolerance in other units
     - `assertDayEquals` (ignores time, just checks date)
