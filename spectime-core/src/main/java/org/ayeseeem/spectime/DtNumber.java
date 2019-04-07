@@ -81,9 +81,7 @@ public class DtNumber {
 
 	DtInterval createWithPrevious(int n, int timeUnitId) {
 		final DtInterval dtInterval = new DtInterval(n, timeUnitId);
-		if (previous != null) {
-			dtInterval.setPrevious(previous);
-		}
+		dtInterval.setPrevious(previous);
 		return dtInterval;
 	}
 
