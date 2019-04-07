@@ -79,16 +79,12 @@ public class DtNumber {
 		this.previous = previous;
 	}
 
-	private DtInterval createWithPrevious(DtInterval dtInterval) {
+	DtInterval createWithPrevious(int n, int timeUnitId) {
+		final DtInterval dtInterval = new DtInterval(n, timeUnitId);
 		if (previous != null) {
 			dtInterval.setPrevious(previous);
 		}
 		return dtInterval;
-	}
-
-	DtInterval createWithPrevious(int n, int timeUnitId) {
-		final DtInterval dtInterval = new DtInterval(n, timeUnitId);
-		return createWithPrevious(dtInterval);
 	}
 
 	@Override
