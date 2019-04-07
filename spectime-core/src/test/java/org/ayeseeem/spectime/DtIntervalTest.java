@@ -160,6 +160,24 @@ public class DtIntervalTest {
 		//assertThat(dtInterval2, is(dtInterval1));
 	}
 
+	@Test
+	public void testCreateWithPrevious() {
+		DtInterval previous = new DtInterval(222, Calendar.MILLISECOND);
+		DtInterval result = DtInterval.createWithPrevious(111, Calendar.MILLISECOND, previous);
+
+		assertThat(result.after(new Date(0)).getTime(), is(111L + 222L));
+		assertThat(result.after(new Date(123456)).getTime(), is(123456L + 111L + 222L));
+	}
+
+	@Test
+	public void testCreateWithPrevious_WhenPreviousIsNull() {
+		DtInterval previous = null;
+		DtInterval result = DtInterval.createWithPrevious(111, Calendar.MILLISECOND, previous);
+
+		assertThat(result.after(new Date(0)).getTime(), is(111L + 0));
+		assertThat(result.after(new Date(123456)).getTime(), is(123456L + 111L + 0));
+	}
+
 	private final Date constNow = new Date();
 
 	private final DateSupplier constDateSupplier = new DateSupplier() {
@@ -168,4 +186,5 @@ public class DtIntervalTest {
 			return constNow;
 		}
 	};
+
 }

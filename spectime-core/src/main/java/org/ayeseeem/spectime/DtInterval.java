@@ -20,6 +20,13 @@ public class DtInterval {
 		this.dateSupplier = dateSupplier;
 	}
 
+	static DtInterval createWithPrevious(int n, int timeUnitId,
+			DtInterval previous) {
+		final DtInterval dtInterval = new DtInterval(n, timeUnitId);
+		dtInterval.setPrevious(previous);
+		return dtInterval;
+	}
+
 	public Date from(Date date) {
 		return createRelative(date, n);
 	}
