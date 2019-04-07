@@ -81,7 +81,7 @@ public class DtNumber {
 	}
 
 	DtInterval createWithPrevious(int n, int timeUnitId) {
-		return DtInterval.createWithPrevious(n, timeUnitId, previous);
+		return new DtInterval(n, timeUnitId, previous);
 	}
 
 	@Override

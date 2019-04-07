@@ -8,23 +8,28 @@ public class DtInterval {
 	private final int n;
 	private final int timeUnitId;
 	private final DateSupplier dateSupplier;
-	private DtInterval previous;
+	private final DtInterval previous;
 
-	public DtInterval(int n, int timeUnitId) {
-		this(n, timeUnitId, new DefaultDateSupplier());
+	DtInterval(int n, int timeUnitId) {
+		this(n, timeUnitId, makeDefaultDateSupplier());
 	}
 
 	public DtInterval(int n, int timeUnitId, DateSupplier dateSupplier) {
 		this.n = n;
 		this.timeUnitId = timeUnitId;
 		this.dateSupplier = dateSupplier;
+		this.previous = null;
 	}
 
-	static DtInterval createWithPrevious(int n, int timeUnitId,
-			DtInterval previous) {
-		final DtInterval dtInterval = new DtInterval(n, timeUnitId);
-		dtInterval.setPrevious(previous);
-		return dtInterval;
+	DtInterval(int n, int timeUnitId, DtInterval previous) {
+		this.n = n;
+		this.timeUnitId = timeUnitId;
+		this.previous = previous;
+		this.dateSupplier = makeDefaultDateSupplier();
+	}
+
+	private static DateSupplier makeDefaultDateSupplier() {
+		return new DefaultDateSupplier();
 	}
 
 	public Date from(Date date) {
@@ -57,10 +62,6 @@ public class DtInterval {
 	public DtNumber and(int n) {
 		DtNumber nextNumber = new DtNumber(n, this);
 		return nextNumber;
-	}
-
-	public void setPrevious(DtInterval previous) {
-		this.previous = previous;
 	}
 
 	@Override
