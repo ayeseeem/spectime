@@ -5,10 +5,15 @@ import java.util.Calendar;
 public class DtNumber {
 
 	private final int n;
-	private DtInterval previous;
+	private final DtInterval previous;
 
 	public DtNumber(int n) {
+		this(n, null);
+	}
+
+	DtNumber(int n, DtInterval previous) {
 		this.n = n;
+		this.previous = previous;
 	}
 
 	public DtInterval milliseconds() {
@@ -73,10 +78,6 @@ public class DtNumber {
 
 	public DtInterval year() {
 		return years();
-	}
-
-	void setPrevious(DtInterval previous) {
-		this.previous = previous;
 	}
 
 	DtInterval createWithPrevious(int n, int timeUnitId) {

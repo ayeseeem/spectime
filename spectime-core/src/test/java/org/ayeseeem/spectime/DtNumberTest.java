@@ -134,11 +134,10 @@ public class DtNumberTest {
 
 	@Test
 	public void testEquals_WithPrevious() {
-		DtNumber dtNumber1 = new DtNumber(123);
-		dtNumber1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
-
-		DtNumber dtNumber2 = new DtNumber(123);
-		dtNumber2.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
+		DtNumber dtNumber1 = new DtNumber(123,
+				new DtInterval(111, Calendar.MILLISECOND));
+		DtNumber dtNumber2 = new DtNumber(123,
+				new DtInterval(111, Calendar.MILLISECOND));
 
 		assertThat(dtNumber2, is(dtNumber1));
 		assertThat(dtNumber1.equals(dtNumber2), is(true));
@@ -147,11 +146,10 @@ public class DtNumberTest {
 
 	@Test
 	public void testEquals_WithPrevious_NotEqual() {
-		DtNumber dtNumber1 = new DtNumber(123);
-		dtNumber1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
-
-		DtNumber dtNumber2 = new DtNumber(123);
-		dtNumber2.setPrevious(new DtInterval(222, Calendar.MILLISECOND));
+		DtNumber dtNumber1 = new DtNumber(123,
+				new DtInterval(111, Calendar.MILLISECOND));
+		DtNumber dtNumber2 = new DtNumber(123,
+				new DtInterval(222, Calendar.MILLISECOND));
 
 		assertThat(dtNumber1.equals(dtNumber2), is(false));
 		assertThat(dtNumber2.equals(dtNumber1), is(false));
@@ -159,8 +157,8 @@ public class DtNumberTest {
 
 	@Test
 	public void testEquals_WithPrevious_NotEqual_NoPrevious() {
-		DtNumber dtNumber1 = new DtNumber(123);
-		dtNumber1.setPrevious(new DtInterval(111, Calendar.MILLISECOND));
+		DtNumber dtNumber1 = new DtNumber(123,
+				new DtInterval(111, Calendar.MILLISECOND));
 
 		DtNumber dtNumberWithNoPrevious = new DtNumber(123);
 
@@ -169,8 +167,7 @@ public class DtNumberTest {
 
 	@Test
 	public void testCreateWithPrevious_FromIntInt_WhenPreviousIsNull() {
-		DtNumber subject = new DtNumber(123);
-		subject.setPrevious(null);
+		DtNumber subject = new DtNumber(123, null);
 
 		DtInterval result = subject.createWithPrevious(111, Calendar.MILLISECOND);
 
@@ -180,8 +177,8 @@ public class DtNumberTest {
 
 	@Test
 	public void testCreateWithPrevious_FromIntInt_WhenPreviousIsNotNull() {
-		DtNumber subject = new DtNumber(123);
-		subject.setPrevious(new DtInterval(222, Calendar.MILLISECOND));
+		DtNumber subject = new DtNumber(123,
+				new DtInterval(222, Calendar.MILLISECOND));
 
 		DtInterval result = subject.createWithPrevious(111, Calendar.MILLISECOND);
 

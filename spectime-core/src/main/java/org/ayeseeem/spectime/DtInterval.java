@@ -55,8 +55,7 @@ public class DtInterval {
 	}
 
 	public DtNumber and(int n) {
-		DtNumber nextNumber = new DtNumber(n);
-		nextNumber.setPrevious(this);
+		DtNumber nextNumber = new DtNumber(n, this);
 		return nextNumber;
 	}
 
