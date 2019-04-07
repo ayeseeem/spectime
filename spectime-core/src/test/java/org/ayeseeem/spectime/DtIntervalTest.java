@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -39,14 +40,36 @@ public class DtIntervalTest {
 
 	@Test
 	public void testAgo() {
-		DtInterval test = new DtInterval(123, Calendar.MILLISECOND, constDateSupplier);
-		assertThat(test.ago(), is(new Date(constNow.getTime() - 123)));
+		Date start = new Date();
+		DtInterval test = new DtInterval(0, Calendar.MILLISECOND);
+		Date result = test.ago();
+		Date end = new Date();
+
+		assertTrue(start.getTime() <= result.getTime());
+		assertTrue(result.getTime() <= end.getTime());
+	}
+
+	@Test
+	public void testAgoUsesInterval() {
+		Date start = new Date();
+		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
+		Date result = test.ago();
+		Date end = new Date();
+
+		assertTrue(start.getTime() <= result.getTime() + 123);
+		assertTrue(result.getTime() + 123 <= end.getTime());
+	}
+
+	@Test
+	public void testAgo_WithDateSupplier() {
+		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
+		assertThat(test.ago(constDateSupplier), is(new Date(constNow.getTime() - 123)));
 	}
 
 	@Test
 	public void testAgoIsSynonymForBeforeNow() {
-		DtInterval test = new DtInterval(123, Calendar.MILLISECOND, constDateSupplier);
-		assertThat(test.ago(), is(test.before(constNow)));
+		DtInterval test = new DtInterval(123, Calendar.MILLISECOND);
+		assertThat(test.ago(constDateSupplier), is(test.before(constNow)));
 	}
 
 	@Test

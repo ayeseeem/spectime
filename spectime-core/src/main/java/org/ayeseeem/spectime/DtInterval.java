@@ -7,17 +7,11 @@ public class DtInterval {
 
 	private final int n;
 	private final int timeUnitId;
-	private final DateSupplier dateSupplier;
 	private final DtInterval previous;
 
-	DtInterval(int n, int timeUnitId) {
-		this(n, timeUnitId, makeDefaultDateSupplier());
-	}
-
-	public DtInterval(int n, int timeUnitId, DateSupplier dateSupplier) {
+	public DtInterval(int n, int timeUnitId) {
 		this.n = n;
 		this.timeUnitId = timeUnitId;
-		this.dateSupplier = dateSupplier;
 		this.previous = null;
 	}
 
@@ -25,9 +19,9 @@ public class DtInterval {
 		this.n = n;
 		this.timeUnitId = timeUnitId;
 		this.previous = previous;
-		this.dateSupplier = makeDefaultDateSupplier();
 	}
 
+	// TODO: ICM 2019-04-07: Copy/re-use from TimeFactory
 	private static DateSupplier makeDefaultDateSupplier() {
 		return new DefaultDateSupplier();
 	}
@@ -45,7 +39,11 @@ public class DtInterval {
 	}
 
 	public Date ago() {
-		return before(dateSupplier.get());
+		return ago(makeDefaultDateSupplier());
+	}
+
+	Date ago(DateSupplier nowSupplier) {
+		return before(nowSupplier.get());
 	}
 
 	private Date createRelative(Date date, int amount) {
