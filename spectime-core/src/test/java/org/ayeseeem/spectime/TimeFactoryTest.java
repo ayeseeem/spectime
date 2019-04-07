@@ -1,5 +1,13 @@
 package org.ayeseeem.spectime;
 
+import static java.util.Calendar.DAY_OF_MONTH;
+import static java.util.Calendar.HOUR_OF_DAY;
+import static java.util.Calendar.MARCH;
+import static java.util.Calendar.MILLISECOND;
+import static java.util.Calendar.MINUTE;
+import static java.util.Calendar.MONTH;
+import static java.util.Calendar.SECOND;
+import static java.util.Calendar.YEAR;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
@@ -41,9 +49,9 @@ public class TimeFactoryTest {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(TimeFactory.date("2013-03-09"));
 
-		assertThat(cal.get(Calendar.YEAR), is(2013));
-		assertThat(cal.get(Calendar.MONTH), is(Calendar.MARCH));
-		assertThat(cal.get(Calendar.DAY_OF_MONTH), is(9));
+		assertThat(cal.get(YEAR), is(2013));
+		assertThat(cal.get(MONTH), is(MARCH));
+		assertThat(cal.get(DAY_OF_MONTH), is(9));
 	}
 
 	@Test
@@ -51,10 +59,10 @@ public class TimeFactoryTest {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(TimeFactory.date("2013-03-09"));
 
-		assertThat(cal.get(Calendar.HOUR_OF_DAY), is(0));
-		assertThat(cal.get(Calendar.MINUTE), is(0));
-		assertThat(cal.get(Calendar.SECOND), is(0));
-		assertThat(cal.get(Calendar.MILLISECOND), is(0));
+		assertThat(cal.get(HOUR_OF_DAY), is(0));
+		assertThat(cal.get(MINUTE), is(0));
+		assertThat(cal.get(SECOND), is(0));
+		assertThat(cal.get(MILLISECOND), is(0));
 	}
 
 	@Test
@@ -62,15 +70,15 @@ public class TimeFactoryTest {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(TimeFactory.date("2013-03-09 23:59"));
 
-		assertThat(cal.get(Calendar.YEAR), is(2013));
-		assertThat(cal.get(Calendar.MONTH), is(Calendar.MARCH));
-		assertThat(cal.get(Calendar.DAY_OF_MONTH), is(9));
+		assertThat(cal.get(YEAR), is(2013));
+		assertThat(cal.get(MONTH), is(MARCH));
+		assertThat(cal.get(DAY_OF_MONTH), is(9));
 
-		assertThat(cal.get(Calendar.HOUR_OF_DAY), is(23));
-		assertThat(cal.get(Calendar.MINUTE), is(59));
+		assertThat(cal.get(HOUR_OF_DAY), is(23));
+		assertThat(cal.get(MINUTE), is(59));
 
-		assertThat(cal.get(Calendar.SECOND), is(0));
-		assertThat(cal.get(Calendar.MILLISECOND), is(0));
+		assertThat(cal.get(SECOND), is(0));
+		assertThat(cal.get(MILLISECOND), is(0));
 	}
 
 	@Test
@@ -78,15 +86,15 @@ public class TimeFactoryTest {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(TimeFactory.date("2013-03-09 23:59:58"));
 
-		assertThat(cal.get(Calendar.YEAR), is(2013));
-		assertThat(cal.get(Calendar.MONTH), is(Calendar.MARCH));
-		assertThat(cal.get(Calendar.DAY_OF_MONTH), is(9));
+		assertThat(cal.get(YEAR), is(2013));
+		assertThat(cal.get(MONTH), is(MARCH));
+		assertThat(cal.get(DAY_OF_MONTH), is(9));
 
-		assertThat(cal.get(Calendar.HOUR_OF_DAY), is(23));
-		assertThat(cal.get(Calendar.MINUTE), is(59));
-		assertThat(cal.get(Calendar.SECOND), is(58));
+		assertThat(cal.get(HOUR_OF_DAY), is(23));
+		assertThat(cal.get(MINUTE), is(59));
+		assertThat(cal.get(SECOND), is(58));
 
-		assertThat(cal.get(Calendar.MILLISECOND), is(0));
+		assertThat(cal.get(MILLISECOND), is(0));
 	}
 
 	@Test
@@ -94,15 +102,15 @@ public class TimeFactoryTest {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(TimeFactory.date("2013-03-09 23:59:58.123"));
 
-		assertThat(cal.get(Calendar.YEAR), is(2013));
-		assertThat(cal.get(Calendar.MONTH), is(Calendar.MARCH));
-		assertThat(cal.get(Calendar.DAY_OF_MONTH), is(9));
+		assertThat(cal.get(YEAR), is(2013));
+		assertThat(cal.get(MONTH), is(MARCH));
+		assertThat(cal.get(DAY_OF_MONTH), is(9));
 
-		assertThat(cal.get(Calendar.HOUR_OF_DAY), is(23));
-		assertThat(cal.get(Calendar.MINUTE), is(59));
-		assertThat(cal.get(Calendar.SECOND), is(58));
+		assertThat(cal.get(HOUR_OF_DAY), is(23));
+		assertThat(cal.get(MINUTE), is(59));
+		assertThat(cal.get(SECOND), is(58));
 
-		assertThat(cal.get(Calendar.MILLISECOND), is(123));
+		assertThat(cal.get(MILLISECOND), is(123));
 	}
 
 	@Test
@@ -119,47 +127,47 @@ public class TimeFactoryTest {
 		cal.setTime(start);
 
 		// Date (day) info is unchanged
-		assertThat(cal.get(Calendar.YEAR), is(2013));
-		assertThat(cal.get(Calendar.MONTH), is(Calendar.MARCH));
-		assertThat(cal.get(Calendar.DAY_OF_MONTH), is(9));
+		assertThat(cal.get(YEAR), is(2013));
+		assertThat(cal.get(MONTH), is(MARCH));
+		assertThat(cal.get(DAY_OF_MONTH), is(9));
 
 		// Time fields are zeroed
-		assertThat(cal.get(Calendar.HOUR_OF_DAY), is(0));
-		assertThat(cal.get(Calendar.MINUTE), is(0));
-		assertThat(cal.get(Calendar.SECOND), is(0));
-		assertThat(cal.get(Calendar.MILLISECOND), is(0));
+		assertThat(cal.get(HOUR_OF_DAY), is(0));
+		assertThat(cal.get(MINUTE), is(0));
+		assertThat(cal.get(SECOND), is(0));
+		assertThat(cal.get(MILLISECOND), is(0));
 	}
 
 	@Test
 	public void testZeroTime_ZeroesTheTimeFields() {
 		Calendar cal = Calendar.getInstance();
 
-		cal.set(Calendar.HOUR_OF_DAY, 23);
-		cal.set(Calendar.MINUTE, 58);
-		cal.set(Calendar.SECOND, 59);
-		cal.set(Calendar.MILLISECOND, 123);
+		cal.set(HOUR_OF_DAY, 23);
+		cal.set(MINUTE, 58);
+		cal.set(SECOND, 59);
+		cal.set(MILLISECOND, 123);
 
 		TimeFactory.zeroTime(cal);
 
-		assertThat(cal.get(Calendar.HOUR_OF_DAY), is(0));
-		assertThat(cal.get(Calendar.MINUTE), is(0));
-		assertThat(cal.get(Calendar.SECOND), is(0));
-		assertThat(cal.get(Calendar.MILLISECOND), is(0));
+		assertThat(cal.get(HOUR_OF_DAY), is(0));
+		assertThat(cal.get(MINUTE), is(0));
+		assertThat(cal.get(SECOND), is(0));
+		assertThat(cal.get(MILLISECOND), is(0));
 	}
 
 	@Test
 	public void testZeroTime_DateDayInfoIsUnchanged() {
 		Calendar cal = Calendar.getInstance();
 
-		cal.set(Calendar.YEAR, 2013);
-		cal.set(Calendar.MONTH, Calendar.MARCH);
-		cal.set(Calendar.DAY_OF_MONTH, 9);
+		cal.set(YEAR, 2013);
+		cal.set(MONTH, MARCH);
+		cal.set(DAY_OF_MONTH, 9);
 
 		TimeFactory.zeroTime(cal);
 
-		assertThat(cal.get(Calendar.YEAR), is(2013));
-		assertThat(cal.get(Calendar.MONTH), is(Calendar.MARCH));
-		assertThat(cal.get(Calendar.DAY_OF_MONTH), is(9));
+		assertThat(cal.get(YEAR), is(2013));
+		assertThat(cal.get(MONTH), is(MARCH));
+		assertThat(cal.get(DAY_OF_MONTH), is(9));
 	}
 
 }

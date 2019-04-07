@@ -1,12 +1,12 @@
 package org.ayeseeem.spectime;
 
+import static java.util.Calendar.MILLISECOND;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Test;
@@ -135,9 +135,9 @@ public class DtNumberTest {
 	@Test
 	public void testEquals_WithPrevious() {
 		DtNumber dtNumber1 = new DtNumber(123,
-				new DtInterval(111, Calendar.MILLISECOND));
+				new DtInterval(111, MILLISECOND));
 		DtNumber dtNumber2 = new DtNumber(123,
-				new DtInterval(111, Calendar.MILLISECOND));
+				new DtInterval(111, MILLISECOND));
 
 		assertThat(dtNumber2, is(dtNumber1));
 		assertThat(dtNumber1.equals(dtNumber2), is(true));
@@ -147,9 +147,9 @@ public class DtNumberTest {
 	@Test
 	public void testEquals_WithPrevious_NotEqual() {
 		DtNumber dtNumber1 = new DtNumber(123,
-				new DtInterval(111, Calendar.MILLISECOND));
+				new DtInterval(111, MILLISECOND));
 		DtNumber dtNumber2 = new DtNumber(123,
-				new DtInterval(222, Calendar.MILLISECOND));
+				new DtInterval(222, MILLISECOND));
 
 		assertThat(dtNumber1.equals(dtNumber2), is(false));
 		assertThat(dtNumber2.equals(dtNumber1), is(false));
@@ -158,7 +158,7 @@ public class DtNumberTest {
 	@Test
 	public void testEquals_WithPrevious_NotEqual_NoPrevious() {
 		DtNumber dtNumber1 = new DtNumber(123,
-				new DtInterval(111, Calendar.MILLISECOND));
+				new DtInterval(111, MILLISECOND));
 
 		DtNumber dtNumberWithNoPrevious = new DtNumber(123);
 
@@ -169,7 +169,7 @@ public class DtNumberTest {
 	public void testCreateWithPrevious_FromIntInt_WhenPreviousIsNull() {
 		DtNumber subject = new DtNumber(123, null);
 
-		DtInterval result = subject.createWithPrevious(111, Calendar.MILLISECOND);
+		DtInterval result = subject.createWithPrevious(111, MILLISECOND);
 
 		assertThat(result.after(new Date(0)).getTime(), is(111L + 0));
 		assertThat(result.after(new Date(123456)).getTime(), is(123456L + 111L + 0));
@@ -178,9 +178,9 @@ public class DtNumberTest {
 	@Test
 	public void testCreateWithPrevious_FromIntInt_WhenPreviousIsNotNull() {
 		DtNumber subject = new DtNumber(123,
-				new DtInterval(222, Calendar.MILLISECOND));
+				new DtInterval(222, MILLISECOND));
 
-		DtInterval result = subject.createWithPrevious(111, Calendar.MILLISECOND);
+		DtInterval result = subject.createWithPrevious(111, MILLISECOND);
 
 		assertThat(result.after(new Date(0)).getTime(), is(111L + 222L));
 		assertThat(result.after(new Date(123456)).getTime(), is(123456L + 111L + 222L));
