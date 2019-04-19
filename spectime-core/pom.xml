@@ -16,6 +16,13 @@
   </properties>
 
   <dependencies>
+<!--     <dependency> -->
+<!--       <groupId>org.ayeseeem</groupId> -->
+<!--       <artifactId>spectime-test</artifactId> -->
+<!--       <version>0.1.0-SNAPSHOT</version> -->
+<!--       <scope>test</scope> -->
+<!--     </dependency> -->
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -47,6 +54,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
+          <!-- spectime is specifically designed to work with pre-Java-8 -->
           <source>1.7</source>
           <target>1.7</target>
         </configuration>
