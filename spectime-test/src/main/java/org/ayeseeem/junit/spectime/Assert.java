@@ -18,13 +18,15 @@ public class Assert {
 	 */
 	public static final String COMPARABLE_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
-    /**
-     * Asserts that dates are equal, but with a clearer error message than the
-     * standard {@link org.junit.Assert#assertEquals(Object, Object)}.
-     *
-     * @param expected expected value
-     * @param actual the actual value, to check against {@code expected}
-     */
+	/**
+	 * Asserts that dates are equal, but with a clearer error message than the
+	 * standard {@link org.junit.Assert#assertEquals(Object, Object)}.
+	 *
+	 * @param expected
+	 *            expected value
+	 * @param actual
+	 *            the actual value, to check against {@code expected}
+	 */
 	public static void assertDateEquals(Date expected, Date actual) {
 		assertEquals(toComparableDateString(expected), toComparableDateString(actual));
 	}

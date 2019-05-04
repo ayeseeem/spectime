@@ -48,49 +48,49 @@ public class TimeFactory {
 	 */
 	public static final String DATE_WITH_MILLIS_FORMAT = DATE_WITH_SECONDS_FORMAT + ".SSS";
 
-    /**
-     * Main starting point for expressing relative times. For example:
-     *
-     * <pre>
-     * Date d = time(3).hours().from(someDate);
-     * </pre>
-     *
-     * A synonym for {@link #date(int)}.
-     *
-     * @param n
-     *            number of units relative
-     * @return a {@code DtNumber} containing the number of units, ready for
-     *         specifying the unit of time.
-     */
+	/**
+	 * Main starting point for expressing relative times. For example:
+	 *
+	 * <pre>
+	 * Date d = time(3).hours().from(someDate);
+	 * </pre>
+	 *
+	 * A synonym for {@link #date(int)}.
+	 *
+	 * @param n
+	 *            number of units relative
+	 * @return a {@code DtNumber} containing the number of units, ready for
+	 *         specifying the unit of time.
+	 */
 	public static DtNumber time(int n) {
 		return new DtNumber(n);
 	}
 
-    /**
-     * Main starting point for expressing relative dates. For example:
-     *
-     * <pre>
-     * Date d = date(3).days().from(someDate);
-     * </pre>
-     *
-     * A synonym for {@link #time(int)}.
-     *
-     * @param n
-     *            number of units relative
-     * @return a {@code DtNumber} containing the number of units, ready for
-     *         specifying the unit of time.
-     */
+	/**
+	 * Main starting point for expressing relative dates. For example:
+	 *
+	 * <pre>
+	 * Date d = date(3).days().from(someDate);
+	 * </pre>
+	 *
+	 * A synonym for {@link #time(int)}.
+	 *
+	 * @param n
+	 *            number of units relative
+	 * @return a {@code DtNumber} containing the number of units, ready for
+	 *         specifying the unit of time.
+	 */
 	public static DtNumber date(int n) {
 		return new DtNumber(n);
 	}
 
-    /**
-     * Convenience factory method to easily create a date from a simple string.
-     *
-     * @param s
-     *            string in the form {@link #DATE_FORMAT}
-     * @return a new date created by parsing the string
-     */
+	/**
+	 * Convenience factory method to easily create a date from a simple string.
+	 *
+	 * @param s
+	 *            string in the form {@link #DATE_FORMAT}
+	 * @return a new date created by parsing the string
+	 */
 	public static Date date(String s) {
 		try {
 			return dateWithMillisFromString(s);
@@ -140,24 +140,24 @@ public class TimeFactory {
 		return df.parse(s);
 	}
 
-    /**
-     * Convenience factory method to easily create a date <em>now</em>, instead
-     * of {@code new Date()}.
-     *
-     * @return the current date/time
-     */
+	/**
+	 * Convenience factory method to easily create a date <em>now</em>, instead
+	 * of {@code new Date()}.
+	 *
+	 * @return the current date/time
+	 */
 	public static Date now() {
 		return new DefaultDateSupplier().get();
 	}
 
-    /**
-     * Gets the start of the day (midnight) for the given date.
-     *
-     * @param date
-     *            the date to get the start of
-     *
-     * @return a new date at midnight (the beginning) of the given date
-     */
+	/**
+	 * Gets the start of the day (midnight) for the given date.
+	 *
+	 * @param date
+	 *            the date to get the start of
+	 *
+	 * @return a new date at midnight (the beginning) of the given date
+	 */
 	public static Date startOf(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
