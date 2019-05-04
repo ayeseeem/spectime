@@ -59,7 +59,7 @@ Content Assist Favorites, so Eclipse will suggest the methods when the import
 is missing.
 
 To see more examples, see
-[ExamplesTest.java](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/ayeseeem/spectime/example/ExamplesTest.java "Examples")
+[`ExamplesTest.java`](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/ayeseeem/spectime/example/ExamplesTest.java "Examples")
 
 
 ### Tips for Unit Testing
