@@ -52,9 +52,7 @@ public class TimeFactory {
      * Main starting point for expressing relative times. For example:
      *
      * <pre>
-     * <code>
      * Date d = time(3).hours().from(someDate);
-     * </code>
      * </pre>
      *
      * A synonym for {@link #date(int)}.
@@ -72,9 +70,7 @@ public class TimeFactory {
      * Main starting point for expressing relative dates. For example:
      *
      * <pre>
-     * <code>
      * Date d = date(3).days().from(someDate);
-     * </code>
      * </pre>
      *
      * A synonym for {@link #time(int)}.
