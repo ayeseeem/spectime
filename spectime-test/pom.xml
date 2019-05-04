@@ -9,7 +9,7 @@
 
   <name>spectime-test</name>
   <description>JUnit extensions for expressive date and time tests</description>
-  <url>https://github.com/ayeseeem/spec-time</url>
+  <url>https://github.com/ayeseeem/spectime</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
