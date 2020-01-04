@@ -13,8 +13,14 @@
   <description>Expressive dates and times</description>
   <url>https://github.com/ayeseeem/spectime</url>
 
+  <organization>
+    <name>${osgi.bundle.vendor}</name>
+    <url>https://ayeseeem.org/</url>
+  </organization>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <osgi.bundle.vendor>ayeseeem.org</osgi.bundle.vendor>
   </properties>
 
   <dependencies>
