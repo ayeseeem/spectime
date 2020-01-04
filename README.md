@@ -191,3 +191,8 @@ parameters _are_ reassigned - use `final` to mark the ones that are not.
     > public (§6.6). It is permitted, but **discouraged as a matter of style**,
     > to redundantly specify the public modifier for a method declaration in
     > an interface.
+
+### Coding Standard TODOs
+
+- [ ] Look for `final` variables that can be removed by inlining the variable
+- [ ] Prefer `subject` to `test` in unit tests
