@@ -19,7 +19,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version> <!-- 4.12(+?) needed for Infinitest -->
+      <version>4.13.1</version> <!-- 4.12(+?) needed for Infinitest -->
       <!-- Note: not just scope "test" - it forms part of the product -->
     </dependency>
 
