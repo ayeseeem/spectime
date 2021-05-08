@@ -37,14 +37,14 @@ Date d4 = date("2013-12-24 23:59:59.123");
 
 - `date()` and `time()` are synonyms - use whichever is clearer
 - Specify relative time/date using:
-    - `milliseconds()`
-    - `seconds()`
-    - `minutes()`
-    - `hours()`
-    - `days()`
-    - `weeks()`
-    - `months()`
-    - `years()`
+  - `milliseconds()`
+  - `seconds()`
+  - `minutes()`
+  - `hours()`
+  - `days()`
+  - `weeks()`
+  - `months()`
+  - `years()`
 - Singular versions of each are available - for example `hour()` for `hours()`
 - `startOf(date)` gets the start of the day (midnight) for the given date
 
@@ -90,7 +90,7 @@ public void someTest() {
 This will fail if the timeout is exceeded.
 
 
-### <a id="spectime-test">spectime-test</a> ###
+### <a id="spectime-test">spectime-test</a>
 
 Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
 has a better error message (including milliseconds) than normal JUnit
@@ -117,8 +117,9 @@ TODOs
   of them will have exactly the same time, and you might then be surprised that
   they don't sort in the order you expect. In the past, I've done this using a
   small `Thread.sleep()`.
-    - possibly use a `tick()` method that can take an optional amount, default
-      to 1 ms.
+  - possibly use a `tick()` method that can take an optional amount, default
+    to 1 ms.
+
 
 ### Internals
 
@@ -128,6 +129,7 @@ TODOs
       chains of `previous` that have same effect? Could apply them all to a
       known, fixed date to get a result?
 
+
 ### Long-Term Support and Future
 
 - [ ] Add to the build mechanism to ensure Java 1.3 - 1.6 code consistency
@@ -136,6 +138,7 @@ TODOs
 - [ ] Work out how to split into a Java 6 and Java 8+ version. Create a new
       version for Java8+ - how much is still needed, how much can be done with
       Standard Java 8+ date/time?
+
 
 ### Also under consideration
 
@@ -151,12 +154,13 @@ TODOs
 - `year(2013)`
 - `next(March)`, `next(week)`, `next(year)`
 - Test helpers like
-    - `assertDateEquals` with milliseconds tolerance
-    - `assertDateEquals` with tolerance in other units
-    - `assertDayEquals` (ignores time, just checks date)
-    - `assertTimeEquals` (ignores date, just checks time)
-    - `assertDateEquals("2013-04-01 10:12", aDate)`? Or use
-      `assertDateEquals(date("2013-04-10 10:12"), aDate)`?
+  - `assertDateEquals` with milliseconds tolerance
+  - `assertDateEquals` with tolerance in other units
+  - `assertDayEquals` (ignores time, just checks date)
+  - `assertTimeEquals` (ignores date, just checks time)
+  - `assertDateEquals("2013-04-01 10:12", aDate)`? Or use
+    `assertDateEquals(date("2013-04-10 10:12"), aDate)`?
+
 
 Coding Standard
 ---------------
@@ -166,12 +170,12 @@ Java > Code Style's Clean Up and Formatter.
 
 - This includes using (4-space) tabs for indentation.
 - **But** the line length for code is limited to 80 characters
-    - The limit for comments is also 80 characters, but
-      "from comment's starting position" (the default settings).
-      The starting position bit is nice because it means that comment blocks
-      don't need to be reformatted when the commented code's indentation level
-      changes, for example when it is refactored to move it into or out of nested
-      classes.
+  - The limit for comments is also 80 characters, but
+    "from comment's starting position" (the default settings).
+    The starting position bit is nice because it means that comment blocks
+    don't need to be reformatted when the commented code's indentation level
+    changes, for example when it is refactored to move it into or out of nested
+    classes.
 
 Don't (usually) modify method parameters.
 But don't (usually) use `final` on (every) method parameter, to prevent
@@ -182,6 +186,7 @@ method is so long that it is hard to see at a glance that the parameters are
 not changed (although, avoid such long methods!). Or where some of the
 parameters _are_ reassigned - use `final` to mark the ones that are not.
 
+
 ### Rules
 
 - Don't use `public` on interface methods
@@ -191,6 +196,7 @@ parameters _are_ reassigned - use `final` to mark the ones that are not.
     > public (§6.6). It is permitted, but **discouraged as a matter of style**,
     > to redundantly specify the public modifier for a method declaration in
     > an interface.
+
 
 ### Coding Standard TODOs
 
