@@ -1,7 +1,7 @@
 spectime
 ========
 
-[![Build Status](https://travis-ci.org/ayeseeem/spectime.svg?branch=master)](https://travis-ci.org/ayeseeem/spectime)
+[![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=master)](https://travis-ci.com/ayeseeem/spectime)
 
 Expressive dates and times in Java. These grew out of my frustration writing
 unit tests that needed times and dates. The ideal solution is to not need such
