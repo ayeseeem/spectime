@@ -165,6 +165,9 @@ TODOs
 Coding Standard
 ---------------
 
+Basic standard is [icm-java-style](https://github.com/ayeseeem/icm-java-style/),
+with the following notes:
+
 Currently uses the "Eclipse [Built-in]" settings in Eclipse/Spring STS, for
 Java > Code Style's Clean Up and Formatter.
 
