@@ -112,7 +112,7 @@ TODOs
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
 - [ ] `time("13:59:59.123")`
-- Some kind of "definitely later" date constructor. For example, when you
+- [ ] Some kind of "definitely later" date constructor. For example, when you
   create a bunch of dates using something like `now()`, it's possible that some
   of them will have exactly the same time, and you might then be surprised that
   they don't sort in the order you expect. In the past, I've done this using a
