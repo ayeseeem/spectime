@@ -115,7 +115,7 @@ public class TimeFactoryTest {
 
 	@Test
 	public void testNow() {
-		final int timeDiffMillis = 100;
+		int timeDiffMillis = 100;
 		assertThat((double) TimeFactory.now().getTime(), is(closeTo(new Date().getTime(), timeDiffMillis)));
 	}
 

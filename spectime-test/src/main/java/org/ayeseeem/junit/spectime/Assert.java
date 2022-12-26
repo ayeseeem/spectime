@@ -40,7 +40,7 @@ public class Assert {
 	 * @see #COMPARABLE_DATE_FORMAT
 	 */
 	private static String toComparableDateString(Date d) {
-		final DateFormat df = new SimpleDateFormat(COMPARABLE_DATE_FORMAT);
+		DateFormat df = new SimpleDateFormat(COMPARABLE_DATE_FORMAT);
 		return df.format(d);
 	}
 
