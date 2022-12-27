@@ -60,7 +60,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.1</version>
           <configuration>
-            <!-- spectime is specifically designed to work with pre-Java-8 -->
+            <!-- Legacy `spectime` is specifically designed to work with Java 6 -->
+            <!-- Latest `spectime` should work with Java 8 (or even 7) + -->
             <source>1.7</source>
             <target>1.7</target>
           </configuration>
