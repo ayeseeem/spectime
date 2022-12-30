@@ -162,6 +162,71 @@ TODOs
     `assertDateEquals(date("2013-04-10 10:12"), aDate)`?
 
 
+Development
+-----------
+
+Builds/Releases:
+
+Branch          | Status
+--------------- |-------------------------------------------------------------
+`java-6-modern` | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-6-modern)](https://travis-ci.com/github/ayeseeem/spectime)
+`java-6-legacy` | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-6-legacy)](https://travis-ci.com/github/ayeseeem/spectime)
+`java-8`        | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-8)](https://travis-ci.com/github/ayeseeem/spectime)
+
+Development branches:
+
+Branch          | Status
+--------------- |-------------------------------------------------------------
+`dev-java-6`    | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=dev-java-6)](https://travis-ci.com/github/ayeseeem/spectime)
+`dev-java-8`    | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=dev-java-8)](https://travis-ci.com/github/ayeseeem/spectime)
+`latest`        | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=latest)](https://travis-ci.com/github/ayeseeem/spectime)
+`master`        | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=master)](https://travis-ci.com/github/ayeseeem/spectime)
+
+
+We are trying to support a Java 6 version and a Java 8+ version.
+At the moment, the Java8+ version is still deliberately and explicitly Java 8
+only - nothing later.
+
+The reason for this split is that Java 8 is where Java changed the time system,
+introducing things like `Instant`.
+The Java 6 version is intended to work in the absence of such features: it is
+one of the reasons that `spectime` was originally written.
+
+The current (experimental) approach is this: We have two main development
+branches - `dev-java-6` and `dev-java-8` - and various release/build
+branches such as `java-6-modern` and `java-8`.
+
+- `master` is expected to be removed at some point.
+  At the very least, it will be renamed `main`, but it's highly likely it will
+  disappear completely.
+- `latest` is expected to become at some point a branch building with/for
+  the latest versions of Java. A `dev-latest` or `dev-java-<N>` might appear
+  at some point.
+
+For development, make universal, Java 6 code modifications to `dev-java-6` and
+then merge those changes forward into `dev-java-8` and all the build/release
+branches.
+Java-8-specific code changes should be made to `dev-java-8`, and merged
+forward into only the Java-8-derived builds/releases.
+
+Take particular care with build-related changes: it might be that they should
+not be added to the `dev-*` branches at all, but to specific build/release
+branches.
+However, bear in mind that the main `dev-*` branches should be buildable
+as they stand, in relatively simple development environments:
+
+- `latest` should build with the latest Java release.
+- `dev-java-8` should build with any Java JDK 8, but particularly Open JDK.
+- `dev-java-6` should build with "recent" JDKs like JDK 11(+?).
+  Or see `java-6-modern` for specific build hints.
+  - To build with an old Java 6 JDK (Oracle or Open JDK), look at the details
+    of `java-6-legacy`.
+
+**Note** that the release/build branches are liable to be rebased/republished,
+so do not base any long-term development off them unless you are prepared to
+have to re-work/rebase your work at some point.
+
+
 Coding Standard
 ---------------
 
