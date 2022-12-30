@@ -1,11 +1,16 @@
 spectime
 ========
 
-[![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=master)](https://travis-ci.com/github/ayeseeem/spectime)
+[![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-6-modern)](https://travis-ci.com/github/ayeseeem/spectime)
 
 Expressive dates and times in Java. These grew out of my frustration writing
 unit tests that needed times and dates. The ideal solution is to not need such
 tests, but it can't always be helped.
+
+**Note** that there is a non-standard branch structure.
+The default branch is [`java-6-modern`](https://github.com/ayeseeem/spectime/tree/java-6-modern).
+Later changes are in [`java-8`](https://github.com/ayeseeem/spectime/tree/java-8).
+See Development below for more details.
 
 
 Quick Start
@@ -132,7 +137,7 @@ TODOs
 
 ### Long-Term Support and Future
 
-- [ ] Add to the build mechanism to ensure Java 1.3 - 1.6 code consistency
+- [x] Add to the build mechanism to ensure Java 1.3 - 1.6 code consistency
       (Need to settle on the exact target version, basically this is aimed at
       Java before `Instant` and so on.)
 - [ ] Work out how to split into a Java 6 and Java 8+ version. Create a new
@@ -165,22 +170,11 @@ TODOs
 Development
 -----------
 
-Builds/Releases:
-
 Branch          | Status
 --------------- |-------------------------------------------------------------
+`java-8`        | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-8)](https://travis-ci.com/github/ayeseeem/spectime)
 `java-6-modern` | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-6-modern)](https://travis-ci.com/github/ayeseeem/spectime)
 `java-6-legacy` | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-6-legacy)](https://travis-ci.com/github/ayeseeem/spectime)
-`java-8`        | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=java-8)](https://travis-ci.com/github/ayeseeem/spectime)
-
-Development branches:
-
-Branch          | Status
---------------- |-------------------------------------------------------------
-`dev-java-6`    | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=dev-java-6)](https://travis-ci.com/github/ayeseeem/spectime)
-`dev-java-8`    | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=dev-java-8)](https://travis-ci.com/github/ayeseeem/spectime)
-`latest`        | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=latest)](https://travis-ci.com/github/ayeseeem/spectime)
-`master`        | [![Build Status](https://travis-ci.com/ayeseeem/spectime.svg?branch=master)](https://travis-ci.com/github/ayeseeem/spectime)
 
 
 We are trying to support a Java 6 version and a Java 8+ version.
@@ -193,38 +187,45 @@ The Java 6 version is intended to work in the absence of such features: it is
 one of the reasons that `spectime` was originally written.
 
 The current (experimental) approach is this: We have two main development
-branches - `dev-java-6` and `dev-java-8` - and various release/build
-branches such as `java-6-modern` and `java-8`.
+branches - `java-6-modern` and `java-8`.
+`java-6-legacy` contains the same code as `java-6-modern`, but builds with
+legacy JDK 6.
 
-- `master` is expected to be removed at some point.
-  At the very least, it will be renamed `main`, but it's highly likely it will
-  disappear completely.
-- `latest` is expected to become at some point a branch building with/for
-  the latest versions of Java. A `dev-latest` or `dev-java-<N>` might appear
-  at some point.
+For development, make universal, Java 6 code modifications to `java-6-modern`
+and then merge those changes forward into `java-8` and `java-6-legacy`.
+Java-8-specific code changes should be made to `java-8`.
+The only changes that should be made directly to `java-6-legacy` should be
+related to building the code for legacy JDK 6.
 
-For development, make universal, Java 6 code modifications to `dev-java-6` and
-then merge those changes forward into `dev-java-8` and all the build/release
-branches.
-Java-8-specific code changes should be made to `dev-java-8`, and merged
-forward into only the Java-8-derived builds/releases.
+It is important that common changes are made to the Java 6 code base,
+so `java-6-modern` is set as the default branch.
+This is the one that Pull Requests will be made against, by default.
+This should prevent accidentally making changes in `java-8` that should be
+in `java-6-modern`.
+Conversely, If Java 8 changes are made to this branch, they should fail to
+compile, highlighting that the changes are being made to the wrong branch.
+
+- At some point, a `latest` branch might be created, building with/for
+  the latest versions of Java.
+- A `java-<N>` might appear at some point.
 
 Take particular care with build-related changes: it might be that they should
-not be added to the `dev-*` branches at all, but to specific build/release
-branches.
-However, bear in mind that the main `dev-*` branches should be buildable
+not be added to the main development branches at all, but to specific
+build/release branches (currently, only `java-6-legacy`).
+However, bear in mind that the main development branches should be buildable
 as they stand, in relatively simple development environments:
 
-- `latest` should build with the latest Java release.
-- `dev-java-8` should build with any Java JDK 8, but particularly Open JDK.
-- `dev-java-6` should build with "recent" JDKs like JDK 11(+?).
+- `java-8` should build with any Java JDK 8, but particularly Open JDK.
+- `java-6-modern` should build with "recent" JDKs like JDK 11(+?).
   Or see `java-6-modern` for specific build hints.
   - To build with an old Java 6 JDK (Oracle or Open JDK), look at the details
     of `java-6-legacy`.
+- Any future `latest` branch should build with the latest Java release.
 
-**Note** that the release/build branches are liable to be rebased/republished,
-so do not base any long-term development off them unless you are prepared to
-have to re-work/rebase your work at some point.
+**Note** that this branch approach is still experimental.
+Branches are liable to be rebased/republished, so do not base any long-term
+development off them unless you are prepared to have to re-work/rebase your
+work at some point.
 
 
 Coding Standard
