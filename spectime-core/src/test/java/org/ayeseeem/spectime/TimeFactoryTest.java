@@ -10,6 +10,8 @@ import static java.util.Calendar.MONTH;
 import static java.util.Calendar.SECOND;
 import static java.util.Calendar.YEAR;
 import static java.util.Locale.UK;
+import static org.ayeseeem.spectime.TimeFactory.date;
+import static org.ayeseeem.spectime.TimeFactory.stringOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
@@ -142,6 +144,18 @@ public class TimeFactoryTest {
 
 		List<Integer> hours = asList(londonCal.get(HOUR_OF_DAY), sydneyCal.get(HOUR_OF_DAY));
 		assertThat(hours, is(asList(23, 10)));
+	}
+
+	@Test
+	public void test_StringOf_Date() {
+		assertThat(stringOf(new Date(978479998765L)), is("2001-01-02 23:59:58.765"));
+		assertThat(stringOf(new Date(978479998000L)), is("2001-01-02 23:59:58.000"));
+	}
+
+	@Test
+	public void test_Date_StringOf_RoundTrip() {
+		assertThat(stringOf(date("2001-01-02 23:59:58.765")), is("2001-01-02 23:59:58.765"));
+		assertThat(stringOf(date("2001-01-02 23:59:58.000")), is("2001-01-02 23:59:58.000"));
 	}
 
 	@Test
