@@ -173,4 +173,9 @@ public class TimeFactory {
 		cal.set(Calendar.MILLISECOND, 0);
 	}
 
+	public static String stringOf(Date date) {
+		DateFormat df = new SimpleDateFormat(DATE_WITH_MILLIS_FORMAT);
+		return df.format(date);
+	}
+
 }
