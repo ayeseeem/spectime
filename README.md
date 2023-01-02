@@ -147,7 +147,9 @@ TODOs
 
 ### Also under consideration
 
-- `toString(Date)`
+- `toString(Date)` - see
+  [`TimeFactory.stringOf(Date)`](spectime-core/src/main/java/org/ayeseeem/spectime/TimeFactory.java),
+  which "round trips" to/from the `date(String)` function.
 - Tips on unit testing like `assertEquals(d1.getTime(), d2.getTime(), 3);` and
   `assertEquals(toString(d1), toString(d2));` instead of `spectime-test`
 - `next(Wednesday)`
