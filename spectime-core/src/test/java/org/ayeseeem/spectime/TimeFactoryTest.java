@@ -132,11 +132,11 @@ public class TimeFactoryTest {
 		// Fields will not always be as specified, depending on the TZ in the Calendar:
 
 		Calendar londonCal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-		assertThat(londonCal.getTimeZone().getDisplayName(UK), is("Greenwich Mean Time"));
+		assertThat(londonCal.getTimeZone().getID(), is("GMT"));
 		londonCal.setTime(date);
 
 		Calendar sydneyCal = Calendar.getInstance(TimeZone.getTimeZone("Australia/Sydney"));
-		assertThat(sydneyCal.getTimeZone().getDisplayName(UK), is("Australian Eastern Standard Time"));
+		assertThat(sydneyCal.getTimeZone().getID(), is("Australia/Sydney"));
 		sydneyCal.setTime(date);
 
 		List<Integer> days = asList(londonCal.get(DAY_OF_MONTH), sydneyCal.get(DAY_OF_MONTH));
