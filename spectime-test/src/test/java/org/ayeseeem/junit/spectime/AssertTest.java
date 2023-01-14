@@ -35,8 +35,8 @@ public class AssertTest {
 		try {
 			assertDateEquals(d1, d2);
 			fail("should have thrown");
-		} catch (Throwable exception) {
-			assertThat(exception.getMessage(),
+		} catch (AssertionError error) {
+			assertThat(error.getMessage(),
 					is("expected:<[2013-12-31 23:59:58.123]> but was:<[1999-11-30 22:58:57.099]>"));
 		}
 	}
@@ -46,9 +46,9 @@ public class AssertTest {
 		try {
 			assertDateEquals(new Date(123), new Date(246));
 			fail("should have thrown");
-		} catch (Throwable exception) {
-			assertThat(exception.getMessage(), containsString("123"));
-			assertThat(exception.getMessage(), containsString("246"));
+		} catch (AssertionError error) {
+			assertThat(error.getMessage(), containsString("123"));
+			assertThat(error.getMessage(), containsString("246"));
 		}
 	}
 
