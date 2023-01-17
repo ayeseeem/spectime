@@ -101,6 +101,10 @@ Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
 has a better error message (including milliseconds) than normal JUnit
 `assertEquals`.
 
+There is a preliminary `anyZone()` static method (part of `ZonedTester.java`)
+that wraps your test code, and runs it in multiple time zones, to ensure it
+doesn't just pass on your machine, in your zone.
+
 
 ### Alternatives ###
 
