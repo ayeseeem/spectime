@@ -96,7 +96,7 @@ public class ZonedTesterTest {
 		assertThat(zonesUsed.size() > 1, is(true));
 	}
 
-	// @Characterization
+	//@Characterization
 	@Test
 	public void testTestInMultipleZones_WhichZones() throws Throwable {
 		final List<TimeZone> zonesUsed = new ArrayList<TimeZone>();
