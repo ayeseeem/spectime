@@ -67,7 +67,7 @@ To see more examples, see
 [`ExamplesTest.java`](https://github.com/ayeseeem/spectime/blob/master/spectime-core/src/test/java/org/ayeseeem/spectime/example/ExamplesTest.java "Examples")
 
 
-### Tips for Unit Testing
+### Tips for Unit Testing ###
 
 See [`spectime-test`](#spectime-test), below.
 
@@ -95,24 +95,31 @@ public void someTest() {
 This will fail if the timeout is exceeded.
 
 
-### <a id="spectime-test">spectime-test</a>
+### <a id="spectime-test">spectime-test</a> ###
 
 Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
 has a better error message (including milliseconds) than normal JUnit
 `assertEquals`.
 
+There is a preliminary `anyZone()` static method (part of `ZonedTester.java`)
+that wraps your test code, and runs it in multiple time zones, to ensure it
+doesn't just pass on your machine, in your zone.
 
-### Alternatives
+
+### Alternatives ###
 
 If you want "simple social date-formatting" or want to parse natural language
 strings, perhaps try
 [PrettyTime](http://ocpsoft.org/prettytime/ "PrettyTime - simple social date-formatting") - 'Convert Java `Date()` objects in just "a few minutes!"'
 
+[ThreeTen-Backport](https://www.threeten.org/threetenbp/) provides a backport
+of the Java SE 8 date-time classes to Java SE 6 and 7.
+
 
 TODOs
 -----
 
-### Date constructor methods
+### Date Constructor Methods ###
 
 - [ ] `time("13:59")`
 - [ ] `time("13:59:59")`
@@ -126,7 +133,7 @@ TODOs
     to 1 ms.
 
 
-### Internals
+### Internals ###
 
 - [ ] Check that this all works with other default/system time zones!
 - [ ] Sort out `equals` and `hashCode` methods for `DtInterval` and `DtNumber`
@@ -135,7 +142,7 @@ TODOs
       known, fixed date to get a result?
 
 
-### Long-Term Support and Future
+### Long-Term Support and Future ###
 
 - [x] Add to the build mechanism to ensure Java 1.3 - 1.6 code consistency
       (Need to settle on the exact target version, basically this is aimed at
@@ -145,7 +152,7 @@ TODOs
       Standard Java 8+ date/time?
 
 
-### Also under consideration
+### Also Under Consideration ###
 
 - `toString(Date)` - see
   [`TimeFactory.stringOf(Date)`](spectime-core/src/main/java/org/ayeseeem/spectime/TimeFactory.java),
@@ -258,7 +265,7 @@ not changed (although, avoid such long methods!). Or where some of the
 parameters _are_ reassigned - use `final` to mark the ones that are not.
 
 
-### Rules
+### Rules ###
 
 - Don't use `public` on interface methods
   [JLS Method Declarations](https://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html#jls-9.4)
@@ -269,7 +276,7 @@ parameters _are_ reassigned - use `final` to mark the ones that are not.
     > an interface.
 
 
-### Coding Standard TODOs
+### Coding Standard TODOs ###
 
 - [ ] Look for `final` variables that can be removed by inlining the variable
 - [ ] Prefer `subject` to `test` in unit tests
