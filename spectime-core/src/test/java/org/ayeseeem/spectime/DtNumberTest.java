@@ -15,99 +15,99 @@ public class DtNumberTest {
 
 	@Test
 	public void millisecondSynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.millisecond(), is(test.milliseconds()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.millisecond(), is(subject.milliseconds()));
 	}
 
 	@Test
 	public void millisecondSynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.millisecond();
+		DtNumber subject = new DtNumber(2);
+		subject.millisecond();
 	}
 
 
 	@Test
 	public void secondSynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.second(), is(test.seconds()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.second(), is(subject.seconds()));
 	}
 
 	@Test
 	public void secondSynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.second();
+		DtNumber subject = new DtNumber(2);
+		subject.second();
 	}
 
 	@Test
 	public void minuteSynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.minute(), is(test.minutes()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.minute(), is(subject.minutes()));
 	}
 
 	@Test
 	public void minuteSynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.minute();
+		DtNumber subject = new DtNumber(2);
+		subject.minute();
 	}
 
 	@Test
 	public void hourSynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.hour(), is(test.hours()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.hour(), is(subject.hours()));
 	}
 
 	@Test
 	public void hourSynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.hour();
+		DtNumber subject = new DtNumber(2);
+		subject.hour();
 	}
 
 	@Test
 	public void daySynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.day(), is(test.days()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.day(), is(subject.days()));
 	}
 
 	@Test
 	public void daySynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.day();
+		DtNumber subject = new DtNumber(2);
+		subject.day();
 	}
 
 	@Test
 	public void weekSynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.week(), is(test.weeks()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.week(), is(subject.weeks()));
 	}
 
 	@Test
 	public void weekSynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.week();
+		DtNumber subject = new DtNumber(2);
+		subject.week();
 	}
 
 	@Test
 	public void monthSynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.month(), is(test.months()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.month(), is(subject.months()));
 	}
 
 	@Test
 	public void monthSynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.month();
+		DtNumber subject = new DtNumber(2);
+		subject.month();
 	}
 
 	@Test
 	public void yearSynonym() {
-		DtNumber test = new DtNumber(1);
-		assertThat(test.year(), is(test.years()));
+		DtNumber subject = new DtNumber(1);
+		assertThat(subject.year(), is(subject.years()));
 	}
 
 	@Test
 	public void yearSynonymDoesNotCareIfUnitIsNotOne() {
-		DtNumber test = new DtNumber(2);
-		test.year();
+		DtNumber subject = new DtNumber(2);
+		subject.year();
 	}
 
 	@Test
@@ -119,8 +119,8 @@ public class DtNumberTest {
 
 	@Test
 	public void testEquals_Self() {
-		DtNumber test = new DtNumber(123);
-		assertThat(test.equals(test), is(true));
+		DtNumber subject = new DtNumber(123);
+		assertThat(subject.equals(subject), is(true));
 	}
 
 	@Test

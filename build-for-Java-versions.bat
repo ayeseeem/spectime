@@ -1,3 +1,5 @@
+@rem Helper to manually double-check builds with different Java versions.
+
 setlocal
 
 goto JAVA6
@@ -23,7 +25,6 @@ goto BUILD
 set PATH=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin\;%PATH%
 set JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
 goto BUILD
-
 
 
 :BUILD

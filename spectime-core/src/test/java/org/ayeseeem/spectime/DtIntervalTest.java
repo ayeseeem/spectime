@@ -18,26 +18,26 @@ public class DtIntervalTest {
 
 	@Test
 	public void testFrom() {
-		DtInterval test = new DtInterval(234, MILLISECOND);
-		assertThat(test.from(new Date(1000)), is(new Date(1234)));
+		DtInterval subject = new DtInterval(234, MILLISECOND);
+		assertThat(subject.from(new Date(1000)), is(new Date(1234)));
 	}
 
 	@Test
 	public void testAfter() {
-		DtInterval test = new DtInterval(234, MILLISECOND);
-		assertThat(test.after(new Date(1000)), is(new Date(1234)));
+		DtInterval subject = new DtInterval(234, MILLISECOND);
+		assertThat(subject.after(new Date(1000)), is(new Date(1234)));
 	}
 
 	@Test
 	public void testAfterIsSynonymForFrom() {
-		DtInterval test = new DtInterval(123, MILLISECOND);
-		assertThat(test.after(new Date(1000)), is(test.from(new Date(1000))));
+		DtInterval subject = new DtInterval(123, MILLISECOND);
+		assertThat(subject.after(new Date(1000)), is(subject.from(new Date(1000))));
 	}
 
 	@Test
 	public void testBefore() {
-		DtInterval test = new DtInterval(234, MILLISECOND);
-		assertThat(test.before(new Date(1234)), is(new Date(1000)));
+		DtInterval subject = new DtInterval(234, MILLISECOND);
+		assertThat(subject.before(new Date(1234)), is(new Date(1000)));
 	}
 
 	@Test
@@ -76,28 +76,28 @@ public class DtIntervalTest {
 
 	@Test
 	public void testAnd() {
-		DtInterval test = new DtInterval(7, SECOND);
-		test = test.and(123).milliseconds();
+		DtInterval subject = new DtInterval(7, SECOND);
+		subject = subject.and(123).milliseconds();
 
-		assertThat(test.after(new Date(1000)), is(new Date(8123)));
+		assertThat(subject.after(new Date(1000)), is(new Date(8123)));
 	}
 
 	@Test
 	public void testAnd_MultipleChains() {
-		DtInterval test = new DtInterval(1, MILLISECOND);
-		test = test.and(2).milliseconds();
-		test = test.and(3).milliseconds();
+		DtInterval subject = new DtInterval(1, MILLISECOND);
+		subject = subject.and(2).milliseconds();
+		subject = subject.and(3).milliseconds();
 
-		assertThat(test.after(new Date(1000)), is(new Date(1006)));
+		assertThat(subject.after(new Date(1000)), is(new Date(1006)));
 	}
 
 	@Test
 	public void testAnd_MultipleChains_DifferentUnits() {
-		DtInterval test = new DtInterval(1, MILLISECOND);
-		test = test.and(2).seconds();
-		test = test.and(3).minutes();
+		DtInterval subject = new DtInterval(1, MILLISECOND);
+		subject = subject.and(2).seconds();
+		subject = subject.and(3).minutes();
 
-		assertThat(test.after(new Date(1000)),
+		assertThat(subject.after(new Date(1000)),
 				is(new Date(1000
 						+ 1
 						+ 2 * 1000
@@ -120,8 +120,8 @@ public class DtIntervalTest {
 
 	@Test
 	public void testEquals_Self() {
-		DtInterval test = new DtInterval(123, MILLISECOND);
-		assertThat(test.equals(test), is(true));
+		DtInterval subject = new DtInterval(123, MILLISECOND);
+		assertThat(subject.equals(subject), is(true));
 	}
 
 	@Test
