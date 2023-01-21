@@ -1,6 +1,6 @@
-package org.ayeseeem.junit.spectime;
+package org.ayeseeem.spectime.test;
 
-import static org.ayeseeem.junit.spectime.ZonedTester.anyZone;
+import static org.ayeseeem.spectime.test.ZonedTester.anyZone;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;

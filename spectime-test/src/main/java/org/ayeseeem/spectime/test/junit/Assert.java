@@ -1,4 +1,4 @@
-package org.ayeseeem.junit.spectime;
+package org.ayeseeem.spectime.test.junit;
 
 import static org.junit.Assert.assertEquals;
 

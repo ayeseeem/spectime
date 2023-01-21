@@ -1,4 +1,4 @@
-package org.ayeseeem.junit.spectime;
+package org.ayeseeem.spectime.test;
 
 import java.util.ArrayList;
 import java.util.List;

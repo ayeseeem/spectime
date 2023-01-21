@@ -1,6 +1,6 @@
-package org.ayeseeem.junit.spectime;
+package org.ayeseeem.spectime.test.junit;
 
-import static org.ayeseeem.junit.spectime.Assert.assertDateEquals;
+import static org.ayeseeem.spectime.test.junit.Assert.assertDateEquals;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
