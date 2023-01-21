@@ -279,4 +279,4 @@ parameters _are_ reassigned - use `final` to mark the ones that are not.
 ### Coding Standard TODOs ###
 
 - [ ] Look for `final` variables that can be removed by inlining the variable
-- [ ] Prefer `subject` to `test` in unit tests
+- [x] Prefer `subject` to `test` in unit tests

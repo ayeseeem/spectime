@@ -1,4 +1,4 @@
-package org.ayeseeem.junit.spectime;
+package org.ayeseeem.spectime.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +9,13 @@ import org.junit.function.ThrowingRunnable;
 // TODO: ICM 2023-01-16: Allow selection and variation of time zones
 // TODO: ICM 2023-01-16: (Optionally) Include default/system time zone
 // TODO: ICM 2023-01-14: Should we pass the time zone in to allow it to be used in tests?
+// TODO: ICM 2023-01-17: Make save/restore thread-safe?
 
 /**
- * Class for exercising unit tests (and other code) in various time zones
- * configurations, to confirm that the test itself (and the executed code) are
+ * Class for exercising unit tests (and other code) in various time zone
+ * configurations, to confirm that the test itself (and the executed code) is
  * not limited to a single time zone. The intended use of this is to avoid the
- * problem of the developer writing tests that only pass in their own (current )
+ * problem of the developer writing tests that only pass in their own (current)
  * time zone.
  */
 public class ZonedTester {
@@ -29,7 +30,7 @@ public class ZonedTester {
 
 	/**
 	 * Convenience factory to verify that the {@code test} code is not dependent on
-	 * a particular time zone by executing it in various time zones.
+	 * a particular time zone, by executing it in various time zones.
 	 *
 	 * @param test code to be executed
 	 * @throws Throwable any throwable from the executed test, including from test
