@@ -160,8 +160,9 @@ public class TimeFactoryTest {
 
 	@Test
 	public void testNow() {
-		int timeDiffMillis = 100;
-		assertThat((double) TimeFactory.now().getTime(), is(closeTo(new Date().getTime(), timeDiffMillis)));
+		int testDiffMillis = 100;
+
+		assertThat((double) TimeFactory.now().getTime(), is(closeTo(new Date().getTime(), testDiffMillis)));
 	}
 
 	@Test
