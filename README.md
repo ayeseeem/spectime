@@ -101,9 +101,21 @@ Contains JUnit extensions, for example `assertDateEquals(Date, Date)`, which
 has a better error message (including milliseconds) than normal JUnit
 `assertEquals`.
 
-There is a preliminary `anyZone()` static method (part of `ZonedTester.java`)
+There is a preliminary `anyZone()` static method (part of
+[`ZonedTester.java`](https://github.com/ayeseeem/spectime/blob/master/spectime-test/src/main/java/org/ayeseeem/spectime/test/ZonedTester.java))
 that wraps your test code, and runs it in multiple time zones, to ensure it
 doesn't just pass on your machine, in your zone.
+
+There are JUnit 4 `@Rule`s:
+
+- [`RestoreTimeZone`](https://github.com/ayeseeem/spectime/blob/master/spectime-test/src/main/java/org/ayeseeem/spectime/test/junit/RestoreTimeZone.java),
+  which restores the default time zone at the end of the tests, allowing you
+  to change it in your tests without worrying about cleaning up.
+
+- [`OtherTimeZone`](https://github.com/ayeseeem/spectime/blob/master/spectime-test/src/main/java/org/ayeseeem/spectime/test/junit/OtherTimeZone.java),
+  which changes the default time zone to something different for the test,
+  restoring at the end.
+  This is like a single time zone version of `anyZone()`.
 
 
 ### Alternatives ###

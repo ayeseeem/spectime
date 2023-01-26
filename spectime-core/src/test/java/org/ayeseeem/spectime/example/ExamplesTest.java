@@ -6,6 +6,7 @@ import static org.ayeseeem.spectime.TimeFactory.startOf;
 import static org.ayeseeem.spectime.TimeFactory.time;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.closeTo;
 
 import java.util.Date;
 
@@ -55,8 +56,10 @@ public class ExamplesTest {
 
 	@Test
 	public void examplesAgo() {
-		assertThat(time(10).milliseconds().ago(),
-				is(new Date(new Date().getTime() - 10)));
+		int testDiffMillis = 100;
+
+		assertThat((double) time(7).minutes().ago().getTime(),
+				is(closeTo(new Date(new Date().getTime() - 7 * 60 * 1000).getTime(), testDiffMillis)));
 	}
 
 	private final long t1Second = 1000;

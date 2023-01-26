@@ -1,6 +1,7 @@
 package org.ayeseeem.spectime.test;
 
 import static org.ayeseeem.spectime.test.ZonedTester.anyZone;
+import static org.ayeseeem.spectime.test.ZonedTester.exclusiveZones;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
@@ -10,7 +11,9 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
 
 import org.junit.AfterClass;
@@ -163,7 +166,6 @@ public class ZonedTesterTest {
 			@Override
 			public void run() throws Throwable {
 				TimeZone currentDefault = TimeZone.getDefault();
-				System.err.println(currentDefault);
 
 				// Ensure not using original time zone
 				if (!currentDefault.equals(original)) {
@@ -193,6 +195,64 @@ public class ZonedTesterTest {
 	public static void doubleCheckNothingBroken() {
 		TimeZone current = TimeZone.getDefault();
 		assertThat(current, is(ZonedTester.initial));
+	}
+
+	//@Characterization
+	@Test
+	public void testExclusiveZones() {
+		List<TimeZone> zones = exclusiveZones();
+		assertThat(zones.size() > 1, is(true));
+		assertThat(zones.size(), is(4));
+	}
+
+	@Test
+	public void testExclusiveZones_AreAllDifferent() {
+		List<TimeZone> zones = exclusiveZones();
+
+		Set<TimeZone> setOfZones = new HashSet<TimeZone>(zones);
+		assertThat(zones.size(), is(setOfZones.size()));
+	}
+
+	@Test
+	public void testExclusiveZones_OffsetsAreNotNecessarillyAllDifferent() {
+		List<TimeZone> zones = exclusiveZones();
+
+		List<Integer> offsets = new ArrayList<Integer>();
+		for (TimeZone tz : zones) {
+			offsets.add(tz.getRawOffset());
+		}
+		assertThat(offsets.size() > 1, is(true));
+
+		Set<Integer> setOfOffsets = new HashSet<Integer>(offsets);
+		assertThat(setOfOffsets.size() > 1, is(true));
+
+		assertThat(offsets.size() >= setOfOffsets.size(), is(true));
+	}
+
+	//@Characterization
+	@Test
+	public void testExclusiveZones_ListIsModifiable() {
+		List<TimeZone> zones = exclusiveZones();
+		int originalSize = zones.size();
+
+		zones.remove(0);
+		assertThat(zones.size(), is(originalSize - 1));
+	}
+
+	@Test
+	public void testExclusiveZones_CreateSameListEachTime() {
+		List<TimeZone> zonesA = exclusiveZones();
+		List<TimeZone> zonesB = exclusiveZones();
+		assertThat(zonesA, is(zonesB));
+	}
+
+	@Test
+	public void testExclusiveZones_CreateNewList() {
+		// Modifying one list does not affect the next
+		List<TimeZone> zones = exclusiveZones();
+		zones.remove(0);
+
+		assertThat(zones.size(), is(exclusiveZones().size() - 1));
 	}
 
 }
