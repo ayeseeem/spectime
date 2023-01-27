@@ -1,5 +1,7 @@
 package org.ayeseeem.spectime.test.junit;
 
+import static java.util.TimeZone.getTimeZone;
+import static org.ayeseeem.spectime.test.junit.OtherTimeZone.significantlyDifferent;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -38,6 +40,48 @@ public class OtherTimeZoneTest {
 
 		subject.after();
 		assertThat(TimeZone.getDefault(), is(initial));
+	}
+
+	@Test
+	public void testSignificantlyDifferent_DifferentZones() {
+		TimeZone london = TimeZone.getTimeZone("Europe/London");
+		TimeZone perth = TimeZone.getTimeZone("Australia/Perth");
+
+		assertThat(significantlyDifferent(london, perth), is(true));
+		assertThat(significantlyDifferent(london, london), is(false));
+		assertThat(significantlyDifferent(perth, perth), is(false));
+	}
+
+	@Test
+	public void testSignificantlyDifferent_DifferentZones_WithSmallOffset_AreNotSignificantlyDifferent() {
+		TimeZone custom = TimeZone.getTimeZone("GMT+05:00");
+		TimeZone customClose = TimeZone.getTimeZone("GMT+05:01");
+		assertThat(custom, is(not(customClose)));
+		assertThat(custom.equals(customClose), is(false));
+
+		assertThat(significantlyDifferent(custom, customClose), is(false));
+	}
+
+	@Test
+	public void testSignificantlyDifferent_Requires3HourDifference() {
+		assertThat(significantlyDifferent(getTimeZone("GMT+05:00"), getTimeZone("GMT+01:59")), is(true));
+		assertThat(significantlyDifferent(getTimeZone("GMT+05:00"), getTimeZone("GMT+02:00")), is(false));
+		assertThat(significantlyDifferent(getTimeZone("GMT+05:00"), getTimeZone("GMT+02:01")), is(false));
+
+		assertThat(significantlyDifferent(getTimeZone("GMT+05:00"), getTimeZone("GMT+07:59")), is(false));
+		assertThat(significantlyDifferent(getTimeZone("GMT+05:00"), getTimeZone("GMT+08:00")), is(false));
+		assertThat(significantlyDifferent(getTimeZone("GMT+05:00"), getTimeZone("GMT+08:01")), is(true));
+	}
+
+	@Test
+	public void testSignificantlyDifferent_RequiresDifferenceLessThan9Hours() {
+		assertThat(significantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT-08:59")), is(true));
+		assertThat(significantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT-09:00")), is(false));
+		assertThat(significantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT-09:01")), is(false));
+
+		assertThat(significantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+08:59")), is(true));
+		assertThat(significantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+09:00")), is(false));
+		assertThat(significantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+09:01")), is(false));
 	}
 
 }
