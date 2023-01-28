@@ -1,7 +1,9 @@
 package org.ayeseeem.spectime.test.junit;
 
 import static java.util.TimeZone.getTimeZone;
+import static org.ayeseeem.spectime.test.junit.OtherTimeZone.definitelyNotDefaultTimeZone;
 import static org.ayeseeem.spectime.test.junit.OtherTimeZone.significantlyDifferent;
+import static org.ayeseeem.spectime.test.junit.OtherTimeZone.significantlyDifferentTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,6 +42,26 @@ public class OtherTimeZoneTest {
 
 		subject.after();
 		assertThat(TimeZone.getDefault(), is(initial));
+	}
+
+	@Test
+	public void testDefinitelyNotDefaultTimeZone() {
+		TimeZone other = definitelyNotDefaultTimeZone();
+
+		assertThat(other, is(not(initial)));
+		assertThat(significantlyDifferent(initial, other), is(true));
+	}
+
+	@Test
+	public void testSignificantlyDifferentTo_AlwaysFindsAnAlternative() {
+		String[] zoneIDs = TimeZone.getAvailableIDs();
+		for (String id : zoneIDs) {
+			TimeZone possibleDefault = TimeZone.getTimeZone(id);
+			TimeZone other = significantlyDifferentTo(possibleDefault);
+
+			assertThat(other, is(not(possibleDefault)));
+			assertThat(significantlyDifferent(possibleDefault, other), is(true));
+		}
 	}
 
 	@Test

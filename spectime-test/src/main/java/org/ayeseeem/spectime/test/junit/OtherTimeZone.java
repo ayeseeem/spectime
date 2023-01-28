@@ -1,7 +1,5 @@
 package org.ayeseeem.spectime.test.junit;
 
-import static org.ayeseeem.spectime.test.ZonedTester.exclusiveZones;
-
 import java.util.TimeZone;
 
 public class OtherTimeZone extends RestoreTimeZone {
@@ -13,13 +11,19 @@ public class OtherTimeZone extends RestoreTimeZone {
 	public static TimeZone definitelyNotDefaultTimeZone() {
 		TimeZone defaultZone = TimeZone.getDefault();
 
-		for (TimeZone zone : exclusiveZones()) {
-			if (significantlyDifferent(defaultZone, zone)) {
-				return zone;
+		return significantlyDifferentTo(defaultZone);
+	}
+
+	public static TimeZone significantlyDifferentTo(TimeZone zone) {
+		String[] availableIDs = TimeZone.getAvailableIDs();
+		for (String id : availableIDs) {
+			TimeZone candidate = TimeZone.getTimeZone(id);
+			if (significantlyDifferent(zone, candidate)) {
+				return candidate;
 			}
 		}
 
-		throw new RuntimeException("Failed to determine a time zone that was different from the default");
+		throw new RuntimeException("Failed to determine a time zone that was different to " + zone.getID());
 	}
 
 	/**
@@ -52,7 +56,7 @@ public class OtherTimeZone extends RestoreTimeZone {
 		return diff > hoursToMillis(3) && diff < hoursToMillis(9);
 	}
 
-	private static long hoursToMillis(int hours) {
+	private static int hoursToMillis(int hours) {
 		return hours * 60 * 60 * 1000;
 	}
 
