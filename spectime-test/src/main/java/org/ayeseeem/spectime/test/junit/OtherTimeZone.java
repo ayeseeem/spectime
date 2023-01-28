@@ -18,7 +18,7 @@ public class OtherTimeZone extends RestoreTimeZone {
 		String[] availableIDs = TimeZone.getAvailableIDs();
 		for (String id : availableIDs) {
 			TimeZone candidate = TimeZone.getTimeZone(id);
-			if (significantlyDifferent(zone, candidate)) {
+			if (areSignificantlyDifferent(zone, candidate)) {
 				return candidate;
 			}
 		}
@@ -46,7 +46,7 @@ public class OtherTimeZone extends RestoreTimeZone {
 	 * @return true if the time zones are different enough
 	 *
 	 */
-	public static boolean significantlyDifferent(TimeZone zoneA, TimeZone zoneB) {
+	public static boolean areSignificantlyDifferent(TimeZone zoneA, TimeZone zoneB) {
 		if (zoneA.equals(zoneB)) {
 			return false;
 		}
