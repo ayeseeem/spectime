@@ -144,6 +144,11 @@ There are JUnit 4 `@Rule`s:
     try-with-resources instead of as (or as well as, nested in) a `@Rule`.
 - [ ] Create a `RandomTimeZone`... or make it an option for `OtherTimeZone`
     (using a fluent interface).
+  - Random is handy for developer tests, but...
+  - Not great for Continuous Delivery or repeatable builds: not *great*
+    to have randomly failing tests, especially if not possible to then
+    diagnose: need a complete error message? That (easily) allows a re-run
+    with same configuration.
 - [ ] `OtherTimeZone` - allow modification of default zone set - WIBNIF.
     If so, provide a checker to verify the selection is valid/sufficient?
     There ought to be a unit test checking this, so that could be re-used?
@@ -151,6 +156,9 @@ There are JUnit 4 `@Rule`s:
   - [ ] Make the 3 (hours) a property (using a fluent interface).
 - [ ] Investigate making *all* `spectime-test` facilities capture just one
     initial, static "default" time zone for use when validating/restoring?
+- [ ] Update rules using ideas from
+    [this Stackoverflow question](https://stackoverflow.com/questions/10846704/how-do-i-write-unit-tests-to-make-sure-my-date-time-based-code-works-for-all-tim).
+
 
 ### Alternatives ###
 
