@@ -152,7 +152,7 @@ There are JUnit 4 `@Rule`s:
 - [ ] `OtherTimeZone` - allow modification of default zone set - WIBNIF.
     If so, provide a checker to verify the selection is valid/sufficient?
     There ought to be a unit test checking this, so that could be re-used?
-- [ ] Refactor `areSignificantlyDifferent()` to use 3 and (12 - 3) hours.
+- [x] Refactor `areSignificantlyDifferent()` to use 3 and (12 - 3) hours.
   - [ ] Make the 3 (hours) a property (using a fluent interface).
 - [ ] Investigate making *all* `spectime-test` facilities capture just one
     initial, static "default" time zone for use when validating/restoring?

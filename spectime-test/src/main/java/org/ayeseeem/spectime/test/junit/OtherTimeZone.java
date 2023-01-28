@@ -4,6 +4,8 @@ import java.util.TimeZone;
 
 public class OtherTimeZone extends RestoreTimeZone {
 
+	private static int BUFFER_HOURS = 3;
+
 	public OtherTimeZone() {
 		TimeZone.setDefault(definitelyNotDefaultTimeZone());
 	}
@@ -53,7 +55,8 @@ public class OtherTimeZone extends RestoreTimeZone {
 
 		int offsetDifference = zoneA.getRawOffset() - zoneB.getRawOffset();
 		int diff = Math.abs(offsetDifference);
-		return diff > hoursToMillis(3) && diff < hoursToMillis(9);
+
+		return diff > hoursToMillis(BUFFER_HOURS) && diff < hoursToMillis(12 - BUFFER_HOURS);
 	}
 
 	private static int hoursToMillis(int hours) {
