@@ -69,9 +69,19 @@ To see more examples, see
 
 ### Tips for Unit Testing ###
 
-See [`spectime-test`](#spectime-test), below.
+See [`spectime-test`](#spectime-test), below, to do this:
 
-Or - when `toString()` is implemented (see TODOs) - do this:
+```java
+assertDateEquals(d1, d2);
+```
+
+Or - when `toString(Date)` is implemented (see TODOs) - do this:
+
+```java
+assertEquals(toString(d1), toString(d2));
+```
+
+Without `spectime-test`, you can do this:
 
 ```java
 assertEquals(d1.getTime(), d2.getTime());
