@@ -128,6 +128,30 @@ There are JUnit 4 `@Rule`s:
   This is like a single time zone version of `anyZone()`.
 
 
+#### `spectime-test` TODOs ####
+
+
+##### Warnings #####
+
+- [ ] Document/warn that you should only use one of the `@Rule`s in a test.
+- [ ] Investigate way of flagging/warning when that happens - use test name?
+- [ ] Warn not thread-safe...
+  - [ ] and therefore warn not to run unit tests in parallel.
+
+##### Others ####
+
+- [ ] Make `RestoreTimeZone` (auto)closable so it can be used in a
+    try-with-resources instead of as (or as well as, nested in) a `@Rule`.
+- [ ] Create a `RandomTimeZone`... or make it an option for `OtherTimeZone`
+    (using a fluent interface).
+- [ ] `OtherTimeZone` - allow modification of default zone set - WIBNIF.
+    If so, provide a checker to verify the selection is valid/sufficient?
+    There ought to be a unit test checking this, so that could be re-used?
+- [ ] Refactor `significantlyDifferent()` to use 3 and (12 - 3) hours.
+  - [ ] Make the 3 (hours) a property (using a fluent interface).
+- [ ] Investigate making *all* `spectime-test` facilities capture just one
+    initial, static "default" time zone for use when validating/restoring?
+
 ### Alternatives ###
 
 If you want "simple social date-formatting" or want to parse natural language
