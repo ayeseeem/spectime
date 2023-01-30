@@ -11,7 +11,11 @@ public class CompatibilityCheck {
 	 */
 	public static final void confirmBuildsWithJava8Constructs() {
 		// These are Java 8 constructs.
+
+		@SuppressWarnings("unused")
 		Instant instant = Instant.now();
+
+		@SuppressWarnings("unused")
 		Month month = Month.APRIL;
     }
 
