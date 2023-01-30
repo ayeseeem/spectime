@@ -6,6 +6,7 @@ import static org.ayeseeem.spectime.test.junit.OtherTimeZone.definitelyNotDefaul
 import static org.ayeseeem.spectime.test.junit.OtherTimeZone.significantlyDifferentTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.TimeZone;
@@ -26,6 +27,7 @@ public class OtherTimeZoneTest {
 	public void testSetsNonDefaultTimeZone() {
 		assertThat(TimeZone.getDefault(), is(initial));
 
+		@SuppressWarnings("resource")
 		OtherTimeZone subject = new OtherTimeZone();
 		subject.before();
 
@@ -37,6 +39,7 @@ public class OtherTimeZoneTest {
 	public void testAfter_RestoresDefault() {
 		assertThat(TimeZone.getDefault(), is(initial));
 
+		@SuppressWarnings("resource")
 		OtherTimeZone subject = new OtherTimeZone();
 		subject.before();
 
@@ -104,6 +107,41 @@ public class OtherTimeZoneTest {
 		assertThat(areSignificantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+08:59")), is(true));
 		assertThat(areSignificantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+09:00")), is(false));
 		assertThat(areSignificantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+09:01")), is(false));
+	}
+
+	@Test
+	public void testWithTryWithResources() throws Exception {
+		assertThat(TimeZone.getDefault(), is(initial));
+
+		try (OtherTimeZone otz = new OtherTimeZone()) {
+			assertThat(TimeZone.getDefault(), is(not(initial)));
+		}
+
+		assertThat(TimeZone.getDefault(), is(initial));
+	}
+
+	@Test
+	public void testWithTryWithResources_WithException() {
+		assertThat(TimeZone.getDefault(), is(initial));
+
+		Exception thrown = null;
+
+		try (OtherTimeZone otz = new OtherTimeZone()) {
+			assertThat(TimeZone.getDefault(), is(not(initial)));
+
+			throw new Exception("Simulated error");
+		} catch (Exception expected) {
+			thrown = expected;
+			assertThat(TimeZone.getDefault(), is(initial));
+		} finally {
+			assertThat(TimeZone.getDefault(), is(initial));
+		}
+
+		assertThat(TimeZone.getDefault(), is(initial));
+
+		// Confirm test ran properly
+		assertThat(thrown, is(not(nullValue())));
+		assertThat(thrown.getMessage(), is("Simulated error"));
 	}
 
 }

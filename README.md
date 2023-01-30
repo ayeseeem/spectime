@@ -127,6 +127,10 @@ There are JUnit 4 `@Rule`s:
   restoring at the end.
   This is like a single time zone version of `anyZone()`.
 
+For Java 7+, these classes are `AutoCloseable`, so they can be used in
+try-with-resources instead of as (or as well as, nested in) a `@Rule`.
+Only applies to Java 7+ (see `java-8` branch).
+
 
 #### `spectime-test` TODOs ####
 
@@ -140,8 +144,9 @@ There are JUnit 4 `@Rule`s:
 
 ##### Others ####
 
-- [ ] Make `RestoreTimeZone` (auto)closable so it can be used in a
+- [x] Make `RestoreTimeZone` `AutoCloseable` so it can be used in a
     try-with-resources instead of as (or as well as, nested in) a `@Rule`.
+  - Only applies to Java 7+ (see `java-8` branch).
 - [ ] Create a `RandomTimeZone`... or make it an option for `OtherTimeZone`
     (using a fluent interface).
   - Random is handy for developer tests, but...

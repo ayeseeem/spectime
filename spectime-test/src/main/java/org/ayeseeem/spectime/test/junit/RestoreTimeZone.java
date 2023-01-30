@@ -4,7 +4,7 @@ import java.util.TimeZone;
 
 import org.junit.rules.ExternalResource;
 
-public class RestoreTimeZone extends ExternalResource {
+public class RestoreTimeZone extends ExternalResource implements AutoCloseable {
 
 	private final TimeZone original = TimeZone.getDefault();
 
@@ -16,6 +16,11 @@ public class RestoreTimeZone extends ExternalResource {
 	@Override
 	protected void after() {
 		TimeZone.setDefault(original);
+	}
+
+	@Override
+	public void close() throws Exception {
+		after();
 	}
 
 }
