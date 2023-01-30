@@ -213,8 +213,9 @@ public class ZonedTesterTest {
 		assertThat(zones.size(), is(setOfZones.size()));
 	}
 
+	//@Characterization
 	@Test
-	public void testExclusiveZones_OffsetsAreNotNecessarillyAllDifferent() {
+	public void testExclusiveZones_OffsetsAreNotNecessarilyAllDifferent() {
 		List<TimeZone> zones = exclusiveZones();
 
 		List<Integer> offsets = new ArrayList<Integer>();

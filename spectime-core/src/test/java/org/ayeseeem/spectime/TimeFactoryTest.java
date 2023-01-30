@@ -9,7 +9,6 @@ import static java.util.Calendar.MINUTE;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.SECOND;
 import static java.util.Calendar.YEAR;
-import static java.util.Locale.UK;
 import static org.ayeseeem.spectime.TimeFactory.date;
 import static org.ayeseeem.spectime.TimeFactory.stringOf;
 import static org.hamcrest.CoreMatchers.is;
