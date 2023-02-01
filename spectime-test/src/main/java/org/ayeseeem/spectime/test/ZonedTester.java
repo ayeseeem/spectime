@@ -1,5 +1,8 @@
 package org.ayeseeem.spectime.test;
 
+import static org.ayeseeem.spectime.test.TimeZoneFactory.findWithDifference;
+import static org.ayeseeem.spectime.test.junit.OtherTimeZone.significantlyDifferentTo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
@@ -65,15 +68,46 @@ public class ZonedTester {
 	}
 
 	/**
-	 * Gets a new list of of mutually exclusive time zones.
+	 * Gets a new list of of (mostly) mutually exclusive time zones.
+	 * <p>
+	 * The list will include the current default time zone, to test that the code
+	 * works in the current set up. It will include UTC as a special case, although
+	 * this will not be very different from the default if operating in zones near
+	 * GMT. It will include at least one zone "significantly different" from the
+	 * default. That will usually mean at least 3 hours apart. The list will also
+	 * include zones exactly 12 hours away from these zones (based on raw offset),
+	 * in case there are issues with 12-hour clocks.
+	 * <p>
+	 * The list will favour known IDs such as "Africa/Nairobi" rather than synthetic
+	 * IDs such as "GMT+03:00" in case tests also check the IDs, and in case there
+	 * are any locale-related issues of {@link TimeZone#getDisplayName()}. However,
+	 * it does not itself use "known" IDs as it is not guaranteed that they are
+	 * recognized. It does use "UTC", but if this is not recognized it will default
+	 * to "GMT", which will be close enough for most purposes.
+	 *
 	 * @return a new list of zones
 	 */
 	public static List<TimeZone> exclusiveZones() {
 		List<TimeZone> zones = new ArrayList<TimeZone>();
-		zones.add(TimeZone.getTimeZone("UTC"));
-		zones.add(TimeZone.getTimeZone("Europe/London"));
-		zones.add(TimeZone.getTimeZone("US/Eastern"));
-		zones.add(TimeZone.getTimeZone("Australia/Perth"));
+
+		// Default zone
+		TimeZone defaultZone = TimeZone.getDefault();
+		zones.add(defaultZone);
+		// 12 hours offset from default
+		zones.add(findWithDifference(defaultZone, 12));
+
+		// Different from Default
+		TimeZone different = significantlyDifferentTo(defaultZone);
+		zones.add(different);
+		// 12 hours offset from different
+		zones.add(findWithDifference(different, 12));
+
+		// UTC
+		TimeZone utc = TimeZone.getTimeZone("UTC");
+		zones.add(utc);
+		// 12 hours offset from UTC
+		zones.add(findWithDifference(utc, 12));
+
 		return zones;
 	}
 

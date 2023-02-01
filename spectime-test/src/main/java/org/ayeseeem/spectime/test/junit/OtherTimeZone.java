@@ -59,7 +59,7 @@ public class OtherTimeZone extends RestoreTimeZone {
 		return diff > hoursToMillis(BUFFER_HOURS) && diff < hoursToMillis(12 - BUFFER_HOURS);
 	}
 
-	private static int hoursToMillis(int hours) {
+	public static int hoursToMillis(int hours) {
 		return hours * 60 * 60 * 1000;
 	}
 

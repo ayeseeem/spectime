@@ -113,11 +113,9 @@ public class ZonedTesterTest {
 		ZonedTester subject = new ZonedTester(test);
 		subject.testInMultipleZones();
 
-		assertThat(zonesUsed.size(), is(4));
+		assertThat(zonesUsed, hasItem(TimeZone.getDefault()));
 		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("UTC")));
-		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("Europe/London")));
-		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("US/Eastern")));
-		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("Australia/Perth")));
+		assertThat(zonesUsed.size() > 4, is(true));
 	}
 
 	@Test
@@ -201,21 +199,29 @@ public class ZonedTesterTest {
 	@Test
 	public void testExclusiveZones() {
 		List<TimeZone> zones = exclusiveZones();
-		assertThat(zones.size() > 1, is(true));
-		assertThat(zones.size(), is(4));
+		assertThat(zones.size() > 3, is(true));
+
+		Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+		assertThat(distinctZones.size() > 3, is(true));
 	}
 
 	@Test
-	public void testExclusiveZones_AreAllDifferent() {
+	public void testExclusiveZones_ContainsDefault() {
 		List<TimeZone> zones = exclusiveZones();
 
-		Set<TimeZone> setOfZones = new HashSet<TimeZone>(zones);
-		assertThat(zones.size(), is(setOfZones.size()));
+		assertThat(zones, hasItem(TimeZone.getDefault()));
 	}
 
-	//@Characterization
 	@Test
-	public void testExclusiveZones_OffsetsAreNotNecessarilyAllDifferent() {
+	public void testExclusiveZones_AreNotNecessarilyAllDifferent() {
+		List<TimeZone> zones = exclusiveZones();
+
+		Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+		assertThat(zones.size() >= distinctZones.size(), is(true));
+	}
+
+	@Test
+	public void testExclusiveZones_Offsets_AreNotNecessarilyAllDifferent() {
 		List<TimeZone> zones = exclusiveZones();
 
 		List<Integer> offsets = new ArrayList<Integer>();
@@ -224,13 +230,12 @@ public class ZonedTesterTest {
 		}
 		assertThat(offsets.size() > 1, is(true));
 
-		Set<Integer> setOfOffsets = new HashSet<Integer>(offsets);
-		assertThat(setOfOffsets.size() > 1, is(true));
+		Set<Integer> distinctOffsets = new HashSet<Integer>(offsets);
+		assertThat(distinctOffsets.size() > 1, is(true));
 
-		assertThat(offsets.size() >= setOfOffsets.size(), is(true));
+		assertThat(offsets.size() >= distinctOffsets.size(), is(true));
 	}
 
-	//@Characterization
 	@Test
 	public void testExclusiveZones_ListIsModifiable() {
 		List<TimeZone> zones = exclusiveZones();
