@@ -1,7 +1,7 @@
 package org.ayeseeem.spectime.test;
 
 import static org.ayeseeem.spectime.test.TimeZoneFactory.findWithDifference;
-import static org.ayeseeem.spectime.test.junit.OtherTimeZone.significantlyDifferentTo;
+import static org.ayeseeem.spectime.test.TimeZoneFactory.significantlyDifferentTo;
 
 import java.util.ArrayList;
 import java.util.List;
