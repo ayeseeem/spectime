@@ -1,5 +1,7 @@
 package org.ayeseeem.spectime.test.junit;
 
+import static org.ayeseeem.spectime.test.TimeZoneFactory.hoursToMillis;
+
 import java.util.TimeZone;
 
 public class OtherTimeZone extends RestoreTimeZone {
@@ -57,10 +59,6 @@ public class OtherTimeZone extends RestoreTimeZone {
 		int diff = Math.abs(offsetDifference);
 
 		return diff > hoursToMillis(BUFFER_HOURS) && diff < hoursToMillis(12 - BUFFER_HOURS);
-	}
-
-	public static int hoursToMillis(int hours) {
-		return hours * 60 * 60 * 1000;
 	}
 
 }

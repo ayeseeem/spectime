@@ -1,7 +1,5 @@
 package org.ayeseeem.spectime.test;
 
-import static org.ayeseeem.spectime.test.junit.OtherTimeZone.hoursToMillis;
-
 import java.util.TimeZone;
 
 public class TimeZoneFactory {
@@ -22,6 +20,10 @@ public class TimeZoneFactory {
 
 	static int rawDifference(TimeZone zone, TimeZone candidate) {
 		return candidate.getRawOffset() - zone.getRawOffset();
+	}
+
+	public static int hoursToMillis(int hours) {
+		return hours * 60 * 60 * 1000;
 	}
 
 }
