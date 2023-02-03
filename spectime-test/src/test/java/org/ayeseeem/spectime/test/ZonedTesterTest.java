@@ -27,6 +27,12 @@ public class ZonedTesterTest {
 	@Rule
 	public RestoreTimeZone rtz = new RestoreTimeZone();
 
+	@AfterClass
+	public static void doubleCheckNothingBroken() {
+		TimeZone current = TimeZone.getDefault();
+		assertThat(current, is(ZonedTester.initial));
+	}
+
 	//@Characterization
 	@Test
 	public void exampleAnyZone_CodeThatWorks() throws Throwable {
@@ -194,11 +200,6 @@ public class ZonedTesterTest {
 		assertThat(TimeZone.getDefault(), is(original));
 	}
 
-	@AfterClass
-	public static void doubleCheckNothingBroken() {
-		TimeZone current = TimeZone.getDefault();
-		assertThat(current, is(ZonedTester.initial));
-	}
 
 	@Test
 	public void testExclusiveZones() {
