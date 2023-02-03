@@ -1,5 +1,6 @@
 package org.ayeseeem.spectime.test;
 
+import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 public class TimeZoneFactory {
@@ -18,6 +19,13 @@ public class TimeZoneFactory {
 		// TODO: ICM 2023-02-01: If not found, construct one?
 		throw new RuntimeException("Failed to determine a time zone that was exactly " + hours
 				+ " hours different to " + zone.getID() + " (offset: " + zone.getRawOffset() + ")");
+	}
+
+	static TimeZone constructWithDifference(TimeZone zone, int hours) {
+		int newOffset = zone.getRawOffset() + hoursToMillis(hours);
+
+		String id = "Custom: " + newOffset + " offset from " + zone.getID();
+		return new SimpleTimeZone(newOffset, id);
 	}
 
 	static int rawDifference(TimeZone zone, TimeZone candidate) {

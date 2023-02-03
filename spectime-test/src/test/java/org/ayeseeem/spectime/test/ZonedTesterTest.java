@@ -16,11 +16,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
+import org.ayeseeem.spectime.test.junit.RestoreTimeZone;
 import org.junit.AfterClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
 
 public class ZonedTesterTest {
+
+	@Rule
+	public RestoreTimeZone rtz = new RestoreTimeZone();
 
 	//@Characterization
 	@Test
@@ -195,14 +200,13 @@ public class ZonedTesterTest {
 		assertThat(current, is(ZonedTester.initial));
 	}
 
-	//@Characterization
 	@Test
 	public void testExclusiveZones() {
 		List<TimeZone> zones = exclusiveZones();
-		assertThat(zones.size() > 3, is(true));
+		assertThat(zones.size() >= 4, is(true));
 
 		Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
-		assertThat(distinctZones.size() > 3, is(true));
+		assertThat(distinctZones.size() >= 4, is(true));
 	}
 
 	@Test
@@ -246,19 +250,38 @@ public class ZonedTesterTest {
 	}
 
 	@Test
-	public void testExclusiveZones_CreateSameListEachTime() {
+	public void testExclusiveZones_CreateIdenticalListEachTime() {
 		List<TimeZone> zonesA = exclusiveZones();
 		List<TimeZone> zonesB = exclusiveZones();
 		assertThat(zonesA, is(zonesB));
 	}
 
 	@Test
-	public void testExclusiveZones_CreateNewList() {
+	public void testExclusiveZones_CreateNewListObject() {
 		// Modifying one list does not affect the next
 		List<TimeZone> zones = exclusiveZones();
 		zones.remove(0);
 
 		assertThat(zones.size(), is(exclusiveZones().size() - 1));
+	}
+
+	@Test
+	public void testExclusiveZones_WorksForAllZones() {
+		String[] zoneIDs = TimeZone.getAvailableIDs();
+		for (String id : zoneIDs) {
+			TimeZone newDefault = TimeZone.getTimeZone(id);
+			TimeZone.setDefault(newDefault);
+
+			// Has enough zones
+			List<TimeZone> zones = exclusiveZones();
+			assertThat(zones.size() >= 4, is(true));
+			Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+			assertThat(distinctZones.size() >= 4, is(true));
+
+			// Always Expected zones
+			assertThat(zones, hasItem(TimeZone.getDefault()));
+			assertThat(zones, hasItem(TimeZone.getTimeZone("UTC")));
+		}
 	}
 
 }

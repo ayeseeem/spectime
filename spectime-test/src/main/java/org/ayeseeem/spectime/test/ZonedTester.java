@@ -1,5 +1,6 @@
 package org.ayeseeem.spectime.test;
 
+import static org.ayeseeem.spectime.test.TimeZoneFactory.constructWithDifference;
 import static org.ayeseeem.spectime.test.TimeZoneFactory.findWithDifference;
 import static org.ayeseeem.spectime.test.TimeZoneFactory.significantlyDifferentTo;
 
@@ -94,21 +95,36 @@ public class ZonedTester {
 		TimeZone defaultZone = TimeZone.getDefault();
 		zones.add(defaultZone);
 		// 12 hours offset from default
-		zones.add(findWithDifference(defaultZone, 12));
+		zones.add(find12HoursDifferent(defaultZone));
 
 		// Different from Default
 		TimeZone different = significantlyDifferentTo(defaultZone);
 		zones.add(different);
 		// 12 hours offset from different
-		zones.add(findWithDifference(different, 12));
+		zones.add(find12HoursDifferent(different));
 
 		// UTC
 		TimeZone utc = TimeZone.getTimeZone("UTC");
 		zones.add(utc);
 		// 12 hours offset from UTC
-		zones.add(findWithDifference(utc, 12));
+		zones.add(find12HoursDifferent(utc));
 
 		return zones;
+	}
+
+	private static TimeZone find12HoursDifferent(TimeZone zone) {
+		try {
+			return findWithDifference(zone, 12);
+		} catch (RuntimeException e1) {
+			// TODO: ICM 2023-02-03: Verify message/use built-in type
+			try {
+				TimeZone minus12 = findWithDifference(zone, -12);
+				return minus12;
+			} catch (RuntimeException e2) {
+				// TODO: ICM 2023-02-03: Verify message/use built-in type
+				return constructWithDifference(zone, 12);
+			}
+		}
 	}
 
 }

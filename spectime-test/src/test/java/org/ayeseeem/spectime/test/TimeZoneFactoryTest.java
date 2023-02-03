@@ -2,6 +2,7 @@ package org.ayeseeem.spectime.test;
 
 import static java.util.TimeZone.getTimeZone;
 import static org.ayeseeem.spectime.test.TimeZoneFactory.areSignificantlyDifferent;
+import static org.ayeseeem.spectime.test.TimeZoneFactory.constructWithDifference;
 import static org.ayeseeem.spectime.test.TimeZoneFactory.definitelyNotDefaultTimeZone;
 import static org.ayeseeem.spectime.test.TimeZoneFactory.significantlyDifferentTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -76,6 +77,17 @@ public class TimeZoneFactoryTest {
 		assertThat(areSignificantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+08:59")), is(true));
 		assertThat(areSignificantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+09:00")), is(false));
 		assertThat(areSignificantlyDifferent(getTimeZone("GMT+00:00"), getTimeZone("GMT+09:01")), is(false));
+	}
+
+	@Test
+	public void testConstructWithDifference() {
+		TimeZone original = TimeZone.getDefault();
+
+		TimeZone result = constructWithDifference(original, 5);
+
+		int expectedOffset = original.getRawOffset() + 5 * 60 * 60 * 1000;
+		assertThat(result.getRawOffset(), is(expectedOffset));
+		assertThat(result.getID(), is("Custom: " + expectedOffset + " offset from " + original.getID()));
 	}
 
 	@Test
