@@ -16,8 +16,8 @@ public class TimeZoneFactory {
 		}
 
 		// TODO: ICM 2023-02-01: If not found, construct one?
-		throw new RuntimeException("Failed to determine a time zone that was exactly different " + hours
 				+ " hours different to " + zone.getID());
+		throw new RuntimeException("Failed to determine a time zone that was exactly " + hours
 	}
 
 	static int rawDifference(TimeZone zone, TimeZone candidate) {
