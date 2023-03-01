@@ -12,9 +12,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
+import org.ayeseeem.spectime.test.junit.OtherTimeZone;
+import org.junit.Rule;
 import org.junit.Test;
 
 public class DtIntervalTest {
+
+	@Rule
+	public OtherTimeZone otherTz = new OtherTimeZone();
 
 	@Test
 	public void testFrom() {

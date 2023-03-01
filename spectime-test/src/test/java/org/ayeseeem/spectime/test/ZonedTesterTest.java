@@ -200,7 +200,6 @@ public class ZonedTesterTest {
 		assertThat(TimeZone.getDefault(), is(original));
 	}
 
-
 	@Test
 	public void testExclusiveZones() {
 		List<TimeZone> zones = exclusiveZones();
