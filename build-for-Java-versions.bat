@@ -22,8 +22,8 @@ goto BUILD
 
 :JAVA6_17
 @rem Use JAVA 9+ with --release option to build for Java 6
-set PATH=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin\;%PATH%
-set JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
+set PATH=C:\Program Files\Eclipse Adoptium\jdk-17.0.6.10-hotspot\bin\;%PATH%
+set JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.6.10-hotspot
 goto BUILD
 
 
