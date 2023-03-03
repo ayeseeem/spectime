@@ -10,9 +10,14 @@ import static org.hamcrest.Matchers.closeTo;
 
 import java.util.Date;
 
+import org.ayeseeem.spectime.test.junit.OtherTimeZone;
+import org.junit.Rule;
 import org.junit.Test;
 
 public class ExamplesTest {
+
+	@Rule
+	public OtherTimeZone otherTz = new OtherTimeZone();
 
 	@Test
 	public void examplesAnd() {
@@ -28,6 +33,8 @@ public class ExamplesTest {
 	@Test
 	public void examplesStartOf() {
 		assertThat(startOf(date("2013-03-10 23:58:59.123")),
+				is(date("2013-03-10")));
+		assertThat(startOf(date("2013-03-10 00:00:00.000")),
 				is(date("2013-03-10")));
 	}
 

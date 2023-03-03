@@ -1,6 +1,6 @@
 package org.ayeseeem.spectime.test.junit;
 
-import static org.ayeseeem.spectime.test.junit.OtherTimeZone.definitelyNotDefaultTimeZone;
+import static org.ayeseeem.spectime.test.TimeZoneFactory.definitelyNotDefaultTimeZone;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;

@@ -16,11 +16,22 @@ import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
+import org.ayeseeem.spectime.test.junit.RestoreTimeZone;
 import org.junit.AfterClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
 
 public class ZonedTesterTest {
+
+	@Rule
+	public RestoreTimeZone rtz = new RestoreTimeZone();
+
+	@AfterClass
+	public static void doubleCheckNothingBroken() {
+		TimeZone current = TimeZone.getDefault();
+		assertThat(current, is(ZonedTester.initial));
+	}
 
 	//@Characterization
 	@Test
@@ -113,11 +124,9 @@ public class ZonedTesterTest {
 		ZonedTester subject = new ZonedTester(test);
 		subject.testInMultipleZones();
 
-		assertThat(zonesUsed.size(), is(4));
+		assertThat(zonesUsed, hasItem(TimeZone.getDefault()));
 		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("UTC")));
-		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("Europe/London")));
-		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("US/Eastern")));
-		assertThat(zonesUsed, hasItem(TimeZone.getTimeZone("Australia/Perth")));
+		assertThat(zonesUsed.size() > 4, is(true));
 	}
 
 	@Test
@@ -191,31 +200,32 @@ public class ZonedTesterTest {
 		assertThat(TimeZone.getDefault(), is(original));
 	}
 
-	@AfterClass
-	public static void doubleCheckNothingBroken() {
-		TimeZone current = TimeZone.getDefault();
-		assertThat(current, is(ZonedTester.initial));
-	}
-
-	//@Characterization
 	@Test
 	public void testExclusiveZones() {
 		List<TimeZone> zones = exclusiveZones();
-		assertThat(zones.size() > 1, is(true));
-		assertThat(zones.size(), is(4));
+		assertThat(zones.size() >= 4, is(true));
+
+		Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+		assertThat(distinctZones.size() >= 4, is(true));
 	}
 
 	@Test
-	public void testExclusiveZones_AreAllDifferent() {
+	public void testExclusiveZones_ContainsDefault() {
 		List<TimeZone> zones = exclusiveZones();
 
-		Set<TimeZone> setOfZones = new HashSet<TimeZone>(zones);
-		assertThat(zones.size(), is(setOfZones.size()));
+		assertThat(zones, hasItem(TimeZone.getDefault()));
 	}
 
-	//@Characterization
 	@Test
-	public void testExclusiveZones_OffsetsAreNotNecessarilyAllDifferent() {
+	public void testExclusiveZones_AreNotNecessarilyAllDifferent() {
+		List<TimeZone> zones = exclusiveZones();
+
+		Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+		assertThat(zones.size() >= distinctZones.size(), is(true));
+	}
+
+	@Test
+	public void testExclusiveZones_Offsets_AreNotNecessarilyAllDifferent() {
 		List<TimeZone> zones = exclusiveZones();
 
 		List<Integer> offsets = new ArrayList<Integer>();
@@ -224,13 +234,12 @@ public class ZonedTesterTest {
 		}
 		assertThat(offsets.size() > 1, is(true));
 
-		Set<Integer> setOfOffsets = new HashSet<Integer>(offsets);
-		assertThat(setOfOffsets.size() > 1, is(true));
+		Set<Integer> distinctOffsets = new HashSet<Integer>(offsets);
+		assertThat(distinctOffsets.size() > 1, is(true));
 
-		assertThat(offsets.size() >= setOfOffsets.size(), is(true));
+		assertThat(offsets.size() >= distinctOffsets.size(), is(true));
 	}
 
-	//@Characterization
 	@Test
 	public void testExclusiveZones_ListIsModifiable() {
 		List<TimeZone> zones = exclusiveZones();
@@ -241,19 +250,38 @@ public class ZonedTesterTest {
 	}
 
 	@Test
-	public void testExclusiveZones_CreateSameListEachTime() {
+	public void testExclusiveZones_CreateIdenticalListEachTime() {
 		List<TimeZone> zonesA = exclusiveZones();
 		List<TimeZone> zonesB = exclusiveZones();
 		assertThat(zonesA, is(zonesB));
 	}
 
 	@Test
-	public void testExclusiveZones_CreateNewList() {
+	public void testExclusiveZones_CreateNewListObject() {
 		// Modifying one list does not affect the next
 		List<TimeZone> zones = exclusiveZones();
 		zones.remove(0);
 
 		assertThat(zones.size(), is(exclusiveZones().size() - 1));
+	}
+
+	@Test
+	public void testExclusiveZones_WorksForAllZones() {
+		String[] zoneIDs = TimeZone.getAvailableIDs();
+		for (String id : zoneIDs) {
+			TimeZone newDefault = TimeZone.getTimeZone(id);
+			TimeZone.setDefault(newDefault);
+
+			// Has enough zones
+			List<TimeZone> zones = exclusiveZones();
+			assertThat(zones.size() >= 4, is(true));
+			Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+			assertThat(distinctZones.size() >= 4, is(true));
+
+			// Always Expected zones
+			assertThat(zones, hasItem(TimeZone.getDefault()));
+			assertThat(zones, hasItem(TimeZone.getTimeZone("UTC")));
+		}
 	}
 
 }
