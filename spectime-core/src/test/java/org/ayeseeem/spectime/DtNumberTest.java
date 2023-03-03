@@ -9,9 +9,14 @@ import static org.junit.Assert.assertNotEquals;
 
 import java.util.Date;
 
+import org.ayeseeem.spectime.test.junit.OtherTimeZone;
+import org.junit.Rule;
 import org.junit.Test;
 
 public class DtNumberTest {
+
+	@Rule
+	public OtherTimeZone otherTz = new OtherTimeZone();
 
 	@Test
 	public void millisecondSynonym() {

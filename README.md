@@ -142,6 +142,7 @@ Only applies to Java 7+ (see `java-8` branch).
 - [ ] Warn not thread-safe...
   - [ ] and therefore warn not to run unit tests in parallel.
 
+
 ##### Others ####
 
 - [x] Make `RestoreTimeZone` `AutoCloseable` so it can be used in a
@@ -163,6 +164,8 @@ Only applies to Java 7+ (see `java-8` branch).
     initial, static "default" time zone for use when validating/restoring?
 - [ ] Update rules using ideas from
     [this Stackoverflow question](https://stackoverflow.com/questions/10846704/how-do-i-write-unit-tests-to-make-sure-my-date-time-based-code-works-for-all-tim).
+- [ ] Replace use of raw offset with "current offset" and
+    "offset 6 months from now" (`ZonedTester`, and elsewhere).
 
 
 ### Alternatives ###
