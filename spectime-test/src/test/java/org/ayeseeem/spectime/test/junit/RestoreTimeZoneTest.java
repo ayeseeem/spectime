@@ -13,72 +13,72 @@ import org.junit.Test;
 
 public class RestoreTimeZoneTest {
 
-	private static final TimeZone initial = TimeZone.getDefault();
+    private static final TimeZone initial = TimeZone.getDefault();
 
-	@After
-	public void restoreTimeZone_EvenIfFailedTestsDidNotRestoreIt() {
-		TimeZone.setDefault(initial);
-	}
+    @After
+    public void restoreTimeZone_EvenIfFailedTestsDidNotRestoreIt() {
+        TimeZone.setDefault(initial);
+    }
 
-	@Test
-	public void testAfter_RestoresDefault() {
-		assertThat(TimeZone.getDefault(), is(initial));
+    @Test
+    public void testAfter_RestoresDefault() {
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		@SuppressWarnings("resource")
-		RestoreTimeZone subject = new RestoreTimeZone();
-		assertThat(TimeZone.getDefault(), is(initial));
+        @SuppressWarnings("resource")
+        RestoreTimeZone subject = new RestoreTimeZone();
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		subject.before();
-		assertThat(TimeZone.getDefault(), is(initial));
+        subject.before();
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		TimeZone.setDefault(definitelyNotDefaultTimeZone());
-		assertThat(TimeZone.getDefault(), is(not(initial)));
+        TimeZone.setDefault(definitelyNotDefaultTimeZone());
+        assertThat(TimeZone.getDefault(), is(not(initial)));
 
-		subject.after();
-		assertThat(TimeZone.getDefault(), is(initial));
-	}
+        subject.after();
+        assertThat(TimeZone.getDefault(), is(initial));
+    }
 
-	@Test
-	public void testWithTryWithResources() throws Exception {
-		assertThat(TimeZone.getDefault(), is(initial));
+    @Test
+    public void testWithTryWithResources() throws Exception {
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		try (RestoreTimeZone rtz = new RestoreTimeZone()) {
-			assertThat(TimeZone.getDefault(), is(initial));
+        try (RestoreTimeZone rtz = new RestoreTimeZone()) {
+            assertThat(TimeZone.getDefault(), is(initial));
 
-			TimeZone.setDefault(definitelyNotDefaultTimeZone());
+            TimeZone.setDefault(definitelyNotDefaultTimeZone());
 
-			assertThat(TimeZone.getDefault(), is(not(initial)));
-		}
+            assertThat(TimeZone.getDefault(), is(not(initial)));
+        }
 
-		assertThat(TimeZone.getDefault(), is(initial));
-	}
+        assertThat(TimeZone.getDefault(), is(initial));
+    }
 
-	@Test
-	public void testWithTryWithResources_WithException() {
-		assertThat(TimeZone.getDefault(), is(initial));
+    @Test
+    public void testWithTryWithResources_WithException() {
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		Exception thrown = null;
+        Exception thrown = null;
 
-		try (RestoreTimeZone rtz = new RestoreTimeZone()) {
-			assertThat(TimeZone.getDefault(), is(initial));
+        try (RestoreTimeZone rtz = new RestoreTimeZone()) {
+            assertThat(TimeZone.getDefault(), is(initial));
 
-			TimeZone.setDefault(definitelyNotDefaultTimeZone());
+            TimeZone.setDefault(definitelyNotDefaultTimeZone());
 
-			assertThat(TimeZone.getDefault(), is(not(initial)));
+            assertThat(TimeZone.getDefault(), is(not(initial)));
 
-			throw new Exception("Simulated error");
-		} catch (Exception expected) {
-			thrown = expected;
-			assertThat(TimeZone.getDefault(), is(initial));
-		} finally {
-			assertThat(TimeZone.getDefault(), is(initial));
-		}
+            throw new Exception("Simulated error");
+        } catch (Exception expected) {
+            thrown = expected;
+            assertThat(TimeZone.getDefault(), is(initial));
+        } finally {
+            assertThat(TimeZone.getDefault(), is(initial));
+        }
 
-		assertThat(TimeZone.getDefault(), is(initial));
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		// Confirm test ran properly
-		assertThat(thrown, is(not(nullValue())));
-		assertThat(thrown.getMessage(), is("Simulated error"));
-	}
+        // Confirm test ran properly
+        assertThat(thrown, is(not(nullValue())));
+        assertThat(thrown.getMessage(), is("Simulated error"));
+    }
 
 }

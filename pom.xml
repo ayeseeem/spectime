@@ -107,11 +107,10 @@
             <java>
               <trimTrailingWhitespace/>
               <endWithNewline/>
-              <!-- Javadoc indent with leading space triggers tab check, so disabled -->
-<!--               <indent> -->
-<!--                 <tabs>true</tabs> -->
-<!--                 <spacesPerTab>4</spacesPerTab> -->
-<!--               </indent> -->
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>4</spacesPerTab>
+              </indent>
             </java>
           </configuration>
           <executions>
