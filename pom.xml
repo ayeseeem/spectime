@@ -65,6 +65,10 @@
             <!-- Latest `spectime` should work with Java 8 (or even 7) + -->
             <source>1.6</source>
             <target>1.6</target>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>4</spacesPerTab>
+              </indent>
           </configuration>
         </plugin>
 

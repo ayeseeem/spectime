@@ -6,8 +6,8 @@ import java.util.TimeZone;
 
 public class OtherTimeZone extends RestoreTimeZone {
 
-	public OtherTimeZone() {
-		TimeZone.setDefault(definitelyNotDefaultTimeZone());
-	}
+    public OtherTimeZone() {
+        TimeZone.setDefault(definitelyNotDefaultTimeZone());
+    }
 
 }

@@ -7,12 +7,12 @@ import java.util.Date;
  */
 public class DefaultDateSupplier implements DateSupplier {
 
-	/**
-	 * Gets the current date by returning {@code new Date()}.
-	 */
-	@Override
-	public Date get() {
-		return new Date();
-	}
+    /**
+     * Gets the current date by returning {@code new Date()}.
+     */
+    @Override
+    public Date get() {
+        return new Date();
+    }
 
 }

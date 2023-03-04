@@ -23,95 +23,95 @@ import org.junit.runners.model.InitializationError;
 
 public class RestoreTimeZoneExampleTest {
 
-	private static final TimeZone initial = TimeZone.getDefault();
+    private static final TimeZone initial = TimeZone.getDefault();
 
-	@After
-	public void restoreTimeZone_EvenIfFailedTestsDidNotRestoreIt() {
-		TimeZone.setDefault(initial);
-	}
+    @After
+    public void restoreTimeZone_EvenIfFailedTestsDidNotRestoreIt() {
+        TimeZone.setDefault(initial);
+    }
 
-	@Ignore // Only test via our special runner
-	public static class ExampleTestChangingTimeZone {
+    @Ignore // Only test via our special runner
+    public static class ExampleTestChangingTimeZone {
 
-		@Before
-		public void ensureStartingTestWithZimeZoneIsDefault() {
-			assertThat(TimeZone.getDefault(), is(initial));
-		}
+        @Before
+        public void ensureStartingTestWithZimeZoneIsDefault() {
+            assertThat(TimeZone.getDefault(), is(initial));
+        }
 
-		@Rule
-		public final TestRule restoreTimeZone = new RestoreTimeZone();
+        @Rule
+        public final TestRule restoreTimeZone = new RestoreTimeZone();
 
-		@Test
-		public void testChangingTheTimeZone() {
-			// Modify the time zone
-			TimeZone.setDefault(definitelyNotDefaultTimeZone());
-			assertThat(TimeZone.getDefault(), is(not(initial)));
-		}
-	}
+        @Test
+        public void testChangingTheTimeZone() {
+            // Modify the time zone
+            TimeZone.setDefault(definitelyNotDefaultTimeZone());
+            assertThat(TimeZone.getDefault(), is(not(initial)));
+        }
+    }
 
-	@Ignore // Only test via our special runner
-	public static class ExampleTestChangingTimeZone_AndCrashing {
+    @Ignore // Only test via our special runner
+    public static class ExampleTestChangingTimeZone_AndCrashing {
 
-		@Before
-		public void ensureStartingTestWithZimeZoneIsDefault() {
-			assertThat(TimeZone.getDefault(), is(initial));
-		}
+        @Before
+        public void ensureStartingTestWithZimeZoneIsDefault() {
+            assertThat(TimeZone.getDefault(), is(initial));
+        }
 
-		@Rule
-		public final TestRule restoreTimeZone = new RestoreTimeZone();
+        @Rule
+        public final TestRule restoreTimeZone = new RestoreTimeZone();
 
-		@Test
-		public void testChangingTheTimeZone() {
-			// Modify the time zone
-			TimeZone.setDefault(definitelyNotDefaultTimeZone());
-			assertThat(TimeZone.getDefault(), is(not(initial)));
+        @Test
+        public void testChangingTheTimeZone() {
+            // Modify the time zone
+            TimeZone.setDefault(definitelyNotDefaultTimeZone());
+            assertThat(TimeZone.getDefault(), is(not(initial)));
 
-			fail("force failure after changing time zone");
-		}
-	}
+            fail("force failure after changing time zone");
+        }
+    }
 
-	public static class LocalRunner extends BlockJUnit4ClassRunner {
+    public static class LocalRunner extends BlockJUnit4ClassRunner {
 
-		public LocalRunner(Class<?> testClass) throws InitializationError {
-			super(testClass);
-		}
+        public LocalRunner(Class<?> testClass) throws InitializationError {
+            super(testClass);
+        }
 
-	}
+    }
 
-	@Test
-	public void testTimeZoneIsRestored_AfterPassingTest_UsingRunnerToEnsureRuleIsExercised() throws Exception {
+    @Test
+    public void testTimeZoneIsRestored_AfterPassingTest_UsingRunnerToEnsureRuleIsExercised() throws Exception {
 
-		RunNotifier notifier = new RunNotifier() {
-			@Override
-			public void fireTestFailure(Failure failure) {
-				throw new RuntimeException(failure.getException());
-			}
-		};
+        RunNotifier notifier = new RunNotifier() {
+            @Override
+            public void fireTestFailure(Failure failure) {
+                throw new RuntimeException(failure.getException());
+            }
+        };
 
-		// Run "expected to pass" tests
-		LocalRunner runner = new LocalRunner(ExampleTestChangingTimeZone.class);
-		runner.run(notifier);
+        // Run "expected to pass" tests
+        LocalRunner runner = new LocalRunner(ExampleTestChangingTimeZone.class);
+        runner.run(notifier);
 
-		assertThat(TimeZone.getDefault(), is(initial));
-	}
+        assertThat(TimeZone.getDefault(), is(initial));
+    }
 
-	@Test
-	public void testTimeZoneIsRestored_AfterFailingTest_UsingRunnerToEnsureRuleIsExercised() throws Exception {
+    @Test
+    public void testTimeZoneIsRestored_AfterFailingTest_UsingRunnerToEnsureRuleIsExercised() throws Exception {
 
-		final List<Failure> failures = new ArrayList<Failure>();
-		RunNotifier notifier = new RunNotifier() {
-			@Override
-			public void fireTestFailure(Failure failure) {
-				failures.add(failure);
-			}
-		};
+        final List<Failure> failures = new ArrayList<Failure>();
+        RunNotifier notifier = new RunNotifier() {
+            @Override
+            public void fireTestFailure(Failure failure) {
+                failures.add(failure);
+            }
+        };
 
-		// Run "expected to fail" tests
-		LocalRunner runner = new LocalRunner(ExampleTestChangingTimeZone_AndCrashing.class);
-		runner.run(notifier);
+        // Run "expected to fail" tests
+        LocalRunner runner = new LocalRunner(ExampleTestChangingTimeZone_AndCrashing.class);
+        runner.run(notifier);
 
-		assertThat(TimeZone.getDefault(), is(initial));
-		assertThat(failures.get(0).getMessage(), is("force failure after changing time zone"));
-	}
+        assertThat(TimeZone.getDefault(), is(initial));
+        assertThat(failures.get(0).getMessage(), is("force failure after changing time zone"));
+    }
 
 }

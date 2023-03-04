@@ -9,12 +9,12 @@ import java.util.Date;
  */
 public interface DateSupplier {
 
-	/**
-	 * Gets a {@code Date}. Named to match Java 8's
-	 * {@code Supplier<Date>.get()}, even though we don't use Java 8.
-	 *
-	 * @return a {@code Date}
-	 */
-	Date get();
+    /**
+     * Gets a {@code Date}. Named to match Java 8's
+     * {@code Supplier<Date>.get()}, even though we don't use Java 8.
+     *
+     * @return a {@code Date}
+     */
+    Date get();
 
 }
