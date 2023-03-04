@@ -11,33 +11,33 @@ import org.junit.Test;
 
 public class OtherTimeZoneTest {
 
-	private static final TimeZone initial = TimeZone.getDefault();
+    private static final TimeZone initial = TimeZone.getDefault();
 
-	@After
-	public void restoreTimeZone_EvenIfFailedTestsDidNotRestoreIt() {
-		TimeZone.setDefault(initial);
-	}
+    @After
+    public void restoreTimeZone_EvenIfFailedTestsDidNotRestoreIt() {
+        TimeZone.setDefault(initial);
+    }
 
-	@Test
-	public void testSetsNonDefaultTimeZone() {
-		assertThat(TimeZone.getDefault(), is(initial));
+    @Test
+    public void testSetsNonDefaultTimeZone() {
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		OtherTimeZone subject = new OtherTimeZone();
-		subject.before();
+        OtherTimeZone subject = new OtherTimeZone();
+        subject.before();
 
-		TimeZone defaultWithinTest = TimeZone.getDefault();
-		assertThat(defaultWithinTest, is(not(initial)));
-	}
+        TimeZone defaultWithinTest = TimeZone.getDefault();
+        assertThat(defaultWithinTest, is(not(initial)));
+    }
 
-	@Test
-	public void testAfter_RestoresDefault() {
-		assertThat(TimeZone.getDefault(), is(initial));
+    @Test
+    public void testAfter_RestoresDefault() {
+        assertThat(TimeZone.getDefault(), is(initial));
 
-		OtherTimeZone subject = new OtherTimeZone();
-		subject.before();
+        OtherTimeZone subject = new OtherTimeZone();
+        subject.before();
 
-		subject.after();
-		assertThat(TimeZone.getDefault(), is(initial));
-	}
+        subject.after();
+        assertThat(TimeZone.getDefault(), is(initial));
+    }
 
 }
