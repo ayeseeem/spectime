@@ -89,7 +89,7 @@ public class ZonedTester {
      * @return a new list of zones
      */
     public static List<TimeZone> exclusiveZones() {
-        List<TimeZone> zones = new ArrayList<TimeZone>();
+        List<TimeZone> zones = new ArrayList<>();
 
         // Default zone
         TimeZone defaultZone = TimeZone.getDefault();

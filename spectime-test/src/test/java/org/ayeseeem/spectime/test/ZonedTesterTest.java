@@ -78,7 +78,7 @@ public class ZonedTesterTest {
 
     @Test
     public void testTestInMultipleZones_ExecutesTestMoreThanOnce() throws Throwable {
-        final List<String> testLog = new ArrayList<String>();
+        final List<String> testLog = new ArrayList<>();
 
         ThrowingRunnable test = new ThrowingRunnable() {
             @Override
@@ -95,7 +95,7 @@ public class ZonedTesterTest {
 
     @Test
     public void testTestInMultipleZones_UsesMultipleTimeZones() throws Throwable {
-        final List<TimeZone> zonesUsed = new ArrayList<TimeZone>();
+        final List<TimeZone> zonesUsed = new ArrayList<>();
 
         ThrowingRunnable test = new ThrowingRunnable() {
             @Override
@@ -113,7 +113,7 @@ public class ZonedTesterTest {
     //@Characterization
     @Test
     public void testTestInMultipleZones_WhichZones() throws Throwable {
-        final List<TimeZone> zonesUsed = new ArrayList<TimeZone>();
+        final List<TimeZone> zonesUsed = new ArrayList<>();
 
         ThrowingRunnable test = new ThrowingRunnable() {
             @Override
@@ -169,7 +169,7 @@ public class ZonedTesterTest {
     public void testTestInMultipleZones_RestoresDefault() {
         final TimeZone original = TimeZone.getDefault();
 
-        final List<TimeZone> zonesUsed = new ArrayList<TimeZone>();
+        final List<TimeZone> zonesUsed = new ArrayList<>();
 
         final ZonedTester subject = new ZonedTester(new ThrowingRunnable() {
             @Override
@@ -205,7 +205,7 @@ public class ZonedTesterTest {
         List<TimeZone> zones = exclusiveZones();
         assertThat(zones.size() >= 4, is(true));
 
-        Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+        Set<TimeZone> distinctZones = new HashSet<>(zones);
         assertThat(distinctZones.size() >= 4, is(true));
     }
 
@@ -220,7 +220,7 @@ public class ZonedTesterTest {
     public void testExclusiveZones_AreNotNecessarilyAllDifferent() {
         List<TimeZone> zones = exclusiveZones();
 
-        Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+        Set<TimeZone> distinctZones = new HashSet<>(zones);
         assertThat(zones.size() >= distinctZones.size(), is(true));
     }
 
@@ -228,13 +228,13 @@ public class ZonedTesterTest {
     public void testExclusiveZones_Offsets_AreNotNecessarilyAllDifferent() {
         List<TimeZone> zones = exclusiveZones();
 
-        List<Integer> offsets = new ArrayList<Integer>();
+        List<Integer> offsets = new ArrayList<>();
         for (TimeZone tz : zones) {
             offsets.add(tz.getRawOffset());
         }
         assertThat(offsets.size() > 1, is(true));
 
-        Set<Integer> distinctOffsets = new HashSet<Integer>(offsets);
+        Set<Integer> distinctOffsets = new HashSet<>(offsets);
         assertThat(distinctOffsets.size() > 1, is(true));
 
         assertThat(offsets.size() >= distinctOffsets.size(), is(true));
@@ -275,7 +275,7 @@ public class ZonedTesterTest {
             // Has enough zones
             List<TimeZone> zones = exclusiveZones();
             assertThat(zones.size() >= 4, is(true));
-            Set<TimeZone> distinctZones = new HashSet<TimeZone>(zones);
+            Set<TimeZone> distinctZones = new HashSet<>(zones);
             assertThat(distinctZones.size() >= 4, is(true));
 
             // Always Expected zones

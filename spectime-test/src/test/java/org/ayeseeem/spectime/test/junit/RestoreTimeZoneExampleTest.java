@@ -98,7 +98,7 @@ public class RestoreTimeZoneExampleTest {
     @Test
     public void testTimeZoneIsRestored_AfterFailingTest_UsingRunnerToEnsureRuleIsExercised() throws Exception {
 
-        final List<Failure> failures = new ArrayList<Failure>();
+        final List<Failure> failures = new ArrayList<>();
         RunNotifier notifier = new RunNotifier() {
             @Override
             public void fireTestFailure(Failure failure) {
